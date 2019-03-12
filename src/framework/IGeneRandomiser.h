@@ -3,7 +3,7 @@
 
 template<class G>
 class IGeneRandomiser {
-    G getRandomGene();
+    virtual G getRandomGene() = 0;
 };
 
 #endif //GENETICALGORITHM_IRANDOMISER_H
