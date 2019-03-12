@@ -10,5 +10,4 @@ class StringMutator : IMutator<string> {
     string Mutate(string chromosome);
 };
 
-
 #endif //GENETICALGORITHM_STRINGMUTATOR_H

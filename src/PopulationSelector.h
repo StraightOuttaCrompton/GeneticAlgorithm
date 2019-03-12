@@ -6,7 +6,7 @@
 
 template<class G, class F>
 class PopulationSelector : IPopulationSelector<G, F> {
-    IMatingPool<G, F> getMatingPool(IPopulation<G> population, IFitnessFunction<G, F> fitnessFunction);
+    IMatingPool<G, F> CreateMatingPool(IPopulation<G> population, IFitnessFunction<G, F> fitnessFunction);
 };
 
 

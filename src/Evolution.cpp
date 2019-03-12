@@ -1,7 +1,7 @@
-#include "GeneticAlgorithm.h"
+#include "Evolution.h"
 
 template<class G, class F>
-void GeneticAlgorithm<G, F>::Start() {
+void Evolution<G, F>::Start() {
     int mutationRate = 1000;
 
     // initialise population
@@ -12,10 +12,9 @@ void GeneticAlgorithm<G, F>::Start() {
 
     for (int j = 0; j < _generations; ++j) {
         // Selection
-        IMatingPool<G> matingPool = _populationSelector.getMatingPool(_population, _fitnessFunction);
+        IMatingPool<G, F> matingPool = _populationSelector.CreateMatingPool(_population, _fitnessFunction);
 
-
-        deque<G> nextPopulation;
+        vector<G> nextPopulation;
         for (int i = 0; i < _initialPopulationSize; ++i) {
             G parent1 = matingPool.getEligibleParent();
             G parent2 = matingPool.getEligibleParent();

@@ -8,10 +8,12 @@ class Population : IPopulation<G> {
 public:
     void add(G gene);
 
-    void replace(deque<G> nextPopulaion);
+    void replace(vector<G> nextPopulaion);
+
+    vector<G> getPopulation();
 
 private:
-    deque<G> _population;
+    vector<G> _population;
 };
 
 

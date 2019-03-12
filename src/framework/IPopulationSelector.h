@@ -8,7 +8,7 @@
 
 template<class G, class F>
 class IPopulationSelector {
-    virtual IMatingPool<G> getMatingPool(IPopulation<G> population, IFitnessFunction <G, F> fitnessFunction) = 0;
+    virtual IMatingPool<G, F> CreateMatingPool(IPopulation<G> population, IFitnessFunction<G, F> fitnessFunction) = 0;
 };
 
 #endif //GENETICALGORITHM_IPOPULATIONSELECTOR_H

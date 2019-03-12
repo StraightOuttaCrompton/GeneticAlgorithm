@@ -1,7 +1,6 @@
 #ifndef GENETICALGORITHM_GENETICALGORITHM_H
 #define GENETICALGORITHM_GENETICALGORITHM_H
 
-
 #include "framework/IBreeder.h"
 #include "framework/IFitnessFunction.h"
 #include "framework/IGeneRandomiser.h"
@@ -10,12 +9,12 @@
 #include "framework/IPopulationSelector.h"
 
 template<class G, class F>
-class GeneticAlgorithm {
+class Evolution {
 public:
-    GeneticAlgorithm(
-            int initialPopulationSize, int generations, IPopulation<G> population, IBreeder<G> breeder,
+    Evolution(
+            int initialPopulationSize, int generations, IBreeder<G> breeder,
             IFitnessFunction<G, F> fitnessFunction, IGeneRandomiser<G> geneRandomiser, IMutator<G> mutator,
-            IPopulationSelector<G, F> populationSelector
+            IPopulation<G> population, IPopulationSelector<G, F> populationSelector
     ) :
             _initialPopulationSize(initialPopulationSize), _population(population), _generations(generations),
             _breeder(breeder), _fitnessFunction(fitnessFunction), _geneRandomiser(geneRandomiser), _mutator(mutator),
