@@ -1,10 +1,9 @@
 #ifndef GENETICALGORITHM_IMUTATOR_H
 #define GENETICALGORITHM_IMUTATOR_H
 
-template<class C>
+template<class G>
 class IMutator {
-public:
-    virtual C Mutate(C chromosome) = 0;
+    virtual G Mutate(G gene, int mutationRate) = 0;
 };
 
 #endif //GENETICALGORITHM_IMUTATOR_H

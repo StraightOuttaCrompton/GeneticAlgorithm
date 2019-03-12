@@ -1,10 +1,9 @@
 #ifndef GENETICALGORITHM_IFITNESSFUNCTION_H
 #define GENETICALGORITHM_IFITNESSFUNCTION_H
 
-template<class C, class F>
+template<class G, class F>
 class IFitnessFunction {
-public:
-    virtual F Fitness(C solution) = 0;
+    virtual F Fitness(G gene) = 0;
 
 };
 

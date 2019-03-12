@@ -1,14 +1,12 @@
 #ifndef GENETICALGORITHM_IPOPULATION_H
 #define GENETICALGORITHM_IPOPULATION_H
 
-template<class C, class F>
+template<class G>
 class IPopulation {
 public:
-    virtual F getAverageFitness() = 0;
+    virtual G getEligibleParent() = 0;
 
-    virtual F getBestFitness() = 0;
-
-    virtual C getFittestChromosome() = 0;
+    virtual void addToPopulation(G gene) = 0;
 };
 
 #endif //GENETICALGORITHM_IPOPULATION_H
