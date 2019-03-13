@@ -7,6 +7,7 @@ using namespace std;
 #include "../framework/IBreeder.h"
 
 class StringBreeder : IBreeder<string> {
+public:
     string Breed(string parent1, string parent2);
 };
 

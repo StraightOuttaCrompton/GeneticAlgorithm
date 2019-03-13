@@ -1,7 +1,7 @@
 #ifndef GENETICALGORITHM_IBREEDER_H
 #define GENETICALGORITHM_IBREEDER_H
 
-template<class G>
+template<typename G>
 class IBreeder {
     virtual G Breed(G gene1, G gene2) = 0;
 };
