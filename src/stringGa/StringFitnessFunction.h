@@ -7,6 +7,7 @@ using namespace std;
 #include "../framework/IFitnessFunction.h"
 
 class StringFitnessFunction : IFitnessFunction<string, int> {
+public:
     int Fitness(string chromosome);
 };
 
