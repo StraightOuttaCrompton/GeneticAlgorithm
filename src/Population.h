@@ -3,7 +3,7 @@
 
 #include "framework/IPopulation.h"
 
-template<class G>
+template<typename G>
 class Population : IPopulation<G> {
 public:
     void add(G gene);

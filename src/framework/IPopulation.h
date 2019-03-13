@@ -5,7 +5,7 @@
 
 using namespace std;
 
-template<class G>
+template<typename G>
 class IPopulation {
 public:
     virtual void add(G gene) = 0;
