@@ -7,6 +7,7 @@ using namespace std;
 #include <string>
 
 class StringRandomiser : IGeneRandomiser<string> {
+public:
     string getRandomGene();
 };
 
