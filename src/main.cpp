@@ -1,11 +1,15 @@
 #include <iostream>
+
 #include "Population.h"
+#include "Population.cpp" // Avoid linking error
+
+//#include "PopulationSelector.h"
+//#include "PopulationSelector.cpp"
+
 #include "stringGa/StringBreeder.h"
 #include "stringGa/StringFitnessFunction.h"
 #include "stringGa/StringRandomiser.h"
 #include "stringGa/StringMutator.h"
-#include "PopulationSelector.h"
-#include "Evolution.h"
 
 using namespace std;
 
@@ -15,18 +19,21 @@ int main() {
     int initialPopulationSize = 10;
     int generations = 10;
 
-    // data structures
-    Population<string> *population;
-    PopulationSelector<string, int> populationSelector;
+
+    // Data structures
+    Population<string> population;
+//    PopulationSelector<string, int> populationSelector;
+
 
     // Customisable components
     StringBreeder breeder;
     StringFitnessFunction fitnessFunction;
     StringRandomiser randomiser;
-    StringMutator *mutator;
+    StringMutator mutator;
 
-    Evolution<string, int> ga(initialPopulationSize, generations, breeder, fitnessFunction, randomiser, mutator,
-                              population, populationSelector);
+
+//    Evolution<string, int> ga(initialPopulationSize, generations, breeder, fitnessFunction, randomiser, mutator,
+//                              population, populationSelector);
 
 //    ga.Start();
 
