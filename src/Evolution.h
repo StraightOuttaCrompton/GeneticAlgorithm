@@ -12,25 +12,35 @@ template<class G, class F>
 class Evolution {
 public:
     Evolution(
-            int initialPopulationSize, int generations, IBreeder<G> breeder,
-            IFitnessFunction<G, F> *fitnessFunction, IGeneRandomiser<G> *geneRandomiser, IMutator<G> *mutator,
-            IPopulation<G> *population, IPopulationSelector<G, F> *populationSelector
+            int initialPopulationSize, int generations, int mutationRate, IPopulation<G> &population,
+            IPopulationSelector<G, F> &populationSelector, IMatingPool<G, F> &matingPool,
+            IFitnessFunction<G, F> &fitnessFunction, IGeneRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
+            IMutator<G> &mutator
     ) :
-            _initialPopulationSize(initialPopulationSize), _generations(generations), _breeder(breeder),
-            _fitnessFunction(fitnessFunction), _geneRandomiser(geneRandomiser), _mutator(mutator),
-            _population(population), _populationSelector(populationSelector) {}
+            _initialPopulationSize(initialPopulationSize),
+            _generations(generations),
+            _mutationRate(mutationRate),
+            _population(population),
+            _populationSelector(populationSelector),
+            _matingPool(matingPool),
+            _fitnessFunction(fitnessFunction),
+            _geneRandomiser(geneRandomiser),
+            _breeder(breeder),
+            _mutator(mutator) {}
 
     void Start();
 
 private:
     int _initialPopulationSize;
     int _generations;
-    IBreeder<G> _breeder;
-    IFitnessFunction<G, F> *_fitnessFunction;
-    IGeneRandomiser<G> *_geneRandomiser;
-    IMutator<G> *_mutator;
-    IPopulation<G> *_population;
-    IPopulationSelector<G, F> *_populationSelector;
+    int _mutationRate;
+    IPopulation<G> &_population;
+    IPopulationSelector<G, F> &_populationSelector;
+    IMatingPool<G, F> &_matingPool;
+    IFitnessFunction<G, F> &_fitnessFunction;
+    IGeneRandomiser<G> &_geneRandomiser;
+    IBreeder<G> &_breeder;
+    IMutator<G> &_mutator;
 };
 
 #endif //GENETICALGORITHM_GENETICALGORITHM_H

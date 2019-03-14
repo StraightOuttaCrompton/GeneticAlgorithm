@@ -12,6 +12,9 @@
 #include "stringGa/StringRandomiser.h"
 #include "stringGa/StringMutator.h"
 
+#include "Evolution.h"
+#include "Evolution.cpp" // Avoid linking error
+
 using namespace std;
 
 int main() {
@@ -19,12 +22,13 @@ int main() {
 
     int initialPopulationSize = 10;
     int generations = 10;
+    int mutationRate = 100; // not doing anything yet
 
 
     // Data structures
     Population<string> population;
-    MatingPool<string, int> matingPool;
     PopulationSelector<string, int> populationSelector;
+    MatingPool<string, int> matingPool;
 
     // Customisable components
     StringBreeder breeder;
@@ -33,11 +37,12 @@ int main() {
     StringMutator mutator;
 
 
+    Evolution<string, int> ga(initialPopulationSize, generations, mutationRate, population, populationSelector,
+                              matingPool,
+                              fitnessFunction, randomiser, breeder,
+                              mutator);
 
-//    Evolution<string, int> ga(initialPopulationSize, generations, breeder, fitnessFunction, randomiser, mutator,
-//                              population, populationSelector);
-
-//    ga.Start();
+    ga.Start();
 
     return 0;
 }
