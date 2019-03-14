@@ -6,9 +6,9 @@ using namespace std;
 #include <string>
 #include "../framework/IFitnessFunction.h"
 
-class StringFitnessFunction : IFitnessFunction<string, int> {
+class StringFitnessFunction : public IFitnessFunction<string, int> {
 public:
-    int Fitness(string chromosome);
+    int Fitness(string chromosome) override;
 };
 
 

@@ -4,7 +4,7 @@
 #include "framework/IPopulation.h"
 
 template<typename G>
-class Population : IPopulation<G> {
+class Population : public IPopulation<G> {
 public:
     void add(G gene);
 

@@ -6,7 +6,7 @@ using namespace std;
 #include "../framework/IGeneRandomiser.h"
 #include <string>
 
-class StringRandomiser : IGeneRandomiser<string> {
+class StringRandomiser : public IGeneRandomiser<string> {
 public:
     string getRandomGene();
 };

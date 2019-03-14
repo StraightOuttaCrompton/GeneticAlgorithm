@@ -3,6 +3,7 @@
 
 template<typename G, typename F>
 class IFitnessFunction {
+public:
     virtual F Fitness(G gene) = 0;
 };
 

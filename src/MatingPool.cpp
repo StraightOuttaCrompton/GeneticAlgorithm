@@ -9,6 +9,11 @@ void MatingPool<G, F>::add(G item, F fitness) {
 }
 
 template<class G, class F>
+void MatingPool<G, F>::clearPool() {
+    _pool.clear();
+}
+
+template<class G, class F>
 G MatingPool<G, F>::getEligibleParent() {
     int length = _pool.size();
 
@@ -18,7 +23,7 @@ G MatingPool<G, F>::getEligibleParent() {
 
     auto random_integer = uni(rng);
 
-    Individual individual = _pool(random_integer);
+    Individual individual = _pool[random_integer];
 
     return individual.getGene();
 }

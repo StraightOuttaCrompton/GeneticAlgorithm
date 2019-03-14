@@ -3,6 +3,7 @@
 
 template<typename G>
 class IGeneRandomiser {
+public:
     virtual G getRandomGene() = 0;
 };
 

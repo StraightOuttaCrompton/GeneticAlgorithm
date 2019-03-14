@@ -6,7 +6,7 @@ using namespace std;
 #include "../framework/IMutator.h"
 #include <string>
 
-class StringMutator : IMutator<string> {
+class StringMutator : public IMutator<string> {
 public:
     string Mutate(string chromosome, int mutationRate);
 };

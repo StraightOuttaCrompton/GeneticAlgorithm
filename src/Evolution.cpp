@@ -2,13 +2,12 @@
 
 template<class G, class F>
 void Evolution<G, F>::Start() {
-    int mutationRate = 1000;
+    int mutationRate = 1000; // pass in constructor?
 
     // initialise population
     for (int i = 0; i < _initialPopulationSize; ++i) {
         _population.add(_geneRandomiser.getRandomGene());
     }
-
 
     for (int j = 0; j < _generations; ++j) {
         // Selection

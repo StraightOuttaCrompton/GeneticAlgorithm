@@ -3,6 +3,7 @@
 
 template<typename G>
 class IMutator {
+public:
     virtual G Mutate(G gene, int mutationRate) = 0;
 };
 

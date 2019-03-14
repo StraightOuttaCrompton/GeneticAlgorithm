@@ -6,6 +6,8 @@ class IMatingPool {
 public:
     virtual void add(G item, F fitness) = 0;
 
+    virtual void clearPool() = 0;
+
     virtual G getEligibleParent() = 0;
 };
 

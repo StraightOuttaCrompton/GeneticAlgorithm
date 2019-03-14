@@ -2,9 +2,10 @@
 
 #include "Population.h"
 #include "Population.cpp" // Avoid linking error
-
-//#include "PopulationSelector.h"
-//#include "PopulationSelector.cpp"
+#include "MatingPool.h"
+#include "MatingPool.cpp" // Avoid linking error
+#include "PopulationSelector.h"
+#include "PopulationSelector.cpp" // Avoid linking error
 
 #include "stringGa/StringBreeder.h"
 #include "stringGa/StringFitnessFunction.h"
@@ -22,14 +23,15 @@ int main() {
 
     // Data structures
     Population<string> population;
-//    PopulationSelector<string, int> populationSelector;
-
+    MatingPool<string, int> matingPool;
+    PopulationSelector<string, int> populationSelector;
 
     // Customisable components
     StringBreeder breeder;
     StringFitnessFunction fitnessFunction;
     StringRandomiser randomiser;
     StringMutator mutator;
+
 
 
 //    Evolution<string, int> ga(initialPopulationSize, generations, breeder, fitnessFunction, randomiser, mutator,

@@ -3,6 +3,7 @@
 
 template<typename G>
 class IBreeder {
+public:
     virtual G Breed(G gene1, G gene2) = 0;
 };
 
