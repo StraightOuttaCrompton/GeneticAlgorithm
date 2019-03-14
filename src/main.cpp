@@ -19,11 +19,13 @@ using namespace std;
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
+    // TODO: To implement properly
+    // _matingPool.getEligibleParent
+    // Add mutation rate to mutation function
 
     int initialPopulationSize = 10;
     int generations = 10;
     int mutationRate = 100; // not doing anything yet
-
 
     // Data structures
     Population<string> population;
@@ -36,11 +38,8 @@ int main() {
     StringRandomiser randomiser;
     StringMutator mutator;
 
-
     Evolution<string, int> ga(initialPopulationSize, generations, mutationRate, population, populationSelector,
-                              matingPool,
-                              fitnessFunction, randomiser, breeder,
-                              mutator);
+                              matingPool, fitnessFunction, randomiser, breeder, mutator);
 
     ga.Start();
 

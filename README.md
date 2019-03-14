@@ -12,3 +12,6 @@ Step 3: Reproduction: Repeat N times
 Step 4: replace old population with new population and return to Step 2
 
 
+
+
+https://www.youtube.com/playlist?list=PLRqwX-V7Uu6bJM3VgzjNV5YxVxUwzALHV

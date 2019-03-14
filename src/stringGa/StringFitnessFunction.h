@@ -8,6 +8,7 @@ using namespace std;
 
 class StringFitnessFunction : public IFitnessFunction<string, int> {
 public:
+
     int Fitness(string chromosome) override;
 };
 
