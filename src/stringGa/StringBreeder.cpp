@@ -7,96 +7,102 @@
 
 using namespace std;
 
-char getCharFromSet(set<char> s) {
+int getRandomInt(int min, int max) {
     random_device rd;     // only used once to initialise (seed) engine
     mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-    uniform_int_distribution<int> uni(0, s.size() - 1); // guaranteed unbiased
+    uniform_int_distribution<int> uni(min, max); // guaranteed unbiased
 
-    auto random_integer = uni(rng);
-
-    char randomChar = *std::next(s.begin(), random_integer);
-
-    return randomChar;
+    return uni(rng);
 }
 
-char chooseChar(char c1, char c2) {
-    random_device rd;     // only used once to initialise (seed) engine
-    mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-    uniform_int_distribution<int> uni(0, 1); // guaranteed unbiased
+template<typename T>
+T getRandmItemFromSet(set<T> s) {
+    int random_integer = getRandomInt(0, (int) s.size() - 1);
 
-    auto random_integer = uni(rng);
-
-    if (random_integer == 0) {
-        return c1;
-    } else {
-        return c2;
-    }
+    return *next(s.begin(), random_integer);
 }
 
 string StringBreeder::Breed(string parent1, string parent2) {
-    set<char> alphabetPool = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                              'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    const unsigned long p1_length = parent1.length();
+    const unsigned long p2_length = parent2.length();
 
-    set<char> usedChars;
-
-    string child;
-    for (string::size_type j = 0; j < parent1.size(); ++j) {
-        child += '-';
+    if (p1_length != p2_length) {
+        throw invalid_argument("Parent lengths should be the same");
     }
 
-    for (string::size_type i = 0; i < parent1.size(); ++i) {
+    initialiseSets();
+
+    const char childPlaceholder = '-';
+    initialiseChild(p1_length, childPlaceholder);
+
+    // Add matching chars from parents to child
+    // if parent strings are "abcd" and "bcad",
+    // then child will become "---d"
+    for (string::size_type i = 0; i < p1_length; ++i) {
         char parent1Char = parent1[i];
         char parent2Char = parent2[i];
 
         if (parent1Char == parent2Char) {
-            alphabetPool.erase(parent1Char);
-            usedChars.insert(parent1Char);
-            child[i] = parent1Char;
+            addCharToChild(parent1Char, i);
         }
     }
 
-    for (string::size_type k = 0; k < child.size(); ++k) {
-        if (child[k] == '-') {
-            char parent1Char = parent1[k];
-            char parent2Char = parent2[k];
+    // Choose randomly between parent1 char or parent2 char
+    // If the char has been unused then add to child
+    // TODO: instead of looping through, choose a random index
+    for (string::size_type j = 0; j < p1_length; ++j) {
+        if (_child[j] == childPlaceholder) {
+            char parent1Char = parent1[j];
+            char parent2Char = parent2[j];
 
+            const bool p1_isInUsedChars = _usedChars.find(parent1Char) != _usedChars.end();
+            const bool p2_isInUsedChars = _usedChars.find(parent2Char) != _usedChars.end();
 
-            const bool p1_is_in = usedChars.find(parent1Char) != usedChars.end();
-            const bool p2_is_in = usedChars.find(parent2Char) != usedChars.end();
-
-            if (!p1_is_in && !p2_is_in) {
-                char chosenChar = chooseChar(parent1Char, parent2Char);
-                child[k] = chosenChar;
-                alphabetPool.erase(chosenChar);
-                usedChars.insert(chosenChar);
+            if (!p1_isInUsedChars && !p2_isInUsedChars) {
+                set<char> parents = {parent1Char, parent2Char};
+                char chosenChar = getRandmItemFromSet<char>(parents);
+                addCharToChild(chosenChar, j);
                 continue;
             }
 
-            if (!p1_is_in) {
-                child[k] = parent1Char;
-                alphabetPool.erase(parent1Char);
-                usedChars.insert(parent1Char);
+            if (!p1_isInUsedChars) {
+                addCharToChild(parent1Char, j);
                 continue;
             }
 
-            if (!p2_is_in) {
-                child[k] = parent2Char;
-                alphabetPool.erase(parent2Char);
-                usedChars.insert(parent2Char);
-                continue;
+            if (!p2_isInUsedChars) {
+                addCharToChild(parent2Char, j);
             }
         }
     }
 
-
-    for (string::size_type k = 0; k < child.size(); ++k) {
-        if (child[k] == '-') {
-            char ch = getCharFromSet(alphabetPool);
-            child[k] = ch;
-            alphabetPool.erase(ch);
-            usedChars.insert(ch);
+    // Fill in remaining child chars with unused chars from alphabet pool
+    for (string::size_type k = 0; k < p1_length; ++k) {
+        if (_child[k] == childPlaceholder) {
+            char ch = getRandmItemFromSet<char>(_alphabetPool);
+            addCharToChild(ch, k);
         }
     }
 
-    return child;
+    return _child;
+}
+
+void StringBreeder::addCharToChild(char ch, unsigned long index) {
+    _child[index] = ch;
+    _alphabetPool.erase(ch);
+    _usedChars.insert(ch);
+}
+
+void StringBreeder::initialiseSets() {
+    // TODO: pass alphabet as string in constructor
+    _alphabetPool = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+                     'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    _usedChars = {};
+}
+
+void StringBreeder::initialiseChild(unsigned long length, char placeholder) {
+    _child = "";
+    for (string::size_type j = 0; j < length; ++j) {
+        _child += placeholder;
+    }
 }
