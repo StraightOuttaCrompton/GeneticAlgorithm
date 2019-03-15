@@ -22,7 +22,7 @@ void Evolution<G, F>::Start() {
 
             G child = _breeder.Breed(parent1, parent2);
 
-            child = _mutator.Mutate(child, _mutationRate);
+            child = _mutator.Mutate(child);
 
             nextPopulation.push_back(child);
         }

@@ -8,7 +8,12 @@ using namespace std;
 
 class StringMutator : public IMutator<string> {
 public:
-    string Mutate(string chromosome, int mutationRate);
+    StringMutator(int mutationRate) : _mutationRate(mutationRate) {};
+
+    string Mutate(string chromosome);
+
+private:
+    int _mutationRate;
 };
 
 #endif //GENETICALGORITHM_STRINGMUTATOR_H

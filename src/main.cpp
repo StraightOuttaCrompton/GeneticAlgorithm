@@ -36,9 +36,9 @@ int main() {
     StringBreeder breeder;
     StringFitnessFunction fitnessFunction;
     StringRandomiser randomiser;
-    StringMutator mutator;
+    StringMutator mutator(mutationRate);
 
-    Evolution<string, int> ga(initialPopulationSize, generations, mutationRate, population, populationSelector,
+    Evolution<string, int> ga(initialPopulationSize, generations, population, populationSelector,
                               matingPool, fitnessFunction, randomiser, breeder, mutator);
 
     ga.Start();

@@ -2,7 +2,8 @@
 #include <random>
 
 
-string StringMutator::Mutate(string chromosome, int mutationRate) {
+string StringMutator::Mutate(string chromosome) {
+    // TODO: Use _mutationRate here
     int length = static_cast<int>(chromosome.size());
 
     random_device rd;     // only used once to initialise (seed) engine

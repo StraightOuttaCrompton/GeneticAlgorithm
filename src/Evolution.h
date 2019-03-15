@@ -12,14 +12,13 @@ template<class G, class F>
 class Evolution {
 public:
     Evolution(
-            int initialPopulationSize, int generations, int mutationRate, IPopulation<G> &population,
+            int initialPopulationSize, int generations, IPopulation<G> &population,
             IPopulationSelector<G, F> &populationSelector, IMatingPool<G, F> &matingPool,
             IFitnessFunction<G, F> &fitnessFunction, IGeneRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
             IMutator<G> &mutator
     ) :
             _initialPopulationSize(initialPopulationSize),
             _generations(generations),
-            _mutationRate(mutationRate),
             _population(population),
             _populationSelector(populationSelector),
             _matingPool(matingPool),
@@ -33,7 +32,6 @@ public:
 private:
     int _initialPopulationSize;
     int _generations;
-    int _mutationRate;
     IPopulation<G> &_population;
     IPopulationSelector<G, F> &_populationSelector;
     IMatingPool<G, F> &_matingPool;
