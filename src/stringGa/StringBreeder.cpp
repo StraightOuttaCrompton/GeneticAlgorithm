@@ -85,6 +85,8 @@ string StringBreeder::Breed(string parent1, string parent2) {
     }
 
     return _child;
+
+//    return parent1;
 }
 
 void StringBreeder::addCharToChild(char ch, unsigned long index) {

@@ -9,6 +9,8 @@ public:
     virtual void clearPool() = 0;
 
     virtual G getEligibleParent() = 0;
+
+    virtual void print() = 0;
 };
 
 #endif //GENETICALGORITHM_IMATINGPOOL_H

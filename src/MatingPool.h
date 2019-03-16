@@ -2,7 +2,7 @@
 #define GENETICALGORITHM_MATINGPOOL_H
 
 #include "framework/IMatingPool.h"
-#include "Individual.h"
+#include "utils/RouletteWheelSelection.h"
 
 using namespace std;
 
@@ -18,8 +18,10 @@ public:
 
     G getEligibleParent();
 
+    void print();
+
 private:
-    vector<Individual<G, F>> _pool;
+    RouletteWheelSelection <G> _rouletteWheelSelection;
 };
 
 #endif //GENETICALGORITHM_MATINGPOOL_H

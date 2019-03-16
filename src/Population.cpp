@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Population.h"
 
 template<typename G>
@@ -6,8 +7,8 @@ void Population<G>::add(G gene) {
 }
 
 template<typename G>
-void Population<G>::replace(vector<G> nextPopulaion) {
-    _population = nextPopulaion;
+void Population<G>::replace(vector<G> nextPopulation) {
+    _population = nextPopulation;
 }
 
 template<typename G>

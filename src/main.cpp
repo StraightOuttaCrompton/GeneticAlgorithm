@@ -26,7 +26,7 @@ int main() {
     // _matingPool.getEligibleParent
     // Add mutation rate to mutation function
 
-    int initialPopulationSize = 10;
+    int initialPopulationSize = 20;
     int generations = 10;
     int mutationRate = 100; // not doing anything yet
 

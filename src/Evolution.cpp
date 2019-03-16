@@ -8,20 +8,26 @@ void Evolution<G, F>::Start() {
         _population.add(_geneRandomiser.getRandomGene());
     }
 
-
     for (int j = 0; j < _generations; ++j) {
         // Selection
         _populationSelector.PopulateMatingPool(_population, _fitnessFunction, _matingPool);
 
+        _matingPool.print();
+
         vector<G> nextPopulation;
 
-        for (int i = 0; i < _initialPopulationSize; ++i) {
-            // GetEligibleParents - return vector of parents. I don't want parent1 and parent2 to be the same?
-            G parent1 = _matingPool.getEligibleParent();
-            G parent2 = _matingPool.getEligibleParent();
+        nextPopulation.push_back(_geneRandomiser.getRandomGene());
 
-            G child = _breeder.Breed(parent1, parent2);
+        while (nextPopulation.size() < _initialPopulationSize) {
+            auto parent1 = _matingPool.getEligibleParent();
+            auto parent2 = _matingPool.getEligibleParent();
 
+            // Parent1 should not be the same as parent2
+//            while(parent1 == parent2) {
+//                parent2 = _matingPool.getEligibleParent();
+//            }
+
+            auto child = _breeder.Breed(parent1, parent2);
             child = _mutator.Mutate(child);
 
             nextPopulation.push_back(child);

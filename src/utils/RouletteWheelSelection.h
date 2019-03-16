@@ -13,10 +13,17 @@ public:
 
     void addItem(T item, double prob);
 
+    void clearItems();
+
     T selectItem();
 
+    void print();
+
 private:
+    void initialise();
+
     double _total;
+    double _smallestProb;
     vector<RouletteItem<T>> _items;
 };
 

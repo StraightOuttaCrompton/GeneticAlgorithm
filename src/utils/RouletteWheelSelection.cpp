@@ -5,13 +5,19 @@
 
 template<typename T>
 RouletteWheelSelection<T>::RouletteWheelSelection() {
+    initialise();
+}
+
+template<typename T>
+void RouletteWheelSelection<T>::initialise() {
     _total = 0;
+    _smallestProb = 0;
 }
 
 template<typename T>
 void RouletteWheelSelection<T>::addItem(T item, double prob) {
-    if (prob <= 0) {
-        return;
+    if (prob < _smallestProb) {
+        _smallestProb = prob;
     }
 
     RouletteItem<T> rouletteItem(item, prob);
@@ -35,10 +41,25 @@ T RouletteWheelSelection<T>::selectItem() {
     int i = 0;
     while (r > 0) {
         RouletteItem item = _items[i];
-        r = r - item.getFrequency();
+        r = r - (item.getFrequency() - _smallestProb);
         i++;
     }
 
     RouletteItem selectedItem = _items[i - 1];
     return selectedItem.getItem();
+}
+
+template<typename T>
+void RouletteWheelSelection<T>::clearItems() {
+    _items.clear();
+    initialise();
+}
+
+template<typename T>
+void RouletteWheelSelection<T>::print() {
+    cout << "smallest prob: " << _smallestProb << endl;
+    for (int i = 0; i < _items.size(); ++i) {
+        RouletteItem item = _items[i];
+        cout << "item: " << item.getItem() << "   fitness: " << item.getFrequency() << endl;
+    }
 }

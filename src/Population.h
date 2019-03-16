@@ -8,7 +8,7 @@ class Population : public IPopulation<G> {
 public:
     void add(G gene);
 
-    void replace(vector<G> nextPopulaion);
+    void replace(vector<G> nextPopulation);
 
     vector<G> getPopulation();
 

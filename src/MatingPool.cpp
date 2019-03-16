@@ -1,29 +1,25 @@
 #include <random>
+#include <iostream>
 #include "MatingPool.h"
 
 template<class G, class F>
 void MatingPool<G, F>::add(G item, F fitness) {
-    Individual<G, F> individual(item, fitness);
-
-    _pool.push_back(individual);
+    _rouletteWheelSelection.addItem(item, (double) fitness);
 }
 
 template<class G, class F>
 void MatingPool<G, F>::clearPool() {
-    _pool.clear();
+    _rouletteWheelSelection.clearItems();
 }
 
 template<class G, class F>
 G MatingPool<G, F>::getEligibleParent() {
-    int length = _pool.size();
+    return _rouletteWheelSelection.selectItem();
+}
 
-    random_device rd;     // only used once to initialise (seed) engine
-    mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-    uniform_int_distribution<int> uni(0, length - 1); // guaranteed unbiased
-
-    auto random_integer = uni(rng);
-
-    Individual individual = _pool[random_integer];
-
-    return individual.getGene();
+template<class G, class F>
+void MatingPool<G, F>::print() {
+    cout << "Mating pool: " << endl;
+    _rouletteWheelSelection.print();
+    cout << endl;
 }
