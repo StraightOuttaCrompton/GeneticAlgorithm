@@ -10,7 +10,7 @@ class StringMutator : public IMutator<string> {
 public:
     StringMutator(int mutationRate) : _mutationRate(mutationRate) {};
 
-    string Mutate(string chromosome);
+    string Mutate(string str);
 
 private:
     int _mutationRate;

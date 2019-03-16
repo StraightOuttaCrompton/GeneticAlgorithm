@@ -9,6 +9,7 @@ void Evolution<G, F>::Start() {
     }
 
     for (int j = 0; j < _generations; ++j) {
+        cout << "Generation: " << j + 1 << endl;
         // Selection
         _populationSelector.PopulateMatingPool(_population, _fitnessFunction, _matingPool);
 
@@ -33,6 +34,8 @@ void Evolution<G, F>::Start() {
             nextPopulation.push_back(child);
         }
 
+
+        // TODO: keep fittest?
         _population.replace(nextPopulation);
     }
 
