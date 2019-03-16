@@ -17,3 +17,6 @@ Step 4: replace old population with new population and return to Step 2
 https://www.youtube.com/playlist?list=PLRqwX-V7Uu6bJM3VgzjNV5YxVxUwzALHV
 
 javascript code: https://github.com/nature-of-code/noc-examples-p5.js/tree/master/chp09_ga/NOC_9_01_GA_Shakespeare
+
+
+https://stackoverflow.com/questions/33823356/number-type-between-0-and-1
