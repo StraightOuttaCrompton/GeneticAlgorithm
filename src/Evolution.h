@@ -3,7 +3,7 @@
 
 #include "framework/IBreeder.h"
 #include "framework/IFitnessFunction.h"
-#include "framework/IGeneRandomiser.h"
+#include "framework/IGeneValueRandomiser.h"
 #include "framework/IMutator.h"
 #include "framework/IPopulation.h"
 #include "framework/IPopulationSelector.h"
@@ -12,9 +12,9 @@ template<class G, class F>
 class Evolution {
 public:
     Evolution(
-            int initialPopulationSize, int generations, IPopulation<G> &population,
+            int initialPopulationSize, int generations, IPopulation<G, F> &population,
             IPopulationSelector<G, F> &populationSelector, IMatingPool<G, F> &matingPool,
-            IFitnessFunction<G, F> &fitnessFunction, IGeneRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
+            IFitnessFunction<G, F> &fitnessFunction, IGeneValueRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
             IMutator<G> &mutator
     ) :
             _initialPopulationSize(initialPopulationSize),
@@ -30,13 +30,15 @@ public:
     void Start();
 
 private:
+    void addToPopulation(G geneValue);
+
     int _initialPopulationSize;
     int _generations;
-    IPopulation<G> &_population;
+    IPopulation<G, F> &_population;
     IPopulationSelector<G, F> &_populationSelector;
     IMatingPool<G, F> &_matingPool;
     IFitnessFunction<G, F> &_fitnessFunction;
-    IGeneRandomiser<G> &_geneRandomiser;
+    IGeneValueRandomiser<G> &_geneRandomiser;
     IBreeder<G> &_breeder;
     IMutator<G> &_mutator;
 };

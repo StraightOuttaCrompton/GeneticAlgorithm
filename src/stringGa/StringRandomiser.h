@@ -3,13 +3,12 @@
 
 using namespace std;
 
-#include "../framework/IGeneRandomiser.h"
+#include "../framework/IGeneValueRandomiser.h"
 #include <string>
 
-class StringRandomiser : public IGeneRandomiser<string> {
+class StringRandomiser : public IGeneValueRandomiser<string> {
 public:
-    string getRandomGene();
+    string getValue();
 };
-
 
 #endif //GENETICALGORITHM_STRINGRANDOMISER_H

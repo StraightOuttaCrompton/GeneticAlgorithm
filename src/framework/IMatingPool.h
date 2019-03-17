@@ -1,16 +1,16 @@
 #ifndef GENETICALGORITHM_IMATINGPOOL_H
 #define GENETICALGORITHM_IMATINGPOOL_H
 
+#include "IPopulation.h"
+
 template<class G, class F>
 class IMatingPool {
 public:
-    virtual void add(G item, F fitness) = 0;
+    virtual void InitialiseFromPopulation(IPopulation<G, F> &population) = 0;
 
-    virtual void clearPool() = 0;
+    virtual G GetEligibleParent() = 0;
 
-    virtual G getEligibleParent() = 0;
-
-    virtual void print() = 0;
+    virtual void Print() = 0;
 };
 
 #endif //GENETICALGORITHM_IMATINGPOOL_H

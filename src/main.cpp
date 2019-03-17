@@ -26,12 +26,14 @@ int main() {
     // _matingPool.getEligibleParent
     // Add mutation rate to mutation function
 
-    int initialPopulationSize = 20;
-    int generations = 10;
-    int mutationRate = 100; // not doing anything yet
+    const int initialPopulationSize = 4;
+    const int generations = 2;
+    const int mutationRate = 100; // not doing anything yet
 
     // Data structures
-    Population<string> population;
+    Population<string, int> population;
+
+
     PopulationSelector<string, int> populationSelector;
     MatingPool<string, int> matingPool;
 
@@ -47,6 +49,8 @@ int main() {
     ga.Start();
 
 
+
+// TODO: test with negative numbers
 
 //    RouletteWheelSelection<string> rouletteWheelSelection;
 //

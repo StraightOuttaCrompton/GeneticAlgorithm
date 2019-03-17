@@ -3,6 +3,7 @@
 
 #include "framework/IMatingPool.h"
 #include "utils/RouletteWheelSelection.h"
+#include "framework/IPopulation.h"
 
 using namespace std;
 
@@ -12,16 +13,14 @@ using namespace std;
 template<class G, class F>
 class MatingPool : public IMatingPool<G, F> {
 public:
-    void add(G item, F fitness);
+    virtual void InitialiseFromPopulation(IPopulation<G, F> &population);
 
-    void clearPool();
+    G GetEligibleParent();
 
-    G getEligibleParent();
-
-    void print();
+    void Print();
 
 private:
-    RouletteWheelSelection <G> _rouletteWheelSelection;
+    RouletteWheelSelection<G> _rouletteWheelSelection;
 };
 
 #endif //GENETICALGORITHM_MATINGPOOL_H

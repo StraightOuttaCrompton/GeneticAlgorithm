@@ -1,17 +1,15 @@
 #include <iostream>
 #include "Population.h"
 
-template<typename G>
-void Population<G>::add(G gene) {
+template<typename G, typename F>
+void Population<G, F>::add(Gene<G, F> gene) {
     _population.push_back(gene);
 }
 
-template<typename G>
-void Population<G>::replace(vector<G> nextPopulation) {
-    _population = nextPopulation;
-}
-
-template<typename G>
-vector<G> Population<G>::getPopulation() {
+template<typename G, typename F>
+vector<Gene<G, F>> Population<G, F>::getPopulationVector() {
     return _population;
+
+//    vector<Gene<G, F>> empty;
+//    return empty;
 }

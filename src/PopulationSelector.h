@@ -6,8 +6,8 @@
 template<typename G, typename F>
 class PopulationSelector : public IPopulationSelector<G, F> {
 public:
-    void PopulateMatingPool(IPopulation<G> &population, IFitnessFunction<G, F> &fitnessFunction,
-                            IMatingPool<G, F> &matingPool);
+    void NaturalSelection(IPopulation<G, F> &population, IFitnessFunction<G, F> &fitnessFunction,
+                          int populationSize);
 };
 
 #endif //GENETICALGORITHM_POPULATIONSELECTOR_H

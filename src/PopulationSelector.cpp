@@ -3,16 +3,7 @@
 #include "MatingPool.h"
 
 template<typename G, typename F>
-void PopulationSelector<G, F>::PopulateMatingPool(IPopulation<G> &population, IFitnessFunction<G, F> &fitnessFunction,
-                                                  IMatingPool<G, F> &matingPool) {
-    matingPool.clearPool();
-
-    auto populationVector = population.getPopulation();
-
-    auto it = populationVector.begin();
-
-    for (it; it != populationVector.end(); ++it) {
-        auto fitness = fitnessFunction.Fitness(*it);
-        matingPool.add(*it, fitness);
-    }
+void PopulationSelector<G, F>::NaturalSelection(IPopulation<G, F> &population, IFitnessFunction<G, F> &fitnessFunction,
+                                                int populationSize) {
+    cout << "Natural selection" << endl;
 }

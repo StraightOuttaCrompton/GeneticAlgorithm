@@ -2,9 +2,9 @@
 #define GENETICALGORITHM_IRANDOMISER_H
 
 template<typename G>
-class IGeneRandomiser {
+class IGeneValueRandomiser {
 public:
-    virtual G getRandomGene() = 0;
+    virtual G getValue() = 0;
 };
 
 #endif //GENETICALGORITHM_IRANDOMISER_H
