@@ -60,6 +60,6 @@ void RouletteWheelSelection<T>::print() {
     cout << "smallest prob: " << _smallestProb << endl;
     for (int i = 0; i < _items.size(); ++i) {
         RouletteItem item = _items[i];
-        cout << "item: " << item.getItem() << "   fitness: " << item.getFrequency() << endl;
+        cout << "item " << i + 1 << ": " << item.getItem() << "   fitness: " << item.getFrequency() << endl;
     }
 }

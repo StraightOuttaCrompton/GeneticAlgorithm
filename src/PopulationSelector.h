@@ -4,6 +4,7 @@
 using namespace std;
 
 #include <queue>
+#include <set>
 #include "framework/IPopulationSelector.h"
 
 template<typename G, typename F>
@@ -21,6 +22,7 @@ public:
 
 private:
     priority_queue<Gene<G, F>, std::vector<Gene<G, F>>, Order<G, F>> _pq;
+    set<G> _addedGenes;
 };
 
 #endif //GENETICALGORITHM_POPULATIONSELECTOR_H
