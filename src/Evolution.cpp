@@ -30,10 +30,10 @@ void Evolution<G, F>::Start() {
             auto parent1 = _matingPool.GetEligibleParent();
             auto parent2 = _matingPool.GetEligibleParent();
 
-            // Parent1 should not be the same as parent2
-//            while(parent1 == parent2) {
-//                parent2 = _matingPool.getEligibleParent();
-//            }
+//             Parent1 should not be the same as parent2
+            while (parent1 == parent2) {
+                parent2 = _matingPool.GetEligibleParent();
+            }
 
             auto child = _breeder.Breed(parent1, parent2);
             child = _mutator.Mutate(child);
@@ -42,10 +42,9 @@ void Evolution<G, F>::Start() {
         }
 
         // TODO: keep fittest?
-//        _population.replace(nextPopulation);
-
         _populationSelector.NaturalSelection(_population, _fitnessFunction,
                                              _initialPopulationSize);
+
     }
 
     // TODO: Return fitest item, or return entire list in order of fitness?

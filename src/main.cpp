@@ -26,8 +26,8 @@ int main() {
     // _matingPool.getEligibleParent
     // Add mutation rate to mutation function
 
-    const int initialPopulationSize = 4;
-    const int generations = 2;
+    const int initialPopulationSize = 50;
+    const int generations = 100;
     const int mutationRate = 100; // not doing anything yet
 
     // Data structures

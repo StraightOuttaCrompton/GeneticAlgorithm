@@ -9,5 +9,5 @@ int StringFitnessFunction::Fitness(string chromosome) {
             score++;
         }
     }
-    return score;
+    return score * score;
 }
