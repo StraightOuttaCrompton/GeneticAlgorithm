@@ -6,7 +6,7 @@
 string StringRandomiser::getValue() {
     string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    shuffle(alphabet.begin(), alphabet.end(), std::mt19937(std::random_device()()));
+    shuffle(alphabet.begin(), alphabet.end(), mt19937(random_device()()));
 
     return alphabet;
 }

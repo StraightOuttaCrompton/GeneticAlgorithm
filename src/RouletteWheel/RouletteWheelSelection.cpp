@@ -1,7 +1,8 @@
-#include <random>
+#include "RouletteWheelSelection.h"
+#include "../Utils/Utils.h"
+
 #include <stdexcept>
 #include <iostream>
-#include "RouletteWheelSelection.h"
 
 template<typename T>
 RouletteWheelSelection<T>::RouletteWheelSelection() {
@@ -32,11 +33,7 @@ T RouletteWheelSelection<T>::selectItem() {
         throw logic_error("No items to select from");
     }
 
-    random_device rd;
-    mt19937 mt(rd());
-    uniform_real_distribution<double> dist(0, _total);
-
-    double r = dist(mt);
+    double r = Utils::getRandomDouble(0, _total);
 
     int i = 0;
     while (r > 0) {

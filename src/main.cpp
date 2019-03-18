@@ -37,9 +37,9 @@ int main() {
     MatingPool<string, int> matingPool;
 
     // Customisable components
-    StringBreeder breeder;
-    StringFitnessFunction fitnessFunction;
-    StringRandomiser randomiser;
+    StringBreeder breeder; // TODO: pass alphabet in constructor
+    StringFitnessFunction fitnessFunction; // TODO: pass target in constructor
+    StringRandomiser randomiser; // TODO: pass alphabet in constructor
     StringMutator mutator(mutationRate);
 
     Evolution<string, int> ga(initialPopulationSize, generations, population, populationSelector,

@@ -1,26 +1,7 @@
 #include "StringBreeder.h"
-#include <set>
-#include <iostream>
-#include <random>
-
-// This implementation was quickly done and needs a tidier solution
+#include "../Utils/Utils.h"
 
 using namespace std;
-
-int getRandomInt(int min, int max) {
-    random_device rd;     // only used once to initialise (seed) engine
-    mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-    uniform_int_distribution<int> uni(min, max); // guaranteed unbiased
-
-    return uni(rng);
-}
-
-template<typename T>
-T getRandmItemFromSet(set<T> s) {
-    int random_integer = getRandomInt(0, (int) s.size() - 1);
-
-    return *next(s.begin(), random_integer);
-}
 
 string StringBreeder::Breed(string parent1, string parent2) {
     const unsigned long p1_length = parent1.length();
@@ -60,7 +41,7 @@ string StringBreeder::Breed(string parent1, string parent2) {
 
             if (!p1_isInUsedChars && !p2_isInUsedChars) {
                 set<char> parents = {parent1Char, parent2Char};
-                char chosenChar = getRandmItemFromSet<char>(parents);
+                char chosenChar = Utils::getRandomItemFromSet<char>(parents);
                 addCharToChild(chosenChar, j);
                 continue;
             }
@@ -79,14 +60,12 @@ string StringBreeder::Breed(string parent1, string parent2) {
     // Fill in remaining child chars with unused chars from alphabet pool
     for (string::size_type k = 0; k < p1_length; ++k) {
         if (_child[k] == childPlaceholder) {
-            char ch = getRandmItemFromSet<char>(_alphabetPool);
+            char ch = Utils::getRandomItemFromSet<char>(_alphabetPool);
             addCharToChild(ch, k);
         }
     }
 
     return _child;
-
-//    return parent1;
 }
 
 void StringBreeder::addCharToChild(char ch, unsigned long index) {
