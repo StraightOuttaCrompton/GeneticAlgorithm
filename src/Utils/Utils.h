@@ -5,6 +5,7 @@ using namespace std;
 
 #include <random>
 #include <set>
+#include "../Probability.h"
 
 class Utils {
 public:
@@ -22,6 +23,13 @@ public:
         uniform_real_distribution<double> dist(min, max);
 
         return dist(mt);
+    }
+
+    static Probability getRandomProbability() {
+        double d = getRandomDouble(0, 1);
+        Probability p(d);
+
+        return p;
     }
 
     template<typename T>

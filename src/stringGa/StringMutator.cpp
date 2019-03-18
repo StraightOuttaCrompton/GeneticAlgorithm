@@ -2,17 +2,24 @@
 #include "../Utils/Utils.h"
 
 string StringMutator::Mutate(string str) {
-    // TODO: Use _mutationRate here
+    auto n = str.length();
 
-    unsigned long length = str.size();
+    for (int i = 0; i < n; ++i) {
+        Probability randomProb = Utils::getRandomProbability();
+        if (randomProb.getValue() > _mutationRate.getValue()) {
+            continue;
+        }
 
-    auto random_integer = Utils::getRandomInt(0, (int) length - 2);
+        int r = Utils::getRandomInt(1, (int) n - 1); // check this can return 1 and n - 1
 
-    char i = str[random_integer];
-    char j = str[random_integer + 1];
+        auto swapIndex = (i + r) % n;
 
-    str[random_integer] = j;
-    str[random_integer + 1] = i;
+        char char1 = str[i];
+        char char2 = str[swapIndex];
+
+        str[i] = char2;
+        str[swapIndex] = char1;
+    }
 
     return str;
 }

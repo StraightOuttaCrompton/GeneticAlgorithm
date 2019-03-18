@@ -3,9 +3,9 @@
 
 using namespace std;
 
+#include "framework/IPopulationSelector.h"
 #include <queue>
 #include <set>
-#include "framework/IPopulationSelector.h"
 
 template<typename G, typename F>
 struct Order {

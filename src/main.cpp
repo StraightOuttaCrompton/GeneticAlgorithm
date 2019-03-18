@@ -21,18 +21,16 @@ using namespace std;
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    // TODO: To implement properly
-    // _matingPool.getEligibleParent
-    // Add mutation rate to mutation function
-
     const int initialPopulationSize = 5;
-    const int generations = 2;
-    Probability mutationRate(0.1); // not doing anything yet
+    const int generations = 4;
+    Probability mutationRate(0.05);
+
+//    const int initialPopulationSize = 100;
+//    const int generations = 40;
+//    Probability mutationRate(0.05);
 
     // Data structures
     Population<string, int> population;
-
-
     PopulationSelector<string, int> populationSelector;
     MatingPool<string, int> matingPool;
 
