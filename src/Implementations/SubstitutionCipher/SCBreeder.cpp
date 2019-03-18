@@ -1,9 +1,9 @@
-#include "StringBreeder.h"
-#include "../Utils/Utils.h"
+#include "SCBreeder.h"
+#include "../../Utils/Utils.h"
 
 using namespace std;
 
-string StringBreeder::Breed(string parent1, string parent2) {
+string SCBreeder::Breed(string parent1, string parent2) {
     const unsigned long p1_length = parent1.length();
     const unsigned long p2_length = parent2.length();
 
@@ -68,20 +68,20 @@ string StringBreeder::Breed(string parent1, string parent2) {
     return _child;
 }
 
-void StringBreeder::addCharToChild(char ch, unsigned long index) {
+void SCBreeder::addCharToChild(char ch, unsigned long index) {
     _child[index] = ch;
     _alphabetPool.erase(ch);
     _usedChars.insert(ch);
 }
 
-void StringBreeder::initialiseSets() {
+void SCBreeder::initialiseSets() {
     // TODO: pass alphabet as string in constructor
     _alphabetPool = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
                      'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     _usedChars = {};
 }
 
-void StringBreeder::initialiseChild(unsigned long length, char placeholder) {
+void SCBreeder::initialiseChild(unsigned long length, char placeholder) {
     _child = "";
     for (string::size_type j = 0; j < length; ++j) {
         _child += placeholder;

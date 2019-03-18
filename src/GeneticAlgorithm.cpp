@@ -1,9 +1,9 @@
+#include "GeneticAlgorithm.h"
 #include <iostream>
-#include "Evolution.h"
-#include "framework/Gene.h"
+#include "Framework/models/Gene.h"
 
 template<class G, class F>
-void Evolution<G, F>::addToPopulation(G geneValue) {
+void GeneticAlgorithm<G, F>::addToPopulation(G geneValue) {
     auto fitness = _fitnessFunction.Fitness(geneValue);
 
     Gene<G, F> gene(geneValue, fitness);
@@ -12,8 +12,8 @@ void Evolution<G, F>::addToPopulation(G geneValue) {
 }
 
 template<class G, class F>
-void Evolution<G, F>::Start() {
-    // initialise population
+void GeneticAlgorithm<G, F>::Start() {
+    // Initialise population
     for (int i = 0; i < _initialPopulationSize; ++i) {
         addToPopulation(_geneRandomiser.getValue());
     }
@@ -30,7 +30,7 @@ void Evolution<G, F>::Start() {
             auto parent1 = _matingPool.GetEligibleParent();
             auto parent2 = _matingPool.GetEligibleParent();
 
-//             Parent1 should not be the same as parent2
+            // Parent1 should not be the same as parent2
             while (parent1 == parent2) {
                 parent2 = _matingPool.GetEligibleParent();
             }
@@ -41,10 +41,8 @@ void Evolution<G, F>::Start() {
             addToPopulation(child);
         }
 
-        // TODO: keep fittest?
         _populationSelector.NaturalSelection(_population, _fitnessFunction,
                                              _initialPopulationSize);
-
     }
 
     // TODO: Return fitest item, or return entire list in order of fitness?

@@ -1,6 +1,6 @@
-#include "StringFitnessFunction.h"
+#include "SCFitnessFunction.h"
 
-int StringFitnessFunction::Fitness(string chromosome) {
+int SCFitnessFunction::Fitness(string chromosome) {
     int score = 0;
     string target = "abcdefghijklmnopqrstuvwxyz";
 

@@ -5,7 +5,7 @@ using namespace std;
 
 #include <random>
 #include <set>
-#include "../Probability.h"
+#include "../Models/Probability.h"
 
 class Utils {
 public:

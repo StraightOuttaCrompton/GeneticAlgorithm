@@ -1,7 +1,7 @@
-#include "StringMutator.h"
-#include "../Utils/Utils.h"
+#include "SCMutator.h"
+#include "../../Utils/Utils.h"
 
-string StringMutator::Mutate(string str) {
+string SCMutator::Mutate(string str) {
     auto n = str.length();
 
     for (int i = 0; i < n; ++i) {

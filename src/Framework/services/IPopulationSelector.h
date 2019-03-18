@@ -2,7 +2,7 @@
 #define GENETICALGORITHM_IPOPULATIONSELECTOR_H
 
 #include "IMatingPool.h"
-#include "IFitnessFunction.h"
+#include "../implementations/IFitnessFunction.h"
 #include "IPopulation.h"
 
 template<typename G, typename F>

@@ -3,11 +3,11 @@
 
 using namespace std;
 
-#include "../framework/IBreeder.h"
+#include "../../Framework/implementations/IBreeder.h"
 #include <string>
 #include <set>
 
-class StringBreeder : public IBreeder<string> {
+class SCBreeder : public IBreeder<string> {
 public:
     string Breed(string parent1, string parent2);
 

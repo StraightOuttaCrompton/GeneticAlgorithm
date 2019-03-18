@@ -1,20 +1,20 @@
 #ifndef GENETICALGORITHM_GENETICALGORITHM_H
 #define GENETICALGORITHM_GENETICALGORITHM_H
 
-#include "framework/IBreeder.h"
-#include "framework/IFitnessFunction.h"
-#include "framework/IGeneValueRandomiser.h"
-#include "framework/IMutator.h"
-#include "framework/IPopulation.h"
-#include "framework/IPopulationSelector.h"
+#include "Framework/implementations/IBreeder.h"
+#include "Framework/implementations/IFitnessFunction.h"
+#include "Framework/implementations/IRandomiser.h"
+#include "Framework/implementations/IMutator.h"
+#include "Framework/services/IPopulation.h"
+#include "Framework/services/IPopulationSelector.h"
 
 template<class G, class F>
-class Evolution {
+class GeneticAlgorithm {
 public:
-    Evolution(
+    GeneticAlgorithm(
             int initialPopulationSize, int generations, IPopulation<G, F> &population,
             IPopulationSelector<G, F> &populationSelector, IMatingPool<G, F> &matingPool,
-            IFitnessFunction<G, F> &fitnessFunction, IGeneValueRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
+            IFitnessFunction<G, F> &fitnessFunction, IRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
             IMutator<G> &mutator
     ) :
             _initialPopulationSize(initialPopulationSize),
@@ -38,7 +38,7 @@ private:
     IPopulationSelector<G, F> &_populationSelector;
     IMatingPool<G, F> &_matingPool;
     IFitnessFunction<G, F> &_fitnessFunction;
-    IGeneValueRandomiser<G> &_geneRandomiser;
+    IRandomiser<G> &_geneRandomiser;
     IBreeder<G> &_breeder;
     IMutator<G> &_mutator;
 };

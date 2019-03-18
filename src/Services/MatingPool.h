@@ -3,10 +3,10 @@
 
 using namespace std;
 
-#include "framework/IMatingPool.h"
-#include "framework/IPopulation.h"
-#include "RouletteWheel/RouletteWheelSelection.h"
-#include "RouletteWheel/RouletteWheelSelection.cpp"
+#include "../Framework/services/IMatingPool.h"
+#include "../Framework/services/IPopulation.h"
+#include "../RouletteWheel/RouletteWheelSelection.h"
+#include "../RouletteWheel/RouletteWheelSelection.cpp"
 
 template<class G, class F>
 class MatingPool : public IMatingPool<G, F> {

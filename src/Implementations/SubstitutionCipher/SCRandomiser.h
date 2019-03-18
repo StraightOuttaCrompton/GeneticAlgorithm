@@ -3,10 +3,10 @@
 
 using namespace std;
 
-#include "../framework/IGeneValueRandomiser.h"
+#include "../../Framework/implementations/IRandomiser.h"
 #include <string>
 
-class StringRandomiser : public IGeneValueRandomiser<string> {
+class SCRandomiser : public IRandomiser<string> {
 public:
     string getValue();
 };

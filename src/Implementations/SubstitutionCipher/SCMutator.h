@@ -3,13 +3,13 @@
 
 using namespace std;
 
-#include "../framework/IMutator.h"
-#include "../Probability.h"
+#include "../../Framework/implementations/IMutator.h"
+#include "../../Models/Probability.h"
 #include <string>
 
-class StringMutator : public IMutator<string> {
+class SCMutator : public IMutator<string> {
 public:
-    explicit StringMutator(Probability mutationRate) : _mutationRate(mutationRate) {};
+    explicit SCMutator(Probability mutationRate) : _mutationRate(mutationRate) {};
 
     string Mutate(string str) override;
 

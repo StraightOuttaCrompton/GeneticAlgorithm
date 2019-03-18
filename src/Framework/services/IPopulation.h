@@ -2,7 +2,7 @@
 #define GENETICALGORITHM_IPOPULATION_H
 
 #include <vector>
-#include "Gene.h"
+#include "../models/Gene.h"
 
 using namespace std;
 

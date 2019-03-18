@@ -1,21 +1,21 @@
 #include <iostream>
 
-#include "Population.h"
-#include "Population.cpp" // Avoid linking error
-#include "MatingPool.h"
-#include "MatingPool.cpp" // Avoid linking error
-#include "PopulationSelector.h"
-#include "PopulationSelector.cpp" // Avoid linking error
+#include "Services/Population.h"
+#include "Services/Population.cpp" // Avoid linking error
+#include "Services/MatingPool.h"
+#include "Services/MatingPool.cpp" // Avoid linking error
+#include "Services/PopulationSelector.h"
+#include "Services/PopulationSelector.cpp" // Avoid linking error
 
-#include "stringGa/StringBreeder.h"
-#include "stringGa/StringFitnessFunction.h"
-#include "stringGa/StringRandomiser.h"
-#include "stringGa/StringMutator.h"
+#include "Implementations/SubstitutionCipher/SCBreeder.h"
+#include "Implementations/SubstitutionCipher/SCFitnessFunction.h"
+#include "Implementations/SubstitutionCipher/SCRandomiser.h"
+#include "Implementations/SubstitutionCipher/SCMutator.h"
 
-#include "Evolution.h"
-#include "Evolution.cpp" // Avoid linking error
+#include "GeneticAlgorithm.h"
+#include "GeneticAlgorithm.cpp" // Avoid linking error
 
-#include "Probability.h"
+#include "Models/Probability.h"
 
 using namespace std;
 
@@ -29,21 +29,21 @@ int main() {
 //    const int generations = 40;
 //    Probability mutationRate(0.05);
 
-    // Data structures
+    // Services
     Population<string, int> population;
     PopulationSelector<string, int> populationSelector;
     MatingPool<string, int> matingPool;
 
-    // Customisable components
-    StringBreeder breeder; // TODO: pass alphabet in constructor
-    StringFitnessFunction fitnessFunction; // TODO: pass target in constructor
-    StringRandomiser randomiser; // TODO: pass alphabet in constructor
-    StringMutator mutator(mutationRate);
+    // Substitution cipher
+    SCBreeder scBreeder; // TODO: pass alphabet in constructor
+    SCFitnessFunction scFitnessFunction; // TODO: pass target in constructor
+    SCRandomiser scRandomiser; // TODO: pass alphabet in constructor
+    SCMutator scMutator(mutationRate);
 
-    Evolution<string, int> ga(initialPopulationSize, generations, population, populationSelector,
-                              matingPool, fitnessFunction, randomiser, breeder, mutator);
+    GeneticAlgorithm<string, int> geneticAlgorithm(initialPopulationSize, generations, population, populationSelector,
+                                                   matingPool, scFitnessFunction, scRandomiser, scBreeder, scMutator);
 
-    ga.Start();
+    geneticAlgorithm.Start();
 
 
 
