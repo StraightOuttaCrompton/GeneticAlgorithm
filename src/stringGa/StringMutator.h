@@ -4,16 +4,17 @@
 using namespace std;
 
 #include "../framework/IMutator.h"
+#include "../Probability.h"
 #include <string>
 
 class StringMutator : public IMutator<string> {
 public:
-    StringMutator(int mutationRate) : _mutationRate(mutationRate) {};
+    explicit StringMutator(Probability mutationRate) : _mutationRate(mutationRate) {};
 
-    string Mutate(string str);
+    string Mutate(string str) override;
 
 private:
-    int _mutationRate;
+    Probability _mutationRate;
 };
 
 #endif //GENETICALGORITHM_STRINGMUTATOR_H

@@ -15,8 +15,7 @@
 #include "Evolution.h"
 #include "Evolution.cpp" // Avoid linking error
 
-#include "utils/RouletteWheelSelection.h"
-#include "utils/RouletteWheelSelection.cpp" // Avoid linking error
+#include "Probability.h"
 
 using namespace std;
 
@@ -26,9 +25,9 @@ int main() {
     // _matingPool.getEligibleParent
     // Add mutation rate to mutation function
 
-    const int initialPopulationSize = 50;
-    const int generations = 100;
-    const int mutationRate = 100; // not doing anything yet
+    const int initialPopulationSize = 5;
+    const int generations = 2;
+    Probability mutationRate(0.1); // not doing anything yet
 
     // Data structures
     Population<string, int> population;

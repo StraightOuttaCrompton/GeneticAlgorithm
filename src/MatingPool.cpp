@@ -1,6 +1,5 @@
-#include <random>
-#include <iostream>
 #include "MatingPool.h"
+#include <iostream>
 
 template<class G, class F>
 void MatingPool<G, F>::InitialiseFromPopulation(IPopulation<G, F> &population) {

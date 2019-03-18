@@ -1,14 +1,12 @@
 #ifndef GENETICALGORITHM_MATINGPOOL_H
 #define GENETICALGORITHM_MATINGPOOL_H
 
-#include "framework/IMatingPool.h"
-#include "utils/RouletteWheelSelection.h"
-#include "framework/IPopulation.h"
-
 using namespace std;
 
-#include <vector>
-#include <queue>
+#include "framework/IMatingPool.h"
+#include "framework/IPopulation.h"
+#include "RouletteWheel/RouletteWheelSelection.h"
+#include "RouletteWheel/RouletteWheelSelection.cpp"
 
 template<class G, class F>
 class MatingPool : public IMatingPool<G, F> {
