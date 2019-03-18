@@ -8,7 +8,7 @@ using namespace std;
 
 class SCRandomiser : public IRandomiser<string> {
 public:
-    string getValue();
+    string getValue() override;
 };
 
 #endif //GENETICALGORITHM_STRINGRANDOMISER_H

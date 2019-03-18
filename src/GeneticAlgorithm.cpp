@@ -1,6 +1,5 @@
 #include "GeneticAlgorithm.h"
 #include <iostream>
-#include "Framework/models/Gene.h"
 
 template<class G, class F>
 void GeneticAlgorithm<G, F>::addToPopulation(G geneValue) {

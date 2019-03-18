@@ -9,7 +9,7 @@ using namespace std;
 
 class SCBreeder : public IBreeder<string> {
 public:
-    string Breed(string parent1, string parent2);
+    string Breed(string parent1, string parent2) override;
 
 private:
     void initialiseSets();

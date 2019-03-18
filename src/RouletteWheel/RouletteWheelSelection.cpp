@@ -1,7 +1,6 @@
 #include "RouletteWheelSelection.h"
 #include "../Utils/Utils.h"
 
-#include <stdexcept>
 #include <iostream>
 
 template<typename T>
@@ -49,7 +48,6 @@ void RouletteWheelSelection<T>::clearItems() {
 
 template<typename T>
 void RouletteWheelSelection<T>::print() {
-    cout << "smallest prob: " << _smallestNegativeProb << endl;
     for (int i = 0; i < _items.size(); ++i) {
         RouletteItem item = _items[i];
         cout << "item " << i + 1 << ": " << item.getItem() << "   fitness: " << item.getValue() << endl;

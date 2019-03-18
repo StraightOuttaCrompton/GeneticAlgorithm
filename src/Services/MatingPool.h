@@ -1,8 +1,6 @@
 #ifndef GENETICALGORITHM_MATINGPOOL_H
 #define GENETICALGORITHM_MATINGPOOL_H
 
-using namespace std;
-
 #include "../Framework/services/IMatingPool.h"
 #include "../Framework/services/IPopulation.h"
 #include "../RouletteWheel/RouletteWheelSelection.h"
@@ -11,7 +9,7 @@ using namespace std;
 template<class G, class F>
 class MatingPool : public IMatingPool<G, F> {
 public:
-    virtual void InitialiseFromPopulation(IPopulation<G, F> &population);
+    void InitialiseFromPopulation(IPopulation<G, F> &population);
 
     G GetEligibleParent();
 
