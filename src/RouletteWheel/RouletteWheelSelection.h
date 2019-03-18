@@ -22,8 +22,10 @@ public:
 private:
     void initialise();
 
+    void calcTotal();
+
     double _total;
-    double _smallestProb;
+    double _smallestNegativeProb;
     vector<RouletteItem<T>> _items;
 };
 

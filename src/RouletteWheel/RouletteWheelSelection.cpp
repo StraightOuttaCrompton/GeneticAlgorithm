@@ -10,20 +10,13 @@ RouletteWheelSelection<T>::RouletteWheelSelection() {
 }
 
 template<typename T>
-void RouletteWheelSelection<T>::initialise() {
-    _total = 0;
-    _smallestProb = 0;
-}
-
-template<typename T>
 void RouletteWheelSelection<T>::addItem(T item, double prob) {
-    if (prob < _smallestProb) {
-        _smallestProb = prob;
+    if (prob < _smallestNegativeProb) {
+        _smallestNegativeProb = prob * 2;
     }
 
     RouletteItem<T> rouletteItem(item, prob);
 
-    _total += prob;
     _items.push_back(rouletteItem);
 }
 
@@ -33,12 +26,14 @@ T RouletteWheelSelection<T>::selectItem() {
         throw logic_error("No items to select from");
     }
 
+    calcTotal();
+
     double r = Utils::getRandomDouble(0, _total);
 
     int i = 0;
     while (r > 0) {
         RouletteItem item = _items[i];
-        r = r - (item.getFrequency() - _smallestProb);
+        r = r - (item.getValue() - _smallestNegativeProb);
         i++;
     }
 
@@ -54,9 +49,24 @@ void RouletteWheelSelection<T>::clearItems() {
 
 template<typename T>
 void RouletteWheelSelection<T>::print() {
-    cout << "smallest prob: " << _smallestProb << endl;
+    cout << "smallest prob: " << _smallestNegativeProb << endl;
     for (int i = 0; i < _items.size(); ++i) {
         RouletteItem item = _items[i];
-        cout << "item " << i + 1 << ": " << item.getItem() << "   fitness: " << item.getFrequency() << endl;
+        cout << "item " << i + 1 << ": " << item.getItem() << "   fitness: " << item.getValue() << endl;
+    }
+}
+
+template<typename T>
+void RouletteWheelSelection<T>::initialise() {
+    _total = 0;
+    _smallestNegativeProb = 0;
+}
+
+template<typename T>
+void RouletteWheelSelection<T>::calcTotal() {
+    _total = 0;
+    for (int i = 0; i < _items.size(); ++i) {
+        RouletteItem item = _items[i];
+        _total += item.getValue() + abs(_smallestNegativeProb);
     }
 }

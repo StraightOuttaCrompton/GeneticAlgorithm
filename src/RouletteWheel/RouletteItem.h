@@ -4,19 +4,19 @@
 template<typename T>
 class RouletteItem {
 public:
-    RouletteItem(T item, double frequency) : _item(item), _frequency(frequency) {}
+    RouletteItem(T item, double value) : _item(item), _value(value) {}
 
     T getItem() {
         return _item;
     }
 
-    double getFrequency() {
-        return _frequency;
+    double getValue() {
+        return _value;
     }
 
 private:
     T _item;
-    double _frequency;
+    double _value;
 };
 
 #endif //GENETICALGORITHM_ROULETTEITEM_H
