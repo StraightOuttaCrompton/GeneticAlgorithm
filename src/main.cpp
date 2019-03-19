@@ -18,7 +18,7 @@
 using namespace std;
 
 int main() {
-    const int initialPopulationSize = 5;
+    const int initialPopulationSize = 10;
     const int generations = 4;
     Probability mutationRate(0.05);
 
@@ -32,9 +32,11 @@ int main() {
     MatingPool<string, int> matingPool;
 
     // Substitution cipher
-    SCBreeder scBreeder; // TODO: pass alphabet in constructor
-    SCFitnessFunction scFitnessFunction; // TODO: pass target in constructor
-    SCRandomiser scRandomiser; // TODO: pass alphabet in constructor
+    // TODO: create key class abstraction
+    string charPool = "abcdefghijklmnopqrstuvwxyz";
+    SCBreeder scBreeder(charPool);
+    SCFitnessFunction scFitnessFunction(charPool);
+    SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
     GeneticAlgorithm<string, int> geneticAlgorithm(initialPopulationSize, generations, population, populationSelector,

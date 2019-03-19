@@ -3,13 +3,18 @@
 
 using namespace std;
 
+#include <utility>
 #include <string>
 #include "../../Framework/implementations/IFitnessFunction.h"
 
 class SCFitnessFunction : public IFitnessFunction<string, int> {
 public:
+    explicit SCFitnessFunction(string target) : _target(move(target)) {};
 
     int Fitness(string chromosome) override;
+
+private:
+    string _target;
 };
 
 

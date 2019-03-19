@@ -4,7 +4,7 @@
 #include <algorithm>
 
 string SCRandomiser::getValue() {
-    string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    string alphabet = _charPool;
 
     shuffle(alphabet.begin(), alphabet.end(), mt19937(random_device()()));
 

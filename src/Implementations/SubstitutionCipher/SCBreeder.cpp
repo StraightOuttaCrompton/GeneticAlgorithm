@@ -75,10 +75,10 @@ void SCBreeder::addCharToChild(char ch, unsigned long index) {
 }
 
 void SCBreeder::initialiseSets() {
-    // TODO: pass alphabet as string in constructor
-    _alphabetPool = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                     'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     _usedChars = {};
+    for (int i = 0; i < _charPool.length(); ++i) {
+        _alphabetPool.insert(_charPool[i]);
+    }
 }
 
 void SCBreeder::initialiseChild(unsigned long length, char placeholder) {

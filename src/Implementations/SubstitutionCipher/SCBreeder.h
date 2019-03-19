@@ -5,10 +5,12 @@ using namespace std;
 
 #include "../../Framework/implementations/IBreeder.h"
 #include <string>
+#include <utility>
 #include <set>
 
 class SCBreeder : public IBreeder<string> {
 public:
+    explicit SCBreeder(string charPool) : _charPool(move(charPool)) {};
     string Breed(string parent1, string parent2) override;
 
 private:
@@ -21,6 +23,7 @@ private:
     set<char> _alphabetPool;
     set<char> _usedChars;
     string _child;
+    string _charPool;
 };
 
 
