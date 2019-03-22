@@ -10,18 +10,18 @@ using namespace std;
 template<typename G, typename F>
 class Population : public IPopulation<G, F> {
 public:
-    void add(Gene<G, F> gene);
+    void add(Chromosome<G, F> gene);
 
     void clear();
 
     unsigned long size();
 
-    void Replace(vector<Gene<G, F>> nextPopulation);
+    void Replace(vector<Chromosome<G, F>> nextPopulation);
 
-    vector<Gene<G, F>> getPopulationVector();
+    vector<Chromosome<G, F>> getPopulationVector();
 
 private:
-    vector<Gene<G, F>> _population;
+    vector<Chromosome<G, F>> _population;
 };
 
 #endif //GENETICALGORITHM_POPULATION_H

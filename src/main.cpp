@@ -2,8 +2,8 @@
 #include "Services/Population.cpp" // Avoid linking error
 #include "Services/MatingPool.h"
 #include "Services/MatingPool.cpp" // Avoid linking error
-#include "Services/PopulationSelector.h"
-#include "Services/PopulationSelector.cpp" // Avoid linking error
+#include "Services/PopulationGenerator.h"
+#include "Services/PopulationGenerator.cpp" // Avoid linking error
 
 #include "Implementations/SubstitutionCipher/SCBreeder.h"
 #include "Implementations/SubstitutionCipher/SCFitnessFunction.h"
@@ -20,21 +20,16 @@ using namespace std;
 int main() {
     // Todo:
     // 1. remove roulette wheel item, use std:: pair
+    // 2. rename gene to chromosome
 
     const int populationSize = 10;
     const int generations = 4;
     Probability percentOfRandomPopulation(0.1);
     Probability mutationRate(0.05);
 
-
 //    const int populationSize = 100;
 //    const int generations = 40;
 //    Probability mutationRate(0.05);
-
-    // Services
-    Population<string, int> population;
-    PopulationSelector<string, int> populationSelector;
-    MatingPool<string, int> matingPool;
 
     // Substitution cipher
     // TODO: create key class abstraction
@@ -44,8 +39,15 @@ int main() {
     SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
-    GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, percentOfRandomPopulation, population, populationSelector,
-                                                   matingPool, scFitnessFunction, scRandomiser, scBreeder, scMutator);
+    // Services
+    Population<string, int> population;
+
+    MatingPool<string, int> matingPool;
+    PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, matingPool, scRandomiser, scBreeder,
+                                                         scMutator);
+
+
+    GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, population, populationGenerator);
 
     geneticAlgorithm.Start();
 

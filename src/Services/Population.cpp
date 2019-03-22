@@ -2,7 +2,7 @@
 #include "Population.h"
 
 template<typename G, typename F>
-void Population<G, F>::add(Gene<G, F> gene) {
+void Population<G, F>::add(Chromosome<G, F> gene) {
     _population.push_back(gene);
 }
 
@@ -17,11 +17,11 @@ unsigned long Population<G, F>::size() {
 }
 
 template<typename G, typename F>
-void Population<G, F>::Replace(vector<Gene<G, F>> nextPopulation) {
+void Population<G, F>::Replace(vector<Chromosome<G, F>> nextPopulation) {
     _population = nextPopulation;
 }
 
 template<typename G, typename F>
-vector<Gene<G, F>> Population<G, F>::getPopulationVector() {
+vector<Chromosome<G, F>> Population<G, F>::getPopulationVector() {
     return _population;
 }

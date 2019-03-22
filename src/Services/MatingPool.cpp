@@ -6,7 +6,7 @@ void MatingPool<G, F>::InitialiseFromPopulation(IPopulation<G, F> &population) {
     _rouletteWheelSelection.clearItems();
     auto populationVector = population.getPopulationVector();
     for (int i = 0; i < populationVector.size(); ++i) {
-        Gene<G, F> gene = populationVector[i];
+        Chromosome<G, F> gene = populationVector[i];
         _rouletteWheelSelection.addItem(gene.getValue(), gene.getFitness());
     }
 }

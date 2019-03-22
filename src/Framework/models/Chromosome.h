@@ -2,9 +2,9 @@
 #define GENETICALGORITHM_STRINGGENE_H
 
 template<typename G, typename F>
-class Gene {
+class Chromosome {
 public:
-    Gene(G value, F fitness) : _value(value), _fitness(fitness) {}
+    Chromosome(G value, F fitness) : _value(value), _fitness(fitness) {}
 
     G getValue() {
         return _value;
