@@ -5,10 +5,9 @@
 
 template<class G, class F>
 void GeneticAlgorithm<G, F>::Start() {
-    // TODO: implement parent and survivor selections generally, so that the implementations can change
-    // https://medium.com/datadriveninvestor/genetic-algorithms-selection-5634cfc45d78
-
-    IPopulation<G, F> *initialPopulation = _populationGenerator.GenerateInitialPopulation(&_population);
+    cout << "Genetic algorithm Start" << endl;
+//    IPopulation<G, F> *initialPopulation = _populationGenerator.GenerateInitialPopulation(&_population);
+    auto initialPopulation = _populationGenerator.GenerateInitialPopulation(&_population, _populationSize);
 //        _population.Replace(initialPopulation);
 
     for (int j = 0; j < _generations; ++j) {

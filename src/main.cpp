@@ -27,9 +27,11 @@ int main() {
     Probability percentOfRandomPopulation(0.1);
     Probability mutationRate(0.05);
 
+
 //    const int populationSize = 100;
 //    const int generations = 40;
 //    Probability mutationRate(0.05);
+
 
     // Substitution cipher
     // TODO: create key class abstraction
@@ -40,7 +42,7 @@ int main() {
     SCMutator scMutator(mutationRate);
 
     // Services
-    Population<string, int> population;
+    Population<string, int> population(scFitnessFunction);
 
     MatingPool<string, int> matingPool;
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, matingPool, scRandomiser, scBreeder,

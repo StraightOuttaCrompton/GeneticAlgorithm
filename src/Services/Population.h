@@ -5,23 +5,27 @@ using namespace std;
 
 #include <queue>
 #include "../Framework/services/IPopulation.h"
+#include "../Framework/implementations/IFitnessFunction.h"
 
 
-template<typename G, typename F>
-class Population : public IPopulation<G, F> {
+template<typename C, typename F>
+class Population : public IPopulation<C, F> {
 public:
-    void add(Chromosome<G, F> gene);
+    explicit Population(IFitnessFunction<C, F> &fitnessFunction) : _fitnessFunction(fitnessFunction) {}
 
-    void clear();
+    void add(C chromosomeValue);
 
-    unsigned long size();
+//    void clear();
 
-    void Replace(vector<Chromosome<G, F>> nextPopulation);
+//    unsigned long size();
 
-    vector<Chromosome<G, F>> getPopulationVector();
+//    void Replace(vector<Chromosome<C, F>> nextPopulation);
+
+    vector<Chromosome<C, F>> getPopulationVector();
 
 private:
-    vector<Chromosome<G, F>> _population;
+    IFitnessFunction<C, F> &_fitnessFunction;
+    vector<Chromosome<C, F>> _population;
 };
 
 #endif //GENETICALGORITHM_POPULATION_H

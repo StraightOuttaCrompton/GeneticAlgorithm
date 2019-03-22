@@ -9,7 +9,7 @@
 template<typename G, typename F>
 class IPopulationGenerator {
 public:
-    virtual IPopulation<G, F> *GenerateInitialPopulation(IPopulation<G, F> *population) = 0;
+    virtual IPopulation<G, F> *GenerateInitialPopulation(IPopulation<G, F> *population, int populationSize) = 0;
 
     virtual IPopulation<G, F> *
     GenerateNextPopulation(IPopulation<G, F> *population, int popultationSize) = 0;

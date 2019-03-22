@@ -14,28 +14,28 @@ template<typename G, typename F>
 class PopulationGenerator : public IPopulationGenerator<G, F> {
 public:
 //    TODO: Should fitness function be injected here?
-//    IFitnessFunction<G, F> &fitnessFunction
+//    IFitnessFunction<C, F> &fitnessFunction
 //    _fitnessFunction(fitnessFunction)
-//    IFitnessFunction<G, F> &_fitnessFunction;
+//    IFitnessFunction<C, F> &_fitnessFunction;
 
     PopulationGenerator(Probability percentOfRandomPopulation,
-                        IMatingPool<G, F> &matingPool, IRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
+                        IMatingPool<G, F> &matingPool, IRandomiser<G> &randomiser, IBreeder<G> &breeder,
                         IMutator<G> &mutator)
             : _percentOfRandomPopulation(percentOfRandomPopulation), _matingPool(matingPool),
-              _geneRandomiser(geneRandomiser), _breeder(breeder), _mutator(mutator) {}
+              _randomiser(randomiser), _breeder(breeder), _mutator(mutator) {}
 
-    IPopulation<G, F> *GenerateInitialPopulation(IPopulation<G, F> *population);
+    IPopulation<G, F> *GenerateInitialPopulation(IPopulation<G, F> *population, int populationSize);
 
     IPopulation<G, F> *GenerateNextPopulation(IPopulation<G, F> *population, int populationSize);
 
 private:
     Probability _percentOfRandomPopulation;
     IMatingPool<G, F> &_matingPool;
-    IRandomiser<G> &_geneRandomiser;
+    IRandomiser<G> &_randomiser;
     IBreeder<G> &_breeder;
     IMutator<G> &_mutator;
-//    priority_queue<Chromosome<G, F>, std::vector<Chromosome<G, F>>, Order<G, F>> _pq;
-//    set<G> _addedGenes; // Do I want genens to be unique?
+//    priority_queue<Chromosome<C, F>, std::vector<Chromosome<C, F>>, Order<C, F>> _pq;
+//    set<C> _addedGenes; // Do I want genens to be unique?
 };
 
 #endif //GENETICALGORITHM_POPULATIONSELECTOR_H
