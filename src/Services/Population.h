@@ -15,7 +15,7 @@ public:
 
     void add(C chromosomeValue);
 
-//    void clear();
+    void clear();
 
 //    unsigned long size();
 

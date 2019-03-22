@@ -10,11 +10,11 @@ void Population<C, F>::add(C chromosomeValue) {
     _population.push_back(chromosome);
 }
 
-//template<typename C, typename F>
-//void Population<C, F>::clear() {
-//    _population.clear();
-//}
-//
+template<typename C, typename F>
+void Population<C, F>::clear() {
+    _population.clear();
+}
+
 //template<typename C, typename F>
 //unsigned long Population<C, F>::size() {
 //    _population.size();

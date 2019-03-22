@@ -11,7 +11,7 @@ class IPopulation {
 public:
     virtual void add(C chromosomeValue) = 0;
 
-//    virtual void clear() = 0;
+    virtual void clear() = 0;
 
 //    virtual unsigned long size() = 0;
 

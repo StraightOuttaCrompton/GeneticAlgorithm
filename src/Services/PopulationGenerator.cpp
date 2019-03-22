@@ -57,7 +57,7 @@ template<typename G, typename F>
 IPopulation<G, F> *
 PopulationGenerator<G, F>::GenerateInitialPopulation(IPopulation<G, F> *population, int populationSize) {
     cout << "Generate initial population" << endl;
-    // clear population
+    population->clear();
 
     for (int i = 0; i < populationSize; ++i) {
         population->add(_randomiser.getValue());
