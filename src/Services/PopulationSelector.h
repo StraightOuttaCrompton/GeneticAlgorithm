@@ -17,8 +17,7 @@ struct Order {
 template<typename G, typename F>
 class PopulationSelector : public IPopulationSelector<G, F> {
 public:
-    void NaturalSelection(IPopulation<G, F> &population, IFitnessFunction<G, F> &fitnessFunction,
-                          int populationSize);
+    void SelectFittest(IPopulation<G, F> &population, int populationSize);
 
 private:
     priority_queue<Gene<G, F>, std::vector<Gene<G, F>>, Order<G, F>> _pq;

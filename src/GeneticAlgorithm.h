@@ -7,18 +7,20 @@
 #include "Framework/implementations/IMutator.h"
 #include "Framework/services/IPopulation.h"
 #include "Framework/services/IPopulationSelector.h"
+#include "Models/Probability.h"
 
 template<class G, class F>
 class GeneticAlgorithm {
 public:
     GeneticAlgorithm(
-            int initialPopulationSize, int generations, IPopulation<G, F> &population,
+            int populationSize, int generations, Probability percentOfRandomPopulation, IPopulation<G, F> &population,
             IPopulationSelector<G, F> &populationSelector, IMatingPool<G, F> &matingPool,
             IFitnessFunction<G, F> &fitnessFunction, IRandomiser<G> &geneRandomiser, IBreeder<G> &breeder,
             IMutator<G> &mutator
     ) :
-            _initialPopulationSize(initialPopulationSize),
+            _populationSize(populationSize),
             _generations(generations),
+            _percentOfRandomPopulation(percentOfRandomPopulation),
             _population(population),
             _populationSelector(populationSelector),
             _matingPool(matingPool),
@@ -30,10 +32,13 @@ public:
     void Start();
 
 private:
+    void initialisePopulation();
     void addToPopulation(G geneValue);
+    void addRandomGenesToPopulation(int numberOfRandomGenes);
 
-    int _initialPopulationSize;
+    int _populationSize;
     int _generations;
+    Probability _percentOfRandomPopulation;
     IPopulation<G, F> &_population;
     IPopulationSelector<G, F> &_populationSelector;
     IMatingPool<G, F> &_matingPool;

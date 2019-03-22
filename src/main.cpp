@@ -20,13 +20,14 @@ using namespace std;
 int main() {
     // Todo:
     // 1. remove roulette wheel item, use std:: pair
-    // 2. have a percentage of the population be random each generation
 
-    const int initialPopulationSize = 10;
+    const int populationSize = 10;
     const int generations = 4;
+    Probability percentOfRandomPopulation(0.1);
     Probability mutationRate(0.05);
 
-//    const int initialPopulationSize = 100;
+
+//    const int populationSize = 100;
 //    const int generations = 40;
 //    Probability mutationRate(0.05);
 
@@ -43,7 +44,7 @@ int main() {
     SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
-    GeneticAlgorithm<string, int> geneticAlgorithm(initialPopulationSize, generations, population, populationSelector,
+    GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, percentOfRandomPopulation, population, populationSelector,
                                                    matingPool, scFitnessFunction, scRandomiser, scBreeder, scMutator);
 
     geneticAlgorithm.Start();

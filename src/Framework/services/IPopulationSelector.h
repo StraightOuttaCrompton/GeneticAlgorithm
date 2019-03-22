@@ -9,8 +9,7 @@ template<typename G, typename F>
 class IPopulationSelector {
 public:
     virtual void
-    NaturalSelection(IPopulation<G, F> &population, IFitnessFunction<G, F> &fitnessFunction,
-                     int popultationSize) = 0;
+    SelectFittest(IPopulation<G, F> &population, int popultationSize) = 0;
 };
 
 #endif //GENETICALGORITHM_IPOPULATIONSELECTOR_H

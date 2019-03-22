@@ -1,21 +1,11 @@
 #include "GeneticAlgorithm.h"
 #include <iostream>
+#include <cmath>
 
-template<class G, class F>
-void GeneticAlgorithm<G, F>::addToPopulation(G geneValue) {
-    auto fitness = _fitnessFunction.Fitness(geneValue);
-
-    Gene<G, F> gene(geneValue, fitness);
-
-    _population.add(gene);
-}
 
 template<class G, class F>
 void GeneticAlgorithm<G, F>::Start() {
-    // Initialise population
-    for (int i = 0; i < _initialPopulationSize; ++i) {
-        addToPopulation(_geneRandomiser.getValue());
-    }
+    initialisePopulation();
 
     for (int j = 0; j < _generations; ++j) {
         cout << "Generation: " << j + 1 << endl;
@@ -23,10 +13,10 @@ void GeneticAlgorithm<G, F>::Start() {
         _matingPool.InitialiseFromPopulation(_population);
         _matingPool.Print();
 
-        // Todo: have a percentage of the population be random?
-        addToPopulation(_geneRandomiser.getValue());
+        int numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * _populationSize);
+        addRandomGenesToPopulation(numberOfRandomGenes);
 
-        for (int k = 0; k < _initialPopulationSize - 1; ++k) {
+        for (int k = 0; k < _populationSize - numberOfRandomGenes; ++k) {
             auto parent1 = _matingPool.GetEligibleParent();
             auto parent2 = _matingPool.GetEligibleParent();
 
@@ -41,9 +31,32 @@ void GeneticAlgorithm<G, F>::Start() {
             addToPopulation(child);
         }
 
-        _populationSelector.NaturalSelection(_population, _fitnessFunction,
-                                             _initialPopulationSize);
+        _populationSelector.SelectFittest(_population, _populationSize);
     }
 
     // TODO: Return fitest item, or return entire list in order of fitness?
 }
+
+template<class G, class F>
+void GeneticAlgorithm<G, F>::initialisePopulation() {
+    for (int i = 0; i < _populationSize; ++i) {
+        addToPopulation(_geneRandomiser.getValue());
+    }
+}
+
+template<class G, class F>
+void GeneticAlgorithm<G, F>::addToPopulation(G geneValue) {
+    auto fitness = _fitnessFunction.Fitness(geneValue);
+
+    Gene<G, F> gene(geneValue, fitness);
+
+    _population.add(gene);
+}
+
+template<class G, class F>
+void GeneticAlgorithm<G, F>::addRandomGenesToPopulation(int numberOfRandomGenes) {
+    for (int i = 0; i < numberOfRandomGenes; ++i) {
+        addToPopulation(_geneRandomiser.getValue());
+    }
+}
+

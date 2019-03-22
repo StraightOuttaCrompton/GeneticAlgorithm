@@ -1,8 +1,8 @@
 #include "PopulationSelector.h"
 
 template<typename G, typename F>
-void PopulationSelector<G, F>::NaturalSelection(IPopulation<G, F> &population, IFitnessFunction<G, F> &fitnessFunction,
-                                                int populationSize) {
+void PopulationSelector<G, F>::SelectFittest(IPopulation<G, F> &population,
+                                             int populationSize) {
     _addedGenes = {};
     _pq = {};
 
