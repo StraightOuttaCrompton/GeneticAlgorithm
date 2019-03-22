@@ -23,6 +23,7 @@ void GeneticAlgorithm<G, F>::Start() {
         _matingPool.InitialiseFromPopulation(_population);
         _matingPool.Print();
 
+        // Todo: have a percentage of the population be random?
         addToPopulation(_geneRandomiser.getValue());
 
         for (int k = 0; k < _initialPopulationSize - 1; ++k) {

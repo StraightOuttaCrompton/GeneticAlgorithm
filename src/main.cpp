@@ -18,6 +18,10 @@
 using namespace std;
 
 int main() {
+    // Todo:
+    // 1. remove roulette wheel item, use std:: pair
+    // 2. have a percentage of the population be random each generation
+
     const int initialPopulationSize = 10;
     const int generations = 4;
     Probability mutationRate(0.05);
