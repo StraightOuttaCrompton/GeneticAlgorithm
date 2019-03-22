@@ -33,7 +33,11 @@ public:
 
 private:
     void initialisePopulation();
+
+    void generateNextGeneration();
+
     void addToPopulation(G geneValue);
+
     void addRandomGenesToPopulation(int numberOfRandomGenes);
 
     int _populationSize;

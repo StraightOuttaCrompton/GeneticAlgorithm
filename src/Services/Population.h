@@ -12,6 +12,10 @@ class Population : public IPopulation<G, F> {
 public:
     void add(Gene<G, F> gene);
 
+    void clear();
+
+    unsigned long size();
+
     void Replace(vector<Gene<G, F>> nextPopulation);
 
     vector<Gene<G, F>> getPopulationVector();

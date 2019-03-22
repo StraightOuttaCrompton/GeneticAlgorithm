@@ -7,6 +7,16 @@ void Population<G, F>::add(Gene<G, F> gene) {
 }
 
 template<typename G, typename F>
+void Population<G, F>::clear() {
+    _population.clear();
+}
+
+template<typename G, typename F>
+unsigned long Population<G, F>::size() {
+    _population.size();
+}
+
+template<typename G, typename F>
 void Population<G, F>::Replace(vector<Gene<G, F>> nextPopulation) {
     _population = nextPopulation;
 }

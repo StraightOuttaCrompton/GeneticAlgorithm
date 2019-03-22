@@ -5,6 +5,8 @@
 
 template<class G, class F>
 void GeneticAlgorithm<G, F>::Start() {
+    // TODO: implement parent and survivor selections generally, so that the implementations can change
+    // https://medium.com/datadriveninvestor/genetic-algorithms-selection-5634cfc45d78
     initialisePopulation();
 
     for (int j = 0; j < _generations; ++j) {
@@ -13,10 +15,13 @@ void GeneticAlgorithm<G, F>::Start() {
         _matingPool.InitialiseFromPopulation(_population);
         _matingPool.Print();
 
-        int numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * _populationSize);
-        addRandomGenesToPopulation(numberOfRandomGenes);
+        _population.clear();
 
-        for (int k = 0; k < _populationSize - numberOfRandomGenes; ++k) {
+        auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * _populationSize);
+        addRandomGenesToPopulation((int) numberOfRandomGenes);
+
+        while (_population.size() < _populationSize) {
+            // TODO: Parent selection
             auto parent1 = _matingPool.GetEligibleParent();
             auto parent2 = _matingPool.GetEligibleParent();
 
@@ -31,7 +36,8 @@ void GeneticAlgorithm<G, F>::Start() {
             addToPopulation(child);
         }
 
-        _populationSelector.SelectFittest(_population, _populationSize);
+        // TODO: SurvivorSelection
+//        _populationSelector.SelectFittest(_population, _populationSize);
     }
 
     // TODO: Return fitest item, or return entire list in order of fitness?
@@ -42,6 +48,10 @@ void GeneticAlgorithm<G, F>::initialisePopulation() {
     for (int i = 0; i < _populationSize; ++i) {
         addToPopulation(_geneRandomiser.getValue());
     }
+}
+
+template<class G, class F>
+void GeneticAlgorithm<G, F>::generateNextGeneration() {
 }
 
 template<class G, class F>

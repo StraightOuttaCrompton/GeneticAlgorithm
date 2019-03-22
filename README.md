@@ -20,3 +20,8 @@ javascript code: https://github.com/nature-of-code/noc-examples-p5.js/tree/maste
 
 
 https://stackoverflow.com/questions/33823356/number-type-between-0-and-1
+
+## Resources
+
+http://www.boente.eti.br/fuzzy/ebook-fuzzy-mitchell.pdf
+
