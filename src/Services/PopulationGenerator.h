@@ -24,7 +24,8 @@ public:
             : _percentOfRandomPopulation(percentOfRandomPopulation), _matingPool(matingPool),
               _randomiser(randomiser), _breeder(breeder), _mutator(mutator) {}
 
-    IPopulation<G, F> *GenerateInitialPopulation(IPopulation<G, F> *population, int populationSize);
+    shared_ptr<IPopulation<G, F>>
+    GenerateInitialPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize);
 
     IPopulation<G, F> *GenerateNextPopulation(IPopulation<G, F> *population, int populationSize);
 

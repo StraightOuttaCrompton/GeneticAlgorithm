@@ -54,9 +54,8 @@
 //    population.Replace(nextPopulation);
 
 template<typename G, typename F>
-IPopulation<G, F> *
-PopulationGenerator<G, F>::GenerateInitialPopulation(IPopulation<G, F> *population, int populationSize) {
-    cout << "Generate initial population" << endl;
+shared_ptr<IPopulation<G, F>>
+PopulationGenerator<G, F>::GenerateInitialPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
     population->clear();
 
     for (int i = 0; i < populationSize; ++i) {

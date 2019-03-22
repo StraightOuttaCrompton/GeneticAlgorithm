@@ -15,6 +15,8 @@
 
 #include "Models/Probability.h"
 
+#include <memory>
+
 using namespace std;
 
 int main() {
@@ -42,7 +44,9 @@ int main() {
     SCMutator scMutator(mutationRate);
 
     // Services
-    Population<string, int> population(scFitnessFunction);
+
+    auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
+//    Population<string, int> population(scFitnessFunction);
 
     MatingPool<string, int> matingPool;
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, matingPool, scRandomiser, scBreeder,

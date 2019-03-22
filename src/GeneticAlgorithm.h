@@ -8,7 +8,7 @@ template<class G, class F>
 class GeneticAlgorithm {
 public:
     GeneticAlgorithm(
-            int populationSize, int generations, IPopulation<G, F> &population,
+            int populationSize, int generations, shared_ptr<IPopulation<G, F>> population,
             IPopulationGenerator<G, F> &populationGenerator
     ) : _populationSize(populationSize),
         _generations(generations),
@@ -20,7 +20,7 @@ public:
 private:
     int _populationSize;
     int _generations;
-    IPopulation<G, F> &_population;
+    shared_ptr<IPopulation<G, F>> _population;
     IPopulationGenerator<G, F> &_populationGenerator;
 
 };
