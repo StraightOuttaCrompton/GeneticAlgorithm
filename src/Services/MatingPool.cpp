@@ -18,10 +18,3 @@ template<class C, class F>
 C MatingPool<C, F>::GetEligibleParent() {
     return _rouletteWheelSelection.selectItem();
 }
-
-template<class C, class F>
-void MatingPool<C, F>::Print() {
-    cout << "Mating pool: " << endl;
-    _rouletteWheelSelection.print();
-    cout << endl;
-}

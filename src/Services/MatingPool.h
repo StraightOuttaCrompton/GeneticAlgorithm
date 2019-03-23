@@ -14,8 +14,6 @@ public:
 
     C GetEligibleParent();
 
-    void Print();
-
 private:
     RouletteWheelSelection<C> _rouletteWheelSelection;
 };

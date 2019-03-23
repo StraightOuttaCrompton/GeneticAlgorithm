@@ -29,7 +29,7 @@ int main() {
     // n. Go through TODOs
 
     const int populationSize = 4;
-    const int generations = 1;
+    const int generations = 10;
     Probability percentOfRandomPopulation(0.1);
     Probability mutationRate(0.05);
 

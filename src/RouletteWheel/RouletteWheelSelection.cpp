@@ -47,14 +47,6 @@ void RouletteWheelSelection<T>::clearItems() {
 }
 
 template<typename T>
-void RouletteWheelSelection<T>::print() {
-    for (int i = 0; i < _items.size(); ++i) {
-        RouletteItem item = _items[i];
-        cout << "item " << i + 1 << ": " << item.getItem() << "   fitness: " << item.getValue() << endl;
-    }
-}
-
-template<typename T>
 void RouletteWheelSelection<T>::initialise() {
     _total = 0;
     _smallestNegativeProb = 0;

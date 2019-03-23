@@ -18,6 +18,8 @@ public:
     virtual Chromosome<C, F> Fittest() = 0;
 
     virtual vector<Chromosome<C, F>> getPopulationVector() = 0;
+
+    virtual void Print() = 0;
 };
 
 #endif //GENETICALGORITHM_IPOPULATION_H

@@ -15,7 +15,7 @@ public:
         _population(population),
         _populationGenerator(populationGenerator) {}
 
-    Chromosome<string, int> Start();
+    Chromosome<C, F> Start();
 
 private:
     int _populationSize;

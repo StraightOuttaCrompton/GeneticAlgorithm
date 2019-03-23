@@ -17,9 +17,6 @@ void Population<C, F>::add(C chromosomeValue) {
 template<typename C, typename F>
 void Population<C, F>::clear() {
     _population.clear();
-
-//    Chromosome<C, F> chromosome;
-//    _fittest = chromosome;
 }
 
 template<typename C, typename F>
@@ -35,4 +32,13 @@ Chromosome<C, F> Population<C, F>::Fittest() {
 template<typename C, typename F>
 vector<Chromosome<C, F>> Population<C, F>::getPopulationVector() {
     return _population;
+}
+
+template<typename C, typename F>
+void Population<C, F>::Print() {
+    for (int i = 0; i < _population.size(); ++i) {
+        Chromosome<C, F> item = _population[i];
+        cout << "item " << i + 1 << ": " << item.getValue() << "   fitness: " << item.getFitness() << endl;
+    }
+    cout << endl;
 }

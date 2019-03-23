@@ -17,8 +17,6 @@ public:
 
     T selectItem();
 
-    void print();
-
 private:
     void initialise();
 

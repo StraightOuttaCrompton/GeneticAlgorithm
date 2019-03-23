@@ -22,6 +22,8 @@ public:
 
     vector<Chromosome<C, F>> getPopulationVector();
 
+    void Print();
+
 private:
     IFitnessFunction<C, F> &_fitnessFunction;
     vector<Chromosome<C, F>> _population;
