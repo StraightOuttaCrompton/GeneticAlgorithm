@@ -1,26 +1,5 @@
-#include <iostream>
 #include "PopulationGenerator.h"
 #include <cmath>
-
-
-//template<class C, class F>
-//void GeneticAlgorithm<C, F>::initialisePopulation() {
-//}
-
-//template<class C, class F>
-//void GeneticAlgorithm<C, F>::addRandomGenesToPopulation(int numberOfRandomGenes) {
-//}
-
-
-//template<class C, class F>
-//void GeneticAlgorithm<C, F>::addToPopulation(C geneValue) {
-//    auto fitness = _fitnessFunction.Fitness(geneValue);
-//
-//    Chromosome<C, F> chromosome(geneValue, fitness);
-//
-//    _population.add(chromosome);
-//}
-
 
 //
 //template<typename C, typename F>
@@ -52,29 +31,23 @@
 //    population.Replace(nextPopulation);
 
 template<typename G, typename F>
-shared_ptr<IPopulation<G, F>>
+void
 PopulationGenerator<G, F>::GenerateInitialPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
     population->clear();
 
     for (int i = 0; i < populationSize; ++i) {
         population->add(_randomiser.getValue());
     }
-
-    return population;
 }
 
 template<typename G, typename F>
-shared_ptr<IPopulation<G, F>>
-PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
+void PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
     _matingPool.InitialiseFromPopulation(population);
-
-    cout << "Generate next population" << endl;
     _matingPool.Print();
 
     population->clear();
 
     auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
-//    addRandomGenesToPopulation((int) numberOfRandomGenes);
     for (int i = 0; i < numberOfRandomGenes; ++i) {
         population->add(_randomiser.getValue());
     }
@@ -94,6 +67,4 @@ PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G, F>> 
 
         population->add(child);
     }
-
-    return population;
 }

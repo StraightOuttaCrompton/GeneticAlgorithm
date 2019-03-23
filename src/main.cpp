@@ -23,9 +23,10 @@ int main() {
     // Todo:
     // 1. remove roulette wheel item, use std:: pair
     // 2. rename gene to chromosome
+    // 3. Add population.fittest
 
     const int populationSize = 10;
-    const int generations = 4;
+    const int generations = 10;
     Probability percentOfRandomPopulation(0.1);
     Probability mutationRate(0.05);
 
@@ -45,10 +46,11 @@ int main() {
 
     // Services
 
+    // TODO: Should the population take the fitness function in it's constructor?
     auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
-//    Population<string, int> population(scFitnessFunction);
 
-    MatingPool<string, int> matingPool;
+    MatingPool<string, int> matingPool; // TODO: think about parent selection flexibility, use other selections other than rouletteWheel
+
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, matingPool, scRandomiser, scBreeder,
                                                          scMutator);
 
