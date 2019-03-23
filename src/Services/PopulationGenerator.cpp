@@ -30,9 +30,9 @@
 //
 //    population.Replace(nextPopulation);
 
-template<typename G, typename F>
+template<typename C, typename F>
 void
-PopulationGenerator<G, F>::GenerateInitialPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
+PopulationGenerator<C, F>::GenerateInitialPopulation(shared_ptr<IPopulation<C, F>> population, int populationSize) {
     population->clear();
 
     for (int i = 0; i < populationSize; ++i) {
@@ -40,11 +40,15 @@ PopulationGenerator<G, F>::GenerateInitialPopulation(shared_ptr<IPopulation<G, F
     }
 }
 
-template<typename G, typename F>
-void PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
+template<typename C, typename F>
+void PopulationGenerator<C, F>::GenerateNextPopulation(shared_ptr<IPopulation<C, F>> population, int populationSize) {
     _matingPool.InitialiseFromPopulation(population);
 
+    Chromosome<C, F> fittest = population->Fittest();
+
     population->clear();
+
+    population->add(fittest.getValue()); // TODO: overload population function to take chromosome
 
     auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
     for (int i = 0; i < numberOfRandomGenes; ++i) {
@@ -57,11 +61,11 @@ void PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G,
         auto parent2 = _matingPool.GetEligibleParent();
 
         // Parent1 should not be the same as parent2
-        while (parent1 == parent2) {
+        while (parent1.getValue() == parent2.getValue()) {
             parent2 = _matingPool.GetEligibleParent();
         }
 
-        auto child = _breeder.Breed(parent1, parent2);
+        auto child = _breeder.Breed(parent1.getValue(), parent2.getValue());
         child = _mutator.Mutate(child);
 
         population->add(child);

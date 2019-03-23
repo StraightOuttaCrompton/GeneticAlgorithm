@@ -15,16 +15,19 @@
 
 #include "Models/Probability.h"
 
+#include "RouletteWheel/RouletteWheelSelection.h"
+#include "RouletteWheel/RouletteWheelSelection.cpp" // Avoid linking error
+
 #include <memory>
 
 using namespace std;
 
 int main() {
     // Todo:
-    // 1. remove roulette wheel item, use std:: pair
-    // 2. rename gene to chromosome
-    // 3. consider termination condition
-    // 4. fix mating pool print? Something was wrong
+    // 1. rename gene to chromosome
+    // 2. consider termination condition
+    // 3. fix mating pool print? Something was wrong
+    // 4. Create IGeneticAlgorithmInterface
 
     // n. Go through TODOs
 
@@ -52,7 +55,9 @@ int main() {
     // TODO: Should the population take the fitness function in it's constructor?
     auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
 
-    MatingPool<string, int> matingPool; // TODO: think about parent selection flexibility, use other selections other than rouletteWheel
+    // TODO: think about parent selection flexibility, use other selections other than rouletteWheel
+    RouletteWheelSelection<string, int> rouletteWheelSelection;
+    MatingPool<string, int> matingPool(rouletteWheelSelection);
 
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, matingPool, scRandomiser, scBreeder,
                                                          scMutator);

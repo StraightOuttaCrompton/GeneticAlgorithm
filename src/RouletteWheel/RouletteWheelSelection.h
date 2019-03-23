@@ -4,18 +4,19 @@
 using namespace std;
 
 #include <vector>
-#include "RouletteItem.h"
+#include "../Framework/services/IParentSelection.h"
+#include "../Framework/models/Chromosome.h"
 
-template<typename T>
-class RouletteWheelSelection {
+template<typename C, typename F>
+class RouletteWheelSelection : public IParentSelection<C, F> {
 public:
     RouletteWheelSelection();
 
-    void addItem(T item, double prob);
+    void addChromosome(Chromosome<C, F> chromosome);
+
+    Chromosome<C, F> selectChromosome();
 
     void clearItems();
-
-    T selectItem();
 
 private:
     void initialise();
@@ -23,8 +24,8 @@ private:
     void calcTotal();
 
     double _total;
-    double _smallestNegativeProb;
-    vector<RouletteItem<T>> _items;
+    double _smallestNegativeFitness;
+    vector<Chromosome<C, F>> _items;
 };
 
 

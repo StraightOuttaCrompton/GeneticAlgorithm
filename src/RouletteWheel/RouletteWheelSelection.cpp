@@ -3,24 +3,22 @@
 
 #include <iostream>
 
-template<typename T>
-RouletteWheelSelection<T>::RouletteWheelSelection() {
+template<typename C, typename F>
+RouletteWheelSelection<C, F>::RouletteWheelSelection() {
     initialise();
 }
 
-template<typename T>
-void RouletteWheelSelection<T>::addItem(T item, double prob) {
-    if (prob < _smallestNegativeProb) {
-        _smallestNegativeProb = prob * 2;
+template<typename C, typename F>
+void RouletteWheelSelection<C, F>::addChromosome(Chromosome<C, F> chromosome) {
+    if (chromosome.getFitness() < _smallestNegativeFitness) {
+        _smallestNegativeFitness = chromosome.getFitness() * 2;
     }
 
-    RouletteItem<T> rouletteItem(item, prob);
-
-    _items.push_back(rouletteItem);
+    _items.push_back(chromosome);
 }
 
-template<typename T>
-T RouletteWheelSelection<T>::selectItem() {
+template<typename C, typename F>
+Chromosome<C, F> RouletteWheelSelection<C, F>::selectChromosome() {
     if (_items.size() < 1) {
         throw logic_error("No items to select from");
     }
@@ -31,32 +29,33 @@ T RouletteWheelSelection<T>::selectItem() {
 
     int i = 0;
     while (r > 0) {
-        RouletteItem item = _items[i];
-        r = r - (item.getValue() - _smallestNegativeProb);
+        Chromosome<C, F> item = _items[i];
+        r = r - (item.getFitness() - _smallestNegativeFitness);
         i++;
     }
 
-    RouletteItem selectedItem = _items[i - 1];
-    return selectedItem.getItem();
+    Chromosome<C, F> selectedItem = _items[i - 1];
+
+    return selectedItem;
 }
 
-template<typename T>
-void RouletteWheelSelection<T>::clearItems() {
+template<typename C, typename F>
+void RouletteWheelSelection<C, F>::clearItems() {
     _items.clear();
     initialise();
 }
 
-template<typename T>
-void RouletteWheelSelection<T>::initialise() {
+template<typename C, typename F>
+void RouletteWheelSelection<C, F>::initialise() {
     _total = 0;
-    _smallestNegativeProb = 0;
+    _smallestNegativeFitness = 0;
 }
 
-template<typename T>
-void RouletteWheelSelection<T>::calcTotal() {
+template<typename C, typename F>
+void RouletteWheelSelection<C, F>::calcTotal() {
     _total = 0;
     for (int i = 0; i < _items.size(); ++i) {
-        RouletteItem item = _items[i];
-        _total += item.getValue() + abs(_smallestNegativeProb);
+        Chromosome<C, F> item = _items[i];
+        _total += item.getFitness() + abs(_smallestNegativeFitness);
     }
 }
