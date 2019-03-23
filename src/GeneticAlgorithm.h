@@ -16,7 +16,9 @@ public:
         _populationGenerator(populationGenerator),
         _globalFittest() {}
 
-    Chromosome<C, F> Start();
+    void Start();
+
+    Chromosome<C, F> GetFittest();
 
 private:
     int _populationSize;
