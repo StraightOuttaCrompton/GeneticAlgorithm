@@ -25,6 +25,8 @@ int main() {
     // 2. rename gene to chromosome
     // 3. Add population.fittest
 
+    // n. Go through TODOs
+
     const int populationSize = 10;
     const int generations = 10;
     Probability percentOfRandomPopulation(0.1);

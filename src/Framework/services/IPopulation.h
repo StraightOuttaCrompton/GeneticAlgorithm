@@ -15,8 +15,6 @@ public:
 
     virtual unsigned long size() = 0;
 
-//    virtual void Replace(vector<Chromosome<C, F>> nextPopulation) = 0;
-
     virtual vector<Chromosome<C, F>> getPopulationVector() = 0;
 };
 

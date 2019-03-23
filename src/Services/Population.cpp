@@ -20,11 +20,6 @@ unsigned long Population<C, F>::size() {
     _population.size();
 }
 
-//template<typename C, typename F>
-//void Population<C, F>::Replace(vector<Chromosome<C, F>> nextPopulation) {
-//    _population = nextPopulation;
-//}
-//
 template<typename C, typename F>
 vector<Chromosome<C, F>> Population<C, F>::getPopulationVector() {
     return _population;

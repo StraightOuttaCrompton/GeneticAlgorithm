@@ -19,8 +19,6 @@ public:
 
     unsigned long size();
 
-//    void Replace(vector<Chromosome<C, F>> nextPopulation);
-
     vector<Chromosome<C, F>> getPopulationVector();
 
 private:
