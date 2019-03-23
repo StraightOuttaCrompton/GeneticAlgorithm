@@ -13,7 +13,8 @@ public:
     ) : _populationSize(populationSize),
         _generations(generations),
         _population(population),
-        _populationGenerator(populationGenerator) {}
+        _populationGenerator(populationGenerator),
+        _globalFittest() {}
 
     Chromosome<C, F> Start();
 
@@ -23,6 +24,9 @@ private:
     shared_ptr<IPopulation<C, F>> _population;
     IPopulationGenerator<C, F> &_populationGenerator;
 
+    void setGlobalFittest();
+
+    Chromosome<C, F> _globalFittest;
 };
 
 #endif //GENETICALGORITHM_GENETICALGORITHM_H

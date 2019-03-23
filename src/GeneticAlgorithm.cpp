@@ -9,11 +9,19 @@ Chromosome<C, F> GeneticAlgorithm<C, F>::Start() {
         cout << "Generation: " << j + 1 << endl;
         _populationGenerator.GenerateNextPopulation(_population, _populationSize);
 
+        setGlobalFittest();
+
         _population->Print();
     }
 
-    return _population->Fittest();
+    return _globalFittest;
 }
 
+template<class C, class F>
+void GeneticAlgorithm<C, F>::setGlobalFittest() {
+    Chromosome<C, F> currentPopulationFittest = _population->Fittest();
 
-
+    if (currentPopulationFittest.getFitness() > _globalFittest.getFitness()) {
+        _globalFittest = currentPopulationFittest;
+    }
+}
