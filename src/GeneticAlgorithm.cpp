@@ -3,7 +3,6 @@
 
 template<class C, class F>
 Chromosome<string, int> GeneticAlgorithm<C, F>::Start() {
-    // TODO: make void? why am I returning the initialPopulation?
     _populationGenerator.GenerateInitialPopulation(_population, _populationSize);
 
     for (int j = 0; j < _generations; ++j) {
@@ -12,7 +11,7 @@ Chromosome<string, int> GeneticAlgorithm<C, F>::Start() {
 
         // _population.print();
     }
-    
+
     return _population->Fittest();
 }
 

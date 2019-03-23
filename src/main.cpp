@@ -23,7 +23,7 @@ int main() {
     // Todo:
     // 1. remove roulette wheel item, use std:: pair
     // 2. rename gene to chromosome
-    // 3. Add population.fittest
+    // 3. consider termination condition
 
     // n. Go through TODOs
 
@@ -46,7 +46,7 @@ int main() {
     SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
-    // Services
+    // Services - rename to constructs?
 
     // TODO: Should the population take the fitness function in it's constructor?
     auto population = std::make_shared<Population<string, int>>(scFitnessFunction);

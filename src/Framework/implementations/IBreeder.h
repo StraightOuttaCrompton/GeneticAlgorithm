@@ -1,10 +1,10 @@
 #ifndef GENETICALGORITHM_IBREEDER_H
 #define GENETICALGORITHM_IBREEDER_H
 
-template<typename G>
+template<typename C>
 class IBreeder {
 public:
-    virtual G Breed(G gene1, G gene2) = 0;
+    virtual C Breed(C chromosome1, C chromosome2) = 0;
 };
 
 #endif //GENETICALGORITHM_IBREEDER_H

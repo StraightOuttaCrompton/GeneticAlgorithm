@@ -1,14 +1,14 @@
 #ifndef GENETICALGORITHM_STRINGGENE_H
 #define GENETICALGORITHM_STRINGGENE_H
 
-template<typename G, typename F>
+template<typename C, typename F>
 class Chromosome {
 public:
     Chromosome() = default;
 
-    Chromosome(G value, F fitness) : _value(value), _fitness(fitness) {}
+    Chromosome(C value, F fitness) : _value(value), _fitness(fitness) {}
 
-    G getValue() {
+    C getValue() {
         return _value;
     }
 
@@ -17,7 +17,7 @@ public:
     }
 
 private:
-    G _value;
+    C _value;
     F _fitness;
 };
 
