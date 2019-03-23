@@ -17,7 +17,7 @@ public:
 
     void clear();
 
-//    unsigned long size();
+    unsigned long size();
 
 //    void Replace(vector<Chromosome<C, F>> nextPopulation);
 

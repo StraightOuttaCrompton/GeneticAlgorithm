@@ -27,7 +27,7 @@ public:
     shared_ptr<IPopulation<G, F>>
     GenerateInitialPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize);
 
-    IPopulation<G, F> *GenerateNextPopulation(IPopulation<G, F> *population, int populationSize);
+    shared_ptr<IPopulation<G, F>> GenerateNextPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize);
 
 private:
     Probability _percentOfRandomPopulation;

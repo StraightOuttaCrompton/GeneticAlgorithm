@@ -2,9 +2,10 @@
 #include <iostream>
 
 template<class G, class F>
-void MatingPool<G, F>::InitialiseFromPopulation(IPopulation<G, F> &population) {
+void MatingPool<G, F>::InitialiseFromPopulation(shared_ptr <IPopulation<G, F>> population) {
     _rouletteWheelSelection.clearItems();
-    auto populationVector = population.getPopulationVector();
+    auto populationVector = population->getPopulationVector();
+    
     for (int i = 0; i < populationVector.size(); ++i) {
         Chromosome<G, F> gene = populationVector[i];
         _rouletteWheelSelection.addItem(gene.getValue(), gene.getFitness());

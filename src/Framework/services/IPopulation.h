@@ -13,7 +13,7 @@ public:
 
     virtual void clear() = 0;
 
-//    virtual unsigned long size() = 0;
+    virtual unsigned long size() = 0;
 
 //    virtual void Replace(vector<Chromosome<C, F>> nextPopulation) = 0;
 

@@ -15,11 +15,11 @@ void Population<C, F>::clear() {
     _population.clear();
 }
 
-//template<typename C, typename F>
-//unsigned long Population<C, F>::size() {
-//    _population.size();
-//}
-//
+template<typename C, typename F>
+unsigned long Population<C, F>::size() {
+    _population.size();
+}
+
 //template<typename C, typename F>
 //void Population<C, F>::Replace(vector<Chromosome<C, F>> nextPopulation) {
 //    _population = nextPopulation;

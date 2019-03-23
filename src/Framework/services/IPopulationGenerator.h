@@ -12,8 +12,8 @@ public:
     virtual shared_ptr <IPopulation<G, F>>
     GenerateInitialPopulation(shared_ptr <IPopulation<G, F>> population, int populationSize) = 0;
 
-    virtual IPopulation<G, F> *
-    GenerateNextPopulation(IPopulation<G, F> *population, int popultationSize) = 0;
+    virtual shared_ptr <IPopulation<G, F>>
+    GenerateNextPopulation(shared_ptr <IPopulation<G, F>> population, int popultationSize) = 0;
 };
 
 #endif //GENETICALGORITHM_IPOPULATIONSELECTOR_H

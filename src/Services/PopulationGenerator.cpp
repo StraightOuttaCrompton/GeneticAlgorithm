@@ -1,5 +1,6 @@
 #include <iostream>
 #include "PopulationGenerator.h"
+#include <cmath>
 
 
 //template<class C, class F>
@@ -8,9 +9,6 @@
 
 //template<class C, class F>
 //void GeneticAlgorithm<C, F>::addRandomGenesToPopulation(int numberOfRandomGenes) {
-//    for (int i = 0; i < numberOfRandomGenes; ++i) {
-//        addToPopulation(_randomiser.getValue());
-//    }
 //}
 
 
@@ -66,34 +64,36 @@ PopulationGenerator<G, F>::GenerateInitialPopulation(shared_ptr<IPopulation<G, F
 }
 
 template<typename G, typename F>
-IPopulation<G, F> *
-PopulationGenerator<G, F>::GenerateNextPopulation(IPopulation<G, F> *population, int populationSize) {
+shared_ptr<IPopulation<G, F>>
+PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
+    _matingPool.InitialiseFromPopulation(population);
+
     cout << "Generate next population" << endl;
-    //        _matingPool.InitialiseFromPopulation(_population);
-//        _matingPool.Print();
-//
-//        _population.clear();
-//
-//        auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * _populationSize);
-//        addRandomGenesToPopulation((int) numberOfRandomGenes);
-//
-//        while (_population.size() < _populationSize) {
-//            // TODO: Parent selection
-//            auto parent1 = _matingPool.GetEligibleParent();
-//            auto parent2 = _matingPool.GetEligibleParent();
-//
-//            // Parent1 should not be the same as parent2
-//            while (parent1 == parent2) {
-//                parent2 = _matingPool.GetEligibleParent();
-//            }
-//
-//            auto child = _breeder.Breed(parent1, parent2);
-//            child = _mutator.Mutate(child);
-//
-//            addToPopulation(child);
+    _matingPool.Print();
+
+    population->clear();
+
+    auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
+//    addRandomGenesToPopulation((int) numberOfRandomGenes);
+    for (int i = 0; i < numberOfRandomGenes; ++i) {
+        population->add(_randomiser.getValue());
+    }
+
+    while (population->size() < populationSize) {
+        // TODO: Parent selection
+        auto parent1 = _matingPool.GetEligibleParent();
+        auto parent2 = _matingPool.GetEligibleParent();
+
+        // Parent1 should not be the same as parent2
+        while (parent1 == parent2) {
+            parent2 = _matingPool.GetEligibleParent();
+        }
+
+        auto child = _breeder.Breed(parent1, parent2);
+        child = _mutator.Mutate(child);
+
+        population->add(child);
+    }
+
     return population;
 }
-
-
-
-//}

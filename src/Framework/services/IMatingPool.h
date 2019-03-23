@@ -6,7 +6,7 @@
 template<class G, class F>
 class IMatingPool {
 public:
-    virtual void InitialiseFromPopulation(IPopulation<G, F> &population) = 0;
+    virtual void InitialiseFromPopulation(shared_ptr<IPopulation<G, F>> population) = 0;
 
     virtual G GetEligibleParent() = 0;
 
