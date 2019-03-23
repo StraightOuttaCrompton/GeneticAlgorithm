@@ -43,7 +43,6 @@ PopulationGenerator<G, F>::GenerateInitialPopulation(shared_ptr<IPopulation<G, F
 template<typename G, typename F>
 void PopulationGenerator<G, F>::GenerateNextPopulation(shared_ptr<IPopulation<G, F>> population, int populationSize) {
     _matingPool.InitialiseFromPopulation(population);
-    _matingPool.Print();
 
     population->clear();
 

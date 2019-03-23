@@ -7,17 +7,17 @@
 #include "../RouletteWheel/RouletteWheelSelection.h"
 #include "../RouletteWheel/RouletteWheelSelection.cpp"
 
-template<class G, class F>
-class MatingPool : public IMatingPool<G, F> {
+template<class C, class F>
+class MatingPool : public IMatingPool<C, F> {
 public:
-    void InitialiseFromPopulation(shared_ptr <IPopulation<G, F>> population);
+    void InitialiseFromPopulation(shared_ptr<IPopulation<C, F>> population);
 
-    G GetEligibleParent();
+    C GetEligibleParent();
 
     void Print();
 
 private:
-    RouletteWheelSelection<G> _rouletteWheelSelection;
+    RouletteWheelSelection<C> _rouletteWheelSelection;
 };
 
 #endif //GENETICALGORITHM_MATINGPOOL_H

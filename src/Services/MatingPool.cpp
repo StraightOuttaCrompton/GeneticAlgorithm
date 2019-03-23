@@ -1,26 +1,26 @@
 #include "MatingPool.h"
 #include <iostream>
 
-template<class G, class F>
-void MatingPool<G, F>::InitialiseFromPopulation(shared_ptr<IPopulation<G, F>> population) {
+template<class C, class F>
+void MatingPool<C, F>::InitialiseFromPopulation(shared_ptr<IPopulation<C, F>> population) {
     _rouletteWheelSelection.clearItems();
 
     // TODO: use iterable instead of gettingPopulationVector?
     auto populationVector = population->getPopulationVector();
 
     for (int i = 0; i < populationVector.size(); ++i) {
-        Chromosome<G, F> gene = populationVector[i];
+        Chromosome<C, F> gene = populationVector[i];
         _rouletteWheelSelection.addItem(gene.getValue(), gene.getFitness());
     }
 }
 
-template<class G, class F>
-G MatingPool<G, F>::GetEligibleParent() {
+template<class C, class F>
+C MatingPool<C, F>::GetEligibleParent() {
     return _rouletteWheelSelection.selectItem();
 }
 
-template<class G, class F>
-void MatingPool<G, F>::Print() {
+template<class C, class F>
+void MatingPool<C, F>::Print() {
     cout << "Mating pool: " << endl;
     _rouletteWheelSelection.print();
     cout << endl;

@@ -7,7 +7,7 @@ void Population<C, F>::add(C chromosomeValue) {
 
     Chromosome<C, F> chromosome(chromosomeValue, fitness);
 
-    if (_population.size() == 0 || chromosome.getFitness() > _fittest.getFitness()) {
+    if (_population.size() == 0 || fitness > _fittest.getFitness()) {
         _fittest = chromosome;
     }
 
@@ -17,6 +17,9 @@ void Population<C, F>::add(C chromosomeValue) {
 template<typename C, typename F>
 void Population<C, F>::clear() {
     _population.clear();
+
+//    Chromosome<C, F> chromosome;
+//    _fittest = chromosome;
 }
 
 template<typename C, typename F>

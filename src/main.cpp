@@ -24,11 +24,12 @@ int main() {
     // 1. remove roulette wheel item, use std:: pair
     // 2. rename gene to chromosome
     // 3. consider termination condition
+    // 4. fix mating pool print? Something was wrong
 
     // n. Go through TODOs
 
-    const int populationSize = 10;
-    const int generations = 10;
+    const int populationSize = 4;
+    const int generations = 1;
     Probability percentOfRandomPopulation(0.1);
     Probability mutationRate(0.05);
 
