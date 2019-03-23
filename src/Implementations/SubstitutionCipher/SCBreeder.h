@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "../../Framework/implementations/IBreeder.h"
+#include "../../Framework/customisable/IBreeder.h"
 #include <string>
 #include <utility>
 #include <set>
@@ -11,6 +11,7 @@ using namespace std;
 class SCBreeder : public IBreeder<string> {
 public:
     explicit SCBreeder(string charPool) : _charPool(move(charPool)) {};
+
     string Breed(string parent1, string parent2) override;
 
 private:

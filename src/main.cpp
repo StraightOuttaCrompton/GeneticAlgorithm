@@ -55,7 +55,7 @@ int main() {
     // TODO: Should the population take the fitness function in it's constructor?
     auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
 
-    // TODO: think about parent selection flexibility, use other selections other than rouletteWheel
+    // TODO: change how parent seletion works
     RouletteWheelSelection<string, int> rouletteWheelSelection;
     MatingPool<string, int> matingPool(rouletteWheelSelection);
 

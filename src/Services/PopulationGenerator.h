@@ -5,10 +5,10 @@ using namespace std;
 
 #include "../Models/Probability.h"
 #include <memory>
-#include "../Framework/services/IPopulationGenerator.h"
-#include "../Framework/implementations/IRandomiser.h"
-#include "../Framework/implementations/IBreeder.h"
-#include "../Framework/implementations/IMutator.h"
+#include "../Framework/constructs/IPopulationGenerator.h"
+#include "../Framework/customisable/IRandomiser.h"
+#include "../Framework/customisable/IBreeder.h"
+#include "../Framework/customisable/IMutator.h"
 
 template<typename C, typename F>
 class PopulationGenerator : public IPopulationGenerator<C, F> {

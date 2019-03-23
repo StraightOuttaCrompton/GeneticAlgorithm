@@ -4,8 +4,8 @@
 using namespace std;
 
 #include <queue>
-#include "../Framework/services/IPopulation.h"
-#include "../Framework/implementations/IFitnessFunction.h"
+#include "../Framework/constructs/IPopulation.h"
+#include "../Framework/customisable/IFitnessFunction.h"
 
 template<typename C, typename F>
 class Population : public IPopulation<C, F> {

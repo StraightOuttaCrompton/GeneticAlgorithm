@@ -4,7 +4,7 @@
 using namespace std;
 
 #include <vector>
-#include "../Framework/services/IParentSelection.h"
+#include "../Framework/selection/IParentSelection.h"
 #include "../Framework/models/Chromosome.h"
 
 template<typename C, typename F>

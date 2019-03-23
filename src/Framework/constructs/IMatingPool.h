@@ -1,6 +1,7 @@
 #ifndef GENETICALGORITHM_IMATINGPOOL_H
 #define GENETICALGORITHM_IMATINGPOOL_H
 
+#include <memory>
 #include "IPopulation.h"
 
 template<class C, class F>

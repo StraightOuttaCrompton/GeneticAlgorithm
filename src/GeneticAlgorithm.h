@@ -1,8 +1,8 @@
 #ifndef GENETICALGORITHM_GENETICALGORITHM_H
 #define GENETICALGORITHM_GENETICALGORITHM_H
 
-#include "Framework/services/IPopulation.h"
-#include "Framework/services/IPopulationGenerator.h"
+#include "Framework/constructs/IPopulation.h"
+#include "Framework/constructs/IPopulationGenerator.h"
 
 template<class C, class F>
 class GeneticAlgorithm {

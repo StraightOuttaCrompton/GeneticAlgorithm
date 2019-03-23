@@ -2,9 +2,9 @@
 #define GENETICALGORITHM_MATINGPOOL_H
 
 #include <memory>
-#include "../Framework/services/IMatingPool.h"
-#include "../Framework/services/IPopulation.h"
-#include "../Framework/services/IParentSelection.h"
+#include "../Framework/constructs/IMatingPool.h"
+#include "../Framework/constructs/IPopulation.h"
+#include "../Framework/selection/IParentSelection.h"
 
 template<typename C, typename F>
 class MatingPool : public IMatingPool<C, F> {

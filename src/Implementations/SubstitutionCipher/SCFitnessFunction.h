@@ -5,7 +5,7 @@ using namespace std;
 
 #include <utility>
 #include <string>
-#include "../../Framework/implementations/IFitnessFunction.h"
+#include "../../Framework/customisable/IFitnessFunction.h"
 
 class SCFitnessFunction : public IFitnessFunction<string, int> {
 public:
