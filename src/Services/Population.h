@@ -7,7 +7,6 @@ using namespace std;
 #include "../Framework/services/IPopulation.h"
 #include "../Framework/implementations/IFitnessFunction.h"
 
-
 template<typename C, typename F>
 class Population : public IPopulation<C, F> {
 public:
@@ -19,11 +18,14 @@ public:
 
     unsigned long size();
 
+    Chromosome<C, F> Fittest();
+
     vector<Chromosome<C, F>> getPopulationVector();
 
 private:
     IFitnessFunction<C, F> &_fitnessFunction;
     vector<Chromosome<C, F>> _population;
+    Chromosome<C, F> _fittest;
 };
 
 #endif //GENETICALGORITHM_POPULATION_H

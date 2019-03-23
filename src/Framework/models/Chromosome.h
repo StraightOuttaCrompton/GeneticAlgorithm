@@ -4,6 +4,8 @@
 template<typename G, typename F>
 class Chromosome {
 public:
+    Chromosome() = default;
+
     Chromosome(G value, F fitness) : _value(value), _fitness(fitness) {}
 
     G getValue() {

@@ -15,6 +15,8 @@ public:
 
     virtual unsigned long size() = 0;
 
+    virtual Chromosome<C, F> Fittest() = 0;
+
     virtual vector<Chromosome<C, F>> getPopulationVector() = 0;
 };
 

@@ -1,8 +1,8 @@
 #include "GeneticAlgorithm.h"
 #include <iostream>
 
-template<class G, class F>
-void GeneticAlgorithm<G, F>::Start() {
+template<class C, class F>
+Chromosome<string, int> GeneticAlgorithm<C, F>::Start() {
     // TODO: make void? why am I returning the initialPopulation?
     _populationGenerator.GenerateInitialPopulation(_population, _populationSize);
 
@@ -12,8 +12,8 @@ void GeneticAlgorithm<G, F>::Start() {
 
         // _population.print();
     }
-
-    // TODO: Return fitest item, or return entire list in order of fitness?
+    
+    return _population->Fittest();
 }
 
 

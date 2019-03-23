@@ -7,6 +7,10 @@ void Population<C, F>::add(C chromosomeValue) {
 
     Chromosome<C, F> chromosome(chromosomeValue, fitness);
 
+    if (_population.size() == 0 || chromosome.getFitness() > _fittest.getFitness()) {
+        _fittest = chromosome;
+    }
+
     _population.push_back(chromosome);
 }
 
@@ -18,6 +22,11 @@ void Population<C, F>::clear() {
 template<typename C, typename F>
 unsigned long Population<C, F>::size() {
     _population.size();
+}
+
+template<typename C, typename F>
+Chromosome<C, F> Population<C, F>::Fittest() {
+    return _fittest;
 }
 
 template<typename C, typename F>

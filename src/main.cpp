@@ -59,7 +59,11 @@ int main() {
 
     GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, population, populationGenerator);
 
-    geneticAlgorithm.Start();
+    Chromosome<string, int> fittest = geneticAlgorithm.Start();
+
+    cout << fittest.getValue() << endl;
+    cout << fittest.getFitness() << endl;
+
 
     return 0;
 }

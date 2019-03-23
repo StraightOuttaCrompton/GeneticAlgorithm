@@ -4,24 +4,24 @@
 #include "Framework/services/IPopulation.h"
 #include "Framework/services/IPopulationGenerator.h"
 
-template<class G, class F>
+template<class C, class F>
 class GeneticAlgorithm {
 public:
     GeneticAlgorithm(
-            int populationSize, int generations, shared_ptr<IPopulation<G, F>> population,
-            IPopulationGenerator<G, F> &populationGenerator
+            int populationSize, int generations, shared_ptr<IPopulation<C, F>> population,
+            IPopulationGenerator<C, F> &populationGenerator
     ) : _populationSize(populationSize),
         _generations(generations),
         _population(population),
         _populationGenerator(populationGenerator) {}
 
-    void Start();
+    Chromosome<string, int> Start();
 
 private:
     int _populationSize;
     int _generations;
-    shared_ptr<IPopulation<G, F>> _population;
-    IPopulationGenerator<G, F> &_populationGenerator;
+    shared_ptr<IPopulation<C, F>> _population;
+    IPopulationGenerator<C, F> &_populationGenerator;
 
 };
 
