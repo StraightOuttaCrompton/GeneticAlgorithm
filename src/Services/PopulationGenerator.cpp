@@ -1,34 +1,6 @@
 #include "PopulationGenerator.h"
 #include <cmath>
-
-//
-//template<typename C, typename F>
-//void PopulationGenerator<C, F>::SelectFittest(IPopulation<C, F> &population,
-//                                             int populationSize) {
-//    _addedGenes = {};
-//    _pq = {};
-//
-//    vector<Chromosome<C, F>> populationVector = population.getPopulationVector();
-//
-//    for (int i = 0; i < populationVector.size(); ++i) {
-//        Chromosome<C, F> gene = populationVector[i];
-//
-//        const bool is_in = _addedGenes.find(gene.getValue()) != _addedGenes.end();
-//
-//        if (!is_in) {
-//            _pq.push(gene);
-//            _addedGenes.insert(gene.getValue());
-//        }
-//    }
-//
-//    vector<Chromosome<C, F>> nextPopulation;
-//    while (nextPopulation.size() < populationSize && !_pq.empty()) {
-//        Chromosome<C, F> topGene = _pq.top();
-//        nextPopulation.push_back(topGene);
-//        _pq.pop();
-//    }
-//
-//    population.Replace(nextPopulation);
+#include <iostream>
 
 template<typename C, typename F>
 void
@@ -42,14 +14,22 @@ PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &populati
 
 template<typename C, typename F>
 void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &population, int populationSize) {
+    // TODO: move into one selection class?
     _parentSelection.InitialiseFromPopulation(population);
-
-    Chromosome<C, F> fittest = population.Fittest();
+    _survivorSelection.InitialiseFromPopulation(population);
 
     population.clear();
 
-    // do population survivor selection
-    population.add(fittest.getValue()); // TODO: overload population function to take chromosome
+    // TODO: CLean population survivor selection
+    Probability temp(0.01);
+    vector<Chromosome<C, F>> fittestVector = _survivorSelection.GetFittest(temp);
+    Chromosome<C, F> fittest = fittestVector[0];
+
+    cout << "Fittest " << fittest.getValue() << " " << fittest.getFitness() << endl;
+    cout << endl;
+
+//    population.add(fittest.getFitness());
+    // TODO: overload population function to take chromosome, and vector of chromosomes
 
     auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
     // make while loop so that it doesn't overfill population
@@ -58,7 +38,6 @@ void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &popula
     }
 
     while (population.size() < populationSize) {
-        // TODO: Parent selection
         auto parent1 = _parentSelection.SelectParent();
         auto parent2 = _parentSelection.SelectParent();
 

@@ -1,15 +1,15 @@
-#include "RouletteWheelSelection.h"
+#include "RouletteWheelParentSelection.h"
 #include "../Utils/Utils.h"
 
 #include <iostream>
 
 template<typename C, typename F>
-RouletteWheelSelection<C, F>::RouletteWheelSelection() {
+RouletteWheelParentSelection<C, F>::RouletteWheelParentSelection() {
     initialise();
 }
 
 template<class C, class F>
-void RouletteWheelSelection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
+void RouletteWheelParentSelection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
     ClearItems();
 
     // TODO: use iterable instead of gettingPopulationVector?
@@ -22,7 +22,7 @@ void RouletteWheelSelection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &p
 }
 
 template<class C, class F>
-Chromosome<C, F> RouletteWheelSelection<C, F>::SelectParent() {
+Chromosome<C, F> RouletteWheelParentSelection<C, F>::SelectParent() {
     if (_items.size() < 1) {
         throw logic_error("No items to select from");
     }
@@ -44,19 +44,19 @@ Chromosome<C, F> RouletteWheelSelection<C, F>::SelectParent() {
 }
 
 template<typename C, typename F>
-void RouletteWheelSelection<C, F>::ClearItems() {
+void RouletteWheelParentSelection<C, F>::ClearItems() {
     _items.clear();
     initialise();
 }
 
 template<typename C, typename F>
-void RouletteWheelSelection<C, F>::initialise() {
+void RouletteWheelParentSelection<C, F>::initialise() {
     _total = 0;
     _smallestNegativeFitness = 0;
 }
 
 template<typename C, typename F>
-void RouletteWheelSelection<C, F>::addChromosome(Chromosome<C, F> chromosome) {
+void RouletteWheelParentSelection<C, F>::addChromosome(Chromosome<C, F> chromosome) {
     if (chromosome.getFitness() < _smallestNegativeFitness) {
         _smallestNegativeFitness = chromosome.getFitness() * 2;
     }
@@ -65,7 +65,7 @@ void RouletteWheelSelection<C, F>::addChromosome(Chromosome<C, F> chromosome) {
 }
 
 template<typename C, typename F>
-void RouletteWheelSelection<C, F>::calcTotal() {
+void RouletteWheelParentSelection<C, F>::calcTotal() {
     _total = 0;
     for (int i = 0; i < _items.size(); ++i) {
         Chromosome<C, F> item = _items[i];

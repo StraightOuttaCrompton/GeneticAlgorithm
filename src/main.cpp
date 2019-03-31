@@ -13,8 +13,10 @@
 
 #include "Models/Probability.h"
 
-#include "RouletteWheel/RouletteWheelSelection.h"
-#include "RouletteWheel/RouletteWheelSelection.cpp" // Avoid linking error
+#include "Selection/RouletteWheelParentSelection.h"
+#include "Selection/RouletteWheelParentSelection.cpp" // Avoid linking error
+#include "Selection/FittestSurvivorSelection.h"
+#include "Selection/FittestSurvivorSelection.cpp" // Avoid linking error
 
 #include <memory>
 
@@ -26,6 +28,8 @@ int main() {
     // 2. consider termination condition
     // 3. fix mating pool print? Something was wrong
     // 4. Create IGeneticAlgorithmInterface
+    // Survivor selection and Parent selection repeat code
+    // Implement FittestSurvivorSelection
 
     // n. Go through TODOs
 
@@ -51,15 +55,18 @@ int main() {
     // Services - rename to constructs?
 
     // TODO: Should the population take the fitness function in it's constructor?
-//    auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
+//    auto population = std::make_shared<PfittestSurvivorSelectionopulation<string, int>>(scFitnessFunction);
     Population<string, int> population(scFitnessFunction);
 
     // TODO: change how parent seletion works
-    RouletteWheelSelection<string, int> rouletteWheelSelection;
+    RouletteWheelParentSelection<string, int> rouletteWheelParentSelection;
+    FittestSurvivorSelection<string, int> fittestSurvivorSelection;
 
-    PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, rouletteWheelSelection,
-                                                         scRandomiser, scBreeder,
-                                                         scMutator);
+
+    // TODO: pass in percentOfFittestPopulation
+    //  check that percentOfRandomPopulation and percentOfFittestPopulation aren't more than 1 - maybe do this in Probability class
+    PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, rouletteWheelParentSelection,
+                                                         fittestSurvivorSelection, scRandomiser, scBreeder, scMutator);
 
 
     GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, population, populationGenerator);

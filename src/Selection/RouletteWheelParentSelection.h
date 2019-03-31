@@ -10,9 +10,9 @@ using namespace std;
 
 
 template<typename C, typename F>
-class RouletteWheelSelection : public IParentSelection<C, F> {
+class RouletteWheelParentSelection : public IParentSelection<C, F> {
 public:
-    RouletteWheelSelection();
+    RouletteWheelParentSelection();
 
     void InitialiseFromPopulation(IPopulation<C, F> &population);
 

@@ -7,11 +7,10 @@ void GeneticAlgorithm<C, F>::Start() {
 
     for (int j = 0; j < _generations; ++j) {
         cout << "Generation: " << j + 1 << endl;
+        _population.Print();
         _populationGenerator.GenerateNextPopulation(_population, _populationSize);
 
         setGlobalFittest();
-
-        _population.Print();
     }
 }
 
