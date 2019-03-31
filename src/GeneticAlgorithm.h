@@ -8,7 +8,7 @@ template<class C, class F>
 class GeneticAlgorithm {
 public:
     GeneticAlgorithm(
-            int populationSize, int generations, shared_ptr<IPopulation<C, F>> population,
+            int populationSize, int generations, IPopulation<C, F> &population,
             IPopulationGenerator<C, F> &populationGenerator
     ) : _populationSize(populationSize),
         _generations(generations),
@@ -23,7 +23,7 @@ public:
 private:
     int _populationSize;
     int _generations;
-    shared_ptr<IPopulation<C, F>> _population;
+    IPopulation<C, F> &_population;
     IPopulationGenerator<C, F> &_populationGenerator;
 
     void setGlobalFittest();

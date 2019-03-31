@@ -11,13 +11,13 @@ void GeneticAlgorithm<C, F>::Start() {
 
         setGlobalFittest();
 
-        _population->Print();
+        _population.Print();
     }
 }
 
 template<class C, class F>
 void GeneticAlgorithm<C, F>::setGlobalFittest() {
-    Chromosome<C, F> currentPopulationFittest = _population->Fittest();
+    Chromosome<C, F> currentPopulationFittest = _population.Fittest();
 
     if (currentPopulationFittest.getFitness() >= _globalFittest.getFitness()) {
         _globalFittest = currentPopulationFittest;

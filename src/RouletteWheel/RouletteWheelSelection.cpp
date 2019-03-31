@@ -8,17 +8,21 @@ RouletteWheelSelection<C, F>::RouletteWheelSelection() {
     initialise();
 }
 
-template<typename C, typename F>
-void RouletteWheelSelection<C, F>::addChromosome(Chromosome<C, F> chromosome) {
-    if (chromosome.getFitness() < _smallestNegativeFitness) {
-        _smallestNegativeFitness = chromosome.getFitness() * 2;
-    }
+template<class C, class F>
+void RouletteWheelSelection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
+    ClearItems();
 
-    _items.push_back(chromosome);
+    // TODO: use iterable instead of gettingPopulationVector?
+    auto populationVector = population.getPopulationVector();
+
+    for (int i = 0; i < populationVector.size(); ++i) {
+        Chromosome<C, F> chromosome = populationVector[i];
+        addChromosome(chromosome);
+    }
 }
 
-template<typename C, typename F>
-Chromosome<C, F> RouletteWheelSelection<C, F>::selectChromosome() {
+template<class C, class F>
+Chromosome<C, F> RouletteWheelSelection<C, F>::SelectParent() {
     if (_items.size() < 1) {
         throw logic_error("No items to select from");
     }
@@ -40,7 +44,7 @@ Chromosome<C, F> RouletteWheelSelection<C, F>::selectChromosome() {
 }
 
 template<typename C, typename F>
-void RouletteWheelSelection<C, F>::clearItems() {
+void RouletteWheelSelection<C, F>::ClearItems() {
     _items.clear();
     initialise();
 }
@@ -49,6 +53,15 @@ template<typename C, typename F>
 void RouletteWheelSelection<C, F>::initialise() {
     _total = 0;
     _smallestNegativeFitness = 0;
+}
+
+template<typename C, typename F>
+void RouletteWheelSelection<C, F>::addChromosome(Chromosome<C, F> chromosome) {
+    if (chromosome.getFitness() < _smallestNegativeFitness) {
+        _smallestNegativeFitness = chromosome.getFitness() * 2;
+    }
+
+    _items.push_back(chromosome);
 }
 
 template<typename C, typename F>

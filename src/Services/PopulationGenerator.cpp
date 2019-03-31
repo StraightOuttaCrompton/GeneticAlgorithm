@@ -32,42 +32,44 @@
 
 template<typename C, typename F>
 void
-PopulationGenerator<C, F>::GenerateInitialPopulation(shared_ptr<IPopulation<C, F>> population, int populationSize) {
-    population->clear();
+PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize) {
+    population.clear();
 
     for (int i = 0; i < populationSize; ++i) {
-        population->add(_randomiser.getValue());
+        population.add(_randomiser.getValue());
     }
 }
 
 template<typename C, typename F>
-void PopulationGenerator<C, F>::GenerateNextPopulation(shared_ptr<IPopulation<C, F>> population, int populationSize) {
-    _matingPool.InitialiseFromPopulation(population);
+void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &population, int populationSize) {
+    _parentSelection.InitialiseFromPopulation(population);
 
-    Chromosome<C, F> fittest = population->Fittest();
+    Chromosome<C, F> fittest = population.Fittest();
 
-    population->clear();
+    population.clear();
 
-    population->add(fittest.getValue()); // TODO: overload population function to take chromosome
+    // do population survivor selection
+    population.add(fittest.getValue()); // TODO: overload population function to take chromosome
 
     auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
+    // make while loop so that it doesn't overfill population
     for (int i = 0; i < numberOfRandomGenes; ++i) {
-        population->add(_randomiser.getValue());
+        population.add(_randomiser.getValue());
     }
 
-    while (population->size() < populationSize) {
+    while (population.size() < populationSize) {
         // TODO: Parent selection
-        auto parent1 = _matingPool.GetEligibleParent();
-        auto parent2 = _matingPool.GetEligibleParent();
+        auto parent1 = _parentSelection.SelectParent();
+        auto parent2 = _parentSelection.SelectParent();
 
         // Parent1 should not be the same as parent2
         while (parent1.getValue() == parent2.getValue()) {
-            parent2 = _matingPool.GetEligibleParent();
+            parent2 = _parentSelection.SelectParent();
         }
 
         auto child = _breeder.Breed(parent1.getValue(), parent2.getValue());
         child = _mutator.Mutate(child);
 
-        population->add(child);
+        population.add(child);
     }
 }

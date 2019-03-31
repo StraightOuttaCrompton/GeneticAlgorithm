@@ -5,20 +5,24 @@ using namespace std;
 
 #include <vector>
 #include "../Framework/selection/IParentSelection.h"
+#include "../Framework/constructs/IPopulation.h"
 #include "../Framework/models/Chromosome.h"
+
 
 template<typename C, typename F>
 class RouletteWheelSelection : public IParentSelection<C, F> {
 public:
     RouletteWheelSelection();
 
-    void addChromosome(Chromosome<C, F> chromosome);
+    void InitialiseFromPopulation(IPopulation<C, F> &population);
 
-    Chromosome<C, F> selectChromosome();
+    Chromosome<C, F> SelectParent();
 
-    void clearItems();
+    void ClearItems();
 
 private:
+    void addChromosome(Chromosome<C, F> chromosome);
+
     void initialise();
 
     void calcTotal();

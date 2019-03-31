@@ -1,7 +1,5 @@
 #include "Services/Population.h"
 #include "Services/Population.cpp" // Avoid linking error
-#include "Services/MatingPool.h"
-#include "Services/MatingPool.cpp" // Avoid linking error
 #include "Services/PopulationGenerator.h"
 #include "Services/PopulationGenerator.cpp" // Avoid linking error
 
@@ -53,13 +51,14 @@ int main() {
     // Services - rename to constructs?
 
     // TODO: Should the population take the fitness function in it's constructor?
-    auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
+//    auto population = std::make_shared<Population<string, int>>(scFitnessFunction);
+    Population<string, int> population(scFitnessFunction);
 
     // TODO: change how parent seletion works
     RouletteWheelSelection<string, int> rouletteWheelSelection;
-    MatingPool<string, int> matingPool(rouletteWheelSelection);
 
-    PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, matingPool, scRandomiser, scBreeder,
+    PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, rouletteWheelSelection,
+                                                         scRandomiser, scBreeder,
                                                          scMutator);
 
 
