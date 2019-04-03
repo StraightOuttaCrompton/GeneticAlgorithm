@@ -2,16 +2,29 @@
 #include "Population.h"
 
 template<typename C, typename F>
+void Population<C, F>::add(Chromosome<C, F> chromosome) {
+    if (_population.size() == 0 || chromosome.getFitness() > _fittest.getFitness()) {
+        _fittest = chromosome;
+    }
+
+    _population.push_back(chromosome);
+};
+
+template<typename C, typename F>
+void Population<C, F>::add(vector<Chromosome<C, F>> chromosomes) {
+    for (int i = 0; i < chromosomes.size(); ++i) {
+        Chromosome<C, F> chromosome = chromosomes[i];
+        add(chromosome);
+    }
+};
+
+template<typename C, typename F>
 void Population<C, F>::add(C chromosomeValue) {
     auto fitness = _fitnessFunction.Fitness(chromosomeValue);
 
     Chromosome<C, F> chromosome(chromosomeValue, fitness);
 
-    if (_population.size() == 0 || fitness > _fittest.getFitness()) {
-        _fittest = chromosome;
-    }
-
-    _population.push_back(chromosome);
+    add(chromosome);
 }
 
 template<typename C, typename F>

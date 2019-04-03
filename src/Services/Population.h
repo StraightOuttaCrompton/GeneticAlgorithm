@@ -14,6 +14,10 @@ public:
 
     void add(C chromosomeValue);
 
+    void add(Chromosome<C, F> chromosome);
+
+    void add(vector<Chromosome<C, F>> chromosomes);
+
     void clear();
 
     unsigned long size();

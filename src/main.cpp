@@ -64,7 +64,7 @@ int main() {
 
 
     // TODO: pass in percentOfFittestPopulation
-    //  check that percentOfRandomPopulation and percentOfFittestPopulation aren't more than 1 - maybe do this in Probability class
+    // check that percentOfRandomPopulation and percentOfFittestPopulation aren't more than 1 - maybe do this in Probability class
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, rouletteWheelParentSelection,
                                                          fittestSurvivorSelection, scRandomiser, scBreeder, scMutator);
 
