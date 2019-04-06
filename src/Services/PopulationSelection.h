@@ -1,14 +1,15 @@
-#ifndef GENETICALGORITHM_SELECTION_H
-#define GENETICALGORITHM_SELECTION_H
+#ifndef GENETICALGORITHM_POPULATIONSELECTION_H
+#define GENETICALGORITHM_POPULATIONSELECTION_H
 
 
 #include "../Framework/constructs/IPopulationSelector.h"
 #include "../Framework/selection/ISelector.h"
 
 template<typename C, typename F>
-class Selection : public IPopulationSelector<C, F> {
+class PopulationSelection : public IPopulationSelector<C, F> {
 public:
-    Selection(ISelector<pair<C, F>> &parentSelector, ISelector<pair<C, F>> &survivorSelector) : _parentSelector(
+    PopulationSelection(ISelector<pair<C, F>> &parentSelector, ISelector<pair<C, F>> &survivorSelector)
+            : _parentSelector(
             parentSelector), _survivorSelector(survivorSelector) {
         _populationSize = 0;
     }
@@ -27,4 +28,4 @@ private:
 };
 
 
-#endif //GENETICALGORITHM_SELECTION_H
+#endif //GENETICALGORITHM_POPULATIONSELECTION_H

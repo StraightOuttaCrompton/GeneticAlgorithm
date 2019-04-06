@@ -1,8 +1,8 @@
-#include "Selection.h"
+#include "PopulationSelection.h"
 #include <math.h>
 
 template<typename C, typename F>
-void Selection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
+void PopulationSelection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
     vector<Chromosome<C, F>> populationVector = population.getPopulationVector();
 
     _populationSize = 0;
@@ -20,7 +20,7 @@ void Selection<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
 }
 
 template<typename C, typename F>
-Chromosome<C, F> Selection<C, F>::SelectParent() {
+Chromosome<C, F> PopulationSelection<C, F>::SelectParent() {
     pair<C, F> item = _parentSelector.SelectItem();
 
     Chromosome<C, F> chromosome(item.first, item.second);
@@ -29,7 +29,7 @@ Chromosome<C, F> Selection<C, F>::SelectParent() {
 }
 
 template<typename C, typename F>
-vector<Chromosome<C, F>> Selection<C, F>::SelectSurvivors(Probability percentage) {
+vector<Chromosome<C, F>> PopulationSelection<C, F>::SelectSurvivors(Probability percentage) {
     int numberOfFittest = ceil(percentage.getValue() * _populationSize);
 
     vector<Chromosome<C, F>> fittest;
