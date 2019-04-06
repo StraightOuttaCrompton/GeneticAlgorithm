@@ -3,8 +3,7 @@
 #include <iostream>
 
 template<typename C, typename F>
-void
-PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize) {
+void PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize) {
     population.clear();
 
     for (int i = 0; i < populationSize; ++i) {
@@ -14,39 +13,33 @@ PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &populati
 
 template<typename C, typename F>
 void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &population, int populationSize) {
-    // TODO: move into one selection class?
-    _parentSelection.InitialiseFromPopulation(population);
-    _survivorSelection.InitialiseFromPopulation(population);
+    _populationSelector.InitialiseFromPopulation(population);
 
     population.clear();
 
-    // TODO: CLean population survivor selection
-    Probability temp(0.01);
-    vector<Chromosome<C, F>> fittestVector = _survivorSelection.GetFittest(temp);
-    Chromosome<C, F> fittest = fittestVector[0];
+    // Add survivors
+    vector<Chromosome<C, F>> survivors = _populationSelector.SelectSurvivors(_percentOfFittestPopulation);
+    population.add(survivors);
 
-    cout << "Fittest " << fittest.getValue() << " " << fittest.getFitness() << endl;
-    cout << endl;
-
-//    population.add(fittest.getFitness());
-    // TODO: overload population function to take chromosome, and vector of chromosomes
-
+    // Add random genes
     auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
-    // make while loop so that it doesn't overfill population
+
+    // TODO: make while loop so that it doesn't overfill population
     for (int i = 0; i < numberOfRandomGenes; ++i) {
         population.add(_randomiser.getValue());
     }
 
+    // Add fill rest of population with children bred from breeding pool
     while (population.size() < populationSize) {
-        auto parent1 = _parentSelection.SelectParent();
-        auto parent2 = _parentSelection.SelectParent();
+        auto parent1 = _populationSelector.SelectParent();
+        auto parent2 = _populationSelector.SelectParent();
 
         // Parent1 should not be the same as parent2
         while (parent1.getValue() == parent2.getValue()) {
-            parent2 = _parentSelection.SelectParent();
+            parent2 = _populationSelector.SelectParent();
         }
 
-        auto child = _breeder.Breed(parent1.getValue(), parent2.getValue());
+        C child = _breeder.Breed(parent1.getValue(), parent2.getValue());
         child = _mutator.Mutate(child);
 
         population.add(child);

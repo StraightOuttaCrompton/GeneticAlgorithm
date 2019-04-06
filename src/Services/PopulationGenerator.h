@@ -1,24 +1,27 @@
-#ifndef GENETICALGORITHM_POPULATIONSELECTOR_H
-#define GENETICALGORITHM_POPULATIONSELECTOR_H
+#ifndef GENETICALGORITHM_POPULATIONGENERATOR_H
+#define GENETICALGORITHM_POPULATIONGENERATOR_H
 
-using namespace std;
-
-#include "../Models/Probability.h"
+#include "../Framework/constructs/IPopulation.h"
 #include "../Framework/constructs/IPopulationGenerator.h"
+#include "../Framework/constructs/IPopulationSelector.h"
 #include "../Framework/customisable/IRandomiser.h"
 #include "../Framework/customisable/IBreeder.h"
 #include "../Framework/customisable/IMutator.h"
-#include "../Framework/selection/IParentSelection.h"
-#include "../Framework/selection/ISurvivorSelection.h"
+#include "../Models/Probability.h"
 
 template<typename C, typename F>
 class PopulationGenerator : public IPopulationGenerator<C, F> {
 public:
-    PopulationGenerator(Probability percentOfRandomPopulation, IParentSelection<C, F> &parentSelection,
-                        ISurvivorSelection<C, F> &survivorSelection, IRandomiser<C> &randomiser, IBreeder<C> &breeder,
+    PopulationGenerator(Probability percentOfRandomPopulation, Probability percentOfFittestPopulation,
+                        IPopulationSelector<C, F> &populationSelector, IRandomiser<C> &randomiser, IBreeder<C> &breeder,
                         IMutator<C> &mutator)
-            : _percentOfRandomPopulation(percentOfRandomPopulation), _parentSelection(parentSelection),
-              _survivorSelection(survivorSelection), _randomiser(randomiser), _breeder(breeder), _mutator(mutator) {}
+            : _percentOfRandomPopulation(percentOfRandomPopulation),
+              _percentOfFittestPopulation(percentOfFittestPopulation), _populationSelector(populationSelector),
+              _randomiser(randomiser), _breeder(breeder), _mutator(mutator) {
+        if (percentOfRandomPopulation.getValue() + percentOfFittestPopulation.getValue() > 1) {
+            throw invalid_argument("Percentage totals must be less than 1");
+        }
+    }
 
     void GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize);
 
@@ -26,12 +29,12 @@ public:
 
 private:
     Probability _percentOfRandomPopulation;
-    IParentSelection<C, F> &_parentSelection;
-    ISurvivorSelection<C, F> &_survivorSelection;
+    Probability _percentOfFittestPopulation;
+    IPopulationSelector<C, F> &_populationSelector;
     IRandomiser<C> &_randomiser;
     IBreeder<C> &_breeder;
     IMutator<C> &_mutator;
-//    set<C> _addedGenes; // Do I want genens to be unique?
+//    set<C> _addedGenes; // TODO: Do I want genens to be unique?
 };
 
-#endif //GENETICALGORITHM_POPULATIONSELECTOR_H
+#endif //GENETICALGORITHM_POPULATIONGENERATOR_H
