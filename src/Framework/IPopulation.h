@@ -2,7 +2,7 @@
 #define GENETICALGORITHM_IPOPULATION_H
 
 #include <vector>
-#include "../models/Chromosome.h"
+#include "models/Chromosome.h"
 
 using namespace std;
 

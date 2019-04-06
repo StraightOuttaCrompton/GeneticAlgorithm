@@ -2,8 +2,8 @@
 #define GENETICALGORITHM_POPULATIONSELECTOR_H
 
 
-#include "../Framework/constructs/IPopulationSelector.h"
-#include "../Framework/selection/ISelector.h"
+#include "../Framework/IPopulationSelector.h"
+#include "../Framework/ISelector.h"
 
 template<typename C, typename F>
 class PopulationSelector : public IPopulationSelector<C, F> {

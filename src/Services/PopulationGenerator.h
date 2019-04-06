@@ -1,9 +1,9 @@
 #ifndef GENETICALGORITHM_POPULATIONGENERATOR_H
 #define GENETICALGORITHM_POPULATIONGENERATOR_H
 
-#include "../Framework/constructs/IPopulation.h"
-#include "../Framework/constructs/IPopulationGenerator.h"
-#include "../Framework/constructs/IPopulationSelector.h"
+#include "../Framework/IPopulation.h"
+#include "../Framework/IPopulationGenerator.h"
+#include "../Framework/IPopulationSelector.h"
 #include "../Framework/customisable/IRandomiser.h"
 #include "../Framework/customisable/IBreeder.h"
 #include "../Framework/customisable/IMutator.h"

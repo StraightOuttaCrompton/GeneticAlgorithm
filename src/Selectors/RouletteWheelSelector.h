@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "../Framework/selection/ISelector.h"
+#include "../Framework/ISelector.h"
 #include <vector>
 
 template<typename C, typename F>

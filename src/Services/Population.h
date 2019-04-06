@@ -4,7 +4,7 @@
 using namespace std;
 
 #include <queue>
-#include "../Framework/constructs/IPopulation.h"
+#include "../Framework/IPopulation.h"
 #include "../Framework/customisable/IFitnessFunction.h"
 
 template<typename C, typename F>

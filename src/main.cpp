@@ -15,10 +15,10 @@
 
 #include "Models/Probability.h"
 
-#include "Selection/RouletteWheelSelector.h"
-#include "Selection/RouletteWheelSelector.cpp" // Avoid linking error
-#include "Selection/FittestSelector.h"
-#include "Selection/FittestSelector.cpp" // Avoid linking error
+#include "Selectors/RouletteWheelSelector.h"
+#include "Selectors/RouletteWheelSelector.cpp" // Avoid linking error
+#include "Selectors/FittestSelector.h"
+#include "Selectors/FittestSelector.cpp" // Avoid linking error
 
 #include <memory>
 
