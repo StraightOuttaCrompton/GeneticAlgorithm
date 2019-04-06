@@ -2,8 +2,8 @@
 #include "Services/Population.cpp" // Avoid linking error
 #include "Services/PopulationGenerator.h"
 #include "Services/PopulationGenerator.cpp" // Avoid linking error
-#include "Services/PopulationSelection.h"
-#include "Services/PopulationSelection.cpp" // Avoid linking error
+#include "Services/PopulationSelector.h"
+#include "Services/PopulationSelector.cpp" // Avoid linking error
 
 #include "Implementations/SubstitutionCipher/SCBreeder.h"
 #include "Implementations/SubstitutionCipher/SCFitnessFunction.h"
@@ -56,7 +56,7 @@ int main() {
 
     RouletteWheelSelector<string, int> parentSelector;
     FittestSelector<string, int> survivorSelector;
-    PopulationSelection<string, int> populationSelector(parentSelector, survivorSelector);
+    PopulationSelector<string, int> populationSelector(parentSelector, survivorSelector);
 
 
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, percentOfFittestPopulation,
