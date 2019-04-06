@@ -1,9 +1,9 @@
-#include "Services/Population.h"
-#include "Services/Population.cpp" // Avoid linking error
-#include "Services/PopulationGenerator.h"
-#include "Services/PopulationGenerator.cpp" // Avoid linking error
-#include "Services/PopulationSelector.h"
-#include "Services/PopulationSelector.cpp" // Avoid linking error
+#include "Constructs/Population.h"
+#include "Constructs/Population.cpp" // Avoid linking error
+#include "Constructs/PopulationGenerator.h"
+#include "Constructs/PopulationGenerator.cpp" // Avoid linking error
+#include "Constructs/PopulationSelector.h"
+#include "Constructs/PopulationSelector.cpp" // Avoid linking error
 
 #include "Implementations/SubstitutionCipher/SCBreeder.h"
 #include "Implementations/SubstitutionCipher/SCFitnessFunction.h"
@@ -49,7 +49,7 @@ int main() {
     SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
-    // Services - rename to constructs?
+    // Constructs - rename to constructs?
 //    // TODO: Should the population take the fitness function in it's constructor?
     Population<string, int> population(scFitnessFunction);
 
