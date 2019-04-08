@@ -20,8 +20,6 @@
 #include "Selectors/FittestSelector.h"
 #include "Selectors/FittestSelector.cpp" // Avoid linking error
 
-#include <memory>
-
 using namespace std;
 
 int main() {
@@ -31,6 +29,8 @@ int main() {
 
     // n. Go through TODOs
 
+
+    // Genetic algorithm parameters
     const int populationSize = 4;
     const int generations = 10;
     Probability percentOfRandomPopulation(0.1);
@@ -38,18 +38,13 @@ int main() {
     Probability mutationRate(0.05);
 
     // Substitution cipher
-    // TODO: create key class abstraction
-//    string charPool = "abcdefghijklmnopqrstuvwxyz";
-    string charPool = "abcd";
+    string charPool = "abcdefghijklmnopqrstuvwxyz";
     SCBreeder scBreeder(charPool);
     SCFitnessFunction scFitnessFunction(charPool);
     SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
-    // Constructs - rename to constructs?
-    // TODO: Should the population take the fitness function in it's constructor?
-    Population<string, int> population(scFitnessFunction);
-
+    // Selection
     RouletteWheelSelector<string, int> parentSelector;
     FittestSelector<string, int> survivorSelector;
     PopulationSelector<string, int> populationSelector(parentSelector, survivorSelector);
@@ -57,6 +52,8 @@ int main() {
 
     PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, percentOfFittestPopulation,
                                                          populationSelector, scRandomiser, scBreeder, scMutator);
+
+    Population<string, int> population(scFitnessFunction);
 
     GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, population, populationGenerator);
 
