@@ -26,10 +26,8 @@ using namespace std;
 
 int main() {
     // Todo:
-    // 1. rename gene to chromosome
     // 2. consider termination condition
     // 3. fix mating pool print? Something was wrong
-    // 4. Create IGeneticAlgorithmInterface
     // Survivor selection and Parent selection repeat code
     // Implement FittestSelector
     // Add unit tests?

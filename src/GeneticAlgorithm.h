@@ -1,11 +1,12 @@
 #ifndef GENETICALGORITHM_GENETICALGORITHM_H
 #define GENETICALGORITHM_GENETICALGORITHM_H
 
+#include "Framework/IGeneticAlgorithm.h"
 #include "Framework/IPopulation.h"
 #include "Framework/IPopulationGenerator.h"
 
 template<class C, class F>
-class GeneticAlgorithm {
+class GeneticAlgorithm : public IGeneticAlgorithm<C, F> {
 public:
     GeneticAlgorithm(
             int populationSize, int generations, IPopulation<C, F> &population,
