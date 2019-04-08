@@ -3,7 +3,7 @@
 
 template<typename C, typename F>
 void Population<C, F>::add(Chromosome<C, F> chromosome) {
-    if (_population.size() == 0 || chromosome.getFitness() > _fittest.getFitness()) {
+    if (_population.size() == 0 || chromosome.GetFitness() > _fittest.GetFitness()) {
         _fittest = chromosome;
     }
 
@@ -51,7 +51,7 @@ template<typename C, typename F>
 void Population<C, F>::Print() {
     for (int i = 0; i < _population.size(); ++i) {
         Chromosome<C, F> item = _population[i];
-        cout << "item " << i + 1 << ": " << item.getValue() << "   fitness: " << item.getFitness() << endl;
+        cout << "item " << i + 1 << ": " << item.GetValue() << "   fitness: " << item.GetFitness() << endl;
     }
     cout << endl;
 }

@@ -14,7 +14,7 @@ public:
         _value = value;
     };
 
-    double getValue() const {
+    double GetValue() const {
         return _value;
     };
 

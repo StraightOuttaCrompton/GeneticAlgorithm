@@ -8,11 +8,11 @@ public:
 
     Chromosome(C value, F fitness) : _value(value), _fitness(fitness) {}
 
-    C getValue() {
+    C GetValue() {
         return _value;
     }
 
-    F getFitness() {
+    F GetFitness() {
         return _fitness;
     }
 

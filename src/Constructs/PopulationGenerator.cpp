@@ -6,7 +6,7 @@ void PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &pop
     population.clear();
 
     for (int i = 0; i < populationSize; ++i) {
-        population.add(_randomiser.getValue());
+        population.add(_randomiser.GetRandomValue());
     }
 }
 
@@ -20,11 +20,11 @@ void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &popula
     population.add(survivors);
 
     // Add random genes
-    auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
+    auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.GetValue() * populationSize);
     for (int i = 0; i < numberOfRandomGenes; ++i) {
         if (population.size() > populationSize) break;
 
-        population.add(_randomiser.getValue());
+        population.add(_randomiser.GetRandomValue());
     }
 
     // Fill rest of population with children bred from breeding pool
@@ -33,11 +33,11 @@ void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &popula
         auto parent2 = _populationSelector.SelectParent();
 
         // Parent1 should not be the same as parent2
-        while (parent1.getValue() == parent2.getValue()) {
+        while (parent1.GetValue() == parent2.GetValue()) {
             parent2 = _populationSelector.SelectParent();
         }
 
-        C child = _breeder.Breed(parent1.getValue(), parent2.getValue());
+        C child = _breeder.Breed(parent1.GetValue(), parent2.GetValue());
         child = _mutator.Mutate(child);
 
         population.add(child);

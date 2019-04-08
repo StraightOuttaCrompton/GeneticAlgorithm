@@ -11,7 +11,7 @@ class SCRandomiser : public IRandomiser<string> {
 public:
     explicit SCRandomiser(string charPool) : _charPool(move(charPool)) {};
 
-    string getValue() override;
+    string GetRandomValue() override;
 
 private:
     string _charPool;

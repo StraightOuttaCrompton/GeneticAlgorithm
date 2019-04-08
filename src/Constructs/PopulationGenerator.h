@@ -18,7 +18,7 @@ public:
             : _percentOfRandomPopulation(percentOfRandomPopulation),
               _percentOfFittestPopulation(percentOfFittestPopulation), _populationSelector(populationSelector),
               _randomiser(randomiser), _breeder(breeder), _mutator(mutator) {
-        if (percentOfRandomPopulation.getValue() + percentOfFittestPopulation.getValue() > 1) {
+        if (percentOfRandomPopulation.GetValue() + percentOfFittestPopulation.GetValue() > 1) {
             throw invalid_argument("Percentage totals must be less than 1");
         }
     }

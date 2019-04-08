@@ -14,7 +14,7 @@ pair<C, F> RouletteWheelSelector<C, F>::SelectItem() {
 
     calcTotal();
 
-    double r = Utils::getRandomDouble(0, _total);
+    double r = Utils::GetRandomDouble(0, _total);
 
     int i = 0;
     while (r > 0) {

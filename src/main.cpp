@@ -26,12 +26,9 @@ using namespace std;
 
 int main() {
     // Todo:
+    // 1. Add unit tests?
     // 2. consider termination condition
     // 3. fix mating pool print? Something was wrong
-    // Survivor selection and Parent selection repeat code
-    // Implement FittestSelector
-    // Add unit tests?
-    // Capitalise public functions
 
     // n. Go through TODOs
 
@@ -69,8 +66,8 @@ int main() {
 
     Chromosome<string, int> fittest = geneticAlgorithm.GetFittest();
 
-    cout << fittest.getValue() << endl;
-    cout << fittest.getFitness() << endl;
+    cout << fittest.GetValue() << endl;
+    cout << fittest.GetFitness() << endl;
 
     return 0;
 }

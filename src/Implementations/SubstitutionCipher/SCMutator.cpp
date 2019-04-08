@@ -5,12 +5,12 @@ string SCMutator::Mutate(string str) {
     auto n = str.length();
 
     for (int i = 0; i < n; ++i) {
-        Probability randomProb = Utils::getRandomProbability();
-        if (randomProb.getValue() > _mutationRate.getValue()) {
+        Probability randomProb = Utils::GetRandomProbability();
+        if (randomProb.GetValue() > _mutationRate.GetValue()) {
             continue;
         }
 
-        int r = Utils::getRandomInt(1, (int) n - 1); // check this can return 1 and n - 1
+        int r = Utils::GetRandomInt(1, (int) n - 1); // check this can return 1 and n - 1
 
         auto swapIndex = (i + r) % n;
 

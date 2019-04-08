@@ -18,7 +18,7 @@ template<class C, class F>
 void GeneticAlgorithm<C, F>::setGlobalFittest() {
     Chromosome<C, F> currentPopulationFittest = _population.Fittest();
 
-    if (currentPopulationFittest.getFitness() >= _globalFittest.getFitness()) {
+    if (currentPopulationFittest.GetFitness() >= _globalFittest.GetFitness()) {
         _globalFittest = currentPopulationFittest;
     }
 }

@@ -41,7 +41,7 @@ string SCBreeder::Breed(string parent1, string parent2) {
 
             if (!p1_isInUsedChars && !p2_isInUsedChars) {
                 set<char> parents = {parent1Char, parent2Char};
-                char chosenChar = Utils::getRandomItemFromSet<char>(parents);
+                char chosenChar = Utils::GetRandomItemFromSet<char>(parents);
                 addCharToChild(chosenChar, j);
                 continue;
             }
@@ -60,7 +60,7 @@ string SCBreeder::Breed(string parent1, string parent2) {
     // Fill in remaining child chars with unused chars from alphabet pool
     for (string::size_type k = 0; k < p1_length; ++k) {
         if (_child[k] == childPlaceholder) {
-            char ch = Utils::getRandomItemFromSet<char>(_alphabetPool);
+            char ch = Utils::GetRandomItemFromSet<char>(_alphabetPool);
             addCharToChild(ch, k);
         }
     }

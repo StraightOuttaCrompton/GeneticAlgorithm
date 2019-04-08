@@ -4,7 +4,7 @@
 template<typename C>
 class IRandomiser {
 public:
-    virtual C getValue() = 0;
+    virtual C GetRandomValue() = 0;
 };
 
 #endif //GENETICALGORITHM_IRANDOMISER_H

@@ -15,7 +15,6 @@ struct Order {
 };
 
 template<typename C, typename F>
-
 class FittestSelector : public ISelector<pair<C, F>> {
 public:
 
@@ -30,7 +29,6 @@ public:
 private:
     priority_queue<pair<C, F>, vector<pair<C, F>>, Order<C, F>> _pq;
     set<C> _addedItems;
-
 };
 
 #endif //GENETICALGORITHM_FITTESTSELECTOR_H

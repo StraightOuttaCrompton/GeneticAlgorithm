@@ -11,7 +11,7 @@ void PopulationSelector<C, F>::InitialiseFromPopulation(IPopulation<C, F> &popul
 
     for (int i = 0; i < populationVector.size(); ++i) {
         Chromosome<C, F> chromosome = populationVector[i];
-        pair<C, F> item = {chromosome.getValue(), chromosome.getFitness()};
+        pair<C, F> item = {chromosome.GetValue(), chromosome.GetFitness()};
 
         _parentSelector.AddItem(item);
         _survivorSelector.AddItem(item);
@@ -30,7 +30,7 @@ Chromosome<C, F> PopulationSelector<C, F>::SelectParent() {
 
 template<typename C, typename F>
 vector<Chromosome<C, F>> PopulationSelector<C, F>::SelectSurvivors(Probability percentage) {
-    int numberOfFittest = ceil(percentage.getValue() * _populationSize);
+    int numberOfFittest = ceil(percentage.GetValue() * _populationSize);
 
     vector<Chromosome<C, F>> fittest;
 
