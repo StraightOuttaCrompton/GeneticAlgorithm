@@ -3,11 +3,16 @@
 
 template<typename C, typename F>
 void Population<C, F>::add(Chromosome<C, F> chromosome) {
+    // Check if chromosome already exists in population and skip adding it if it does
+    const bool is_in = _addedValues.find(chromosome.GetValue()) != _addedValues.end();
+    if (is_in) return;
+
     if (_population.size() == 0 || chromosome.GetFitness() > _fittest.GetFitness()) {
         _fittest = chromosome;
     }
 
     _population.push_back(chromosome);
+    _addedValues.insert(chromosome.GetValue());
 };
 
 template<typename C, typename F>
@@ -30,6 +35,7 @@ void Population<C, F>::add(C chromosomeValue) {
 template<typename C, typename F>
 void Population<C, F>::clear() {
     _population.clear();
+    _addedValues = {};
 }
 
 template<typename C, typename F>

@@ -5,7 +5,7 @@ template<typename C, typename F>
 void PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize) {
     population.clear();
 
-    for (int i = 0; i < populationSize; ++i) {
+    while (population.size() < populationSize) {
         population.add(_randomiser.GetRandomValue());
     }
 }

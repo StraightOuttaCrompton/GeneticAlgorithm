@@ -31,10 +31,10 @@ int main() {
 
 
     // Genetic algorithm parameters
-    const int populationSize = 4;
-    const int generations = 10;
-    Probability percentOfRandomPopulation(0.1);
-    Probability percentOfFittestPopulation(0.2);
+    const int populationSize = 260;
+    const int generations = 40;
+    Probability percentOfRandomPopulation(0.05);
+    Probability percentOfFittestPopulation(0.1);
     Probability mutationRate(0.05);
 
     // Substitution cipher

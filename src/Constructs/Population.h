@@ -4,6 +4,7 @@
 using namespace std;
 
 #include <queue>
+#include <set>
 #include "../Framework/IPopulation.h"
 #include "../Framework/customisable/IFitnessFunction.h"
 
@@ -32,6 +33,7 @@ private:
     IFitnessFunction<C, F> &_fitnessFunction;
     vector<Chromosome<C, F>> _population;
     Chromosome<C, F> _fittest;
+    set<C> _addedValues;
 };
 
 #endif //GENETICALGORITHM_POPULATION_H

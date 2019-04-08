@@ -34,7 +34,6 @@ private:
     IRandomiser<C> &_randomiser;
     IBreeder<C> &_breeder;
     IMutator<C> &_mutator;
-//    set<C> _addedGenes; // TODO: Do I want genens to be unique?
 };
 
 #endif //GENETICALGORITHM_POPULATIONGENERATOR_H
