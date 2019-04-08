@@ -24,6 +24,11 @@ public:
     virtual vector<Chromosome<C, F>> getPopulationVector() = 0;
 
     virtual void Print() = 0;
+
+    virtual void PrintFittest() = 0;
+
+    virtual void PrintMeanFitness() = 0;
+
 };
 
 #endif //GENETICALGORITHM_IPOPULATION_H

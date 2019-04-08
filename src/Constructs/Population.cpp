@@ -61,3 +61,20 @@ void Population<C, F>::Print() {
     }
     cout << endl;
 }
+
+template<typename C, typename F>
+void Population<C, F>::PrintFittest() {
+    cout << "Fittest: " << _fittest.GetValue() << "   fitness: " << _fittest.GetFitness() << endl;
+}
+
+template<typename C, typename F>
+void Population<C, F>::PrintMeanFitness() {
+    F totalFitness = (F) 0;
+    for (int i = 0; i < _population.size(); ++i) {
+        Chromosome<C, F> item = _population[i];
+        totalFitness = totalFitness + item.GetFitness();
+    }
+
+    F meanFitness = totalFitness / (F) _population.size();
+    cout << "Mean fitness: " << meanFitness << endl;
+}

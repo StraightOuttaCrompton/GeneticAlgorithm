@@ -29,7 +29,13 @@ public:
 
     void Print();
 
+    void PrintFittest();
+
+    void PrintMeanFitness();
+
 private:
+    void logMeanFitness();
+
     IFitnessFunction<C, F> &_fitnessFunction;
     vector<Chromosome<C, F>> _population;
     Chromosome<C, F> _fittest;

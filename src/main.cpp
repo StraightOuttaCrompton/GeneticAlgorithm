@@ -32,7 +32,7 @@ int main() {
 
     // Genetic algorithm parameters
     const int populationSize = 260;
-    const int generations = 40;
+    const int generations = 50;
     Probability percentOfRandomPopulation(0.05);
     Probability percentOfFittestPopulation(0.1);
     Probability mutationRate(0.05);
@@ -60,10 +60,10 @@ int main() {
     geneticAlgorithm.Start();
 
 
-    Chromosome<string, int> fittest = geneticAlgorithm.GetFittest();
-
-    cout << fittest.GetValue() << endl;
-    cout << fittest.GetFitness() << endl;
+//    Chromosome<string, int> fittest = geneticAlgorithm.GetFittest();
+//
+//    cout << fittest.GetValue() << endl;
+//    cout << fittest.GetFitness() << endl;
 
     return 0;
 }
