@@ -28,7 +28,6 @@ int main() {
     // Todo:
     // 1. Add unit tests?
     // 2. consider termination condition
-    // 3. fix mating pool print? Something was wrong
 
     // n. Go through TODOs
 
