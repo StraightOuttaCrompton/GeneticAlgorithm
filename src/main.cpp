@@ -32,6 +32,8 @@ int main() {
     // 4. Create IGeneticAlgorithmInterface
     // Survivor selection and Parent selection repeat code
     // Implement FittestSelector
+    // Add unit tests?
+    // Capitalise public functions
 
     // n. Go through TODOs
 
@@ -43,16 +45,16 @@ int main() {
 
     // Substitution cipher
     // TODO: create key class abstraction
-    string charPool = "abcdefghijklmnopqrstuvwxyz";
+//    string charPool = "abcdefghijklmnopqrstuvwxyz";
+    string charPool = "abcd";
     SCBreeder scBreeder(charPool);
     SCFitnessFunction scFitnessFunction(charPool);
     SCRandomiser scRandomiser(charPool);
     SCMutator scMutator(mutationRate);
 
     // Constructs - rename to constructs?
-//    // TODO: Should the population take the fitness function in it's constructor?
+    // TODO: Should the population take the fitness function in it's constructor?
     Population<string, int> population(scFitnessFunction);
-
 
     RouletteWheelSelector<string, int> parentSelector;
     FittestSelector<string, int> survivorSelector;

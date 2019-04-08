@@ -1,6 +1,5 @@
 #include "PopulationGenerator.h"
 #include <cmath>
-#include <iostream>
 
 template<typename C, typename F>
 void PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize) {
@@ -14,7 +13,6 @@ void PopulationGenerator<C, F>::GenerateInitialPopulation(IPopulation<C, F> &pop
 template<typename C, typename F>
 void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &population, int populationSize) {
     _populationSelector.InitialiseFromPopulation(population);
-
     population.clear();
 
     // Add survivors
@@ -23,13 +21,13 @@ void PopulationGenerator<C, F>::GenerateNextPopulation(IPopulation<C, F> &popula
 
     // Add random genes
     auto numberOfRandomGenes = ceil(_percentOfRandomPopulation.getValue() * populationSize);
-
-    // TODO: make while loop so that it doesn't overfill population
     for (int i = 0; i < numberOfRandomGenes; ++i) {
+        if (population.size() > populationSize) break;
+
         population.add(_randomiser.getValue());
     }
 
-    // Add fill rest of population with children bred from breeding pool
+    // Fill rest of population with children bred from breeding pool
     while (population.size() < populationSize) {
         auto parent1 = _populationSelector.SelectParent();
         auto parent2 = _populationSelector.SelectParent();

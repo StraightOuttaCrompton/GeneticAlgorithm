@@ -1,5 +1,5 @@
 #include "PopulationSelector.h"
-#include <math.h>
+#include <cmath>
 
 template<typename C, typename F>
 void PopulationSelector<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {

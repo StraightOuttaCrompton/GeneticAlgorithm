@@ -1,7 +1,6 @@
 #ifndef GENETICALGORITHM_POPULATIONSELECTOR_H
 #define GENETICALGORITHM_POPULATIONSELECTOR_H
 
-
 #include "../Framework/IPopulationSelector.h"
 #include "../Framework/ISelector.h"
 
@@ -24,8 +23,6 @@ private:
     int _populationSize;
     ISelector<pair<C, F>> &_parentSelector;
     ISelector<pair<C, F>> &_survivorSelector;
-
 };
-
 
 #endif //GENETICALGORITHM_POPULATIONSELECTOR_H
