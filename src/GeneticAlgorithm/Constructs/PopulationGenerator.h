@@ -23,9 +23,9 @@ public:
         }
     }
 
-    void GenerateInitialPopulation(IPopulation<C, F> &population, int populationSize);
+    void GenerateInitialPopulation(IPopulation<C, F> *population, int populationSize);
 
-    void GenerateNextPopulation(IPopulation<C, F> &population, int populationSize);
+    void GenerateNextPopulation(IPopulation<C, F> *population, int populationSize);
 
 private:
     Probability _percentOfRandomPopulation;

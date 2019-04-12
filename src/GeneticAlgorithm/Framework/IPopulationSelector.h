@@ -7,7 +7,7 @@
 template<typename C, typename F>
 class IPopulationSelector {
 public:
-    virtual void InitialiseFromPopulation(IPopulation<C, F> &population) = 0;
+    virtual void InitialiseFromPopulation(IPopulation<C, F> *population) = 0;
 
     virtual Chromosome<C, F> SelectParent() = 0;
 

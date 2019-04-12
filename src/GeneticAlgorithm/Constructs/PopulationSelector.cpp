@@ -2,26 +2,26 @@
 #include <cmath>
 
 template<typename C, typename F>
-void PopulationSelector<C, F>::InitialiseFromPopulation(IPopulation<C, F> &population) {
-    vector<Chromosome<C, F>> populationVector = population.getPopulationVector();
+void PopulationSelector<C, F>::InitialiseFromPopulation(IPopulation<C, F> *population) {
+    vector<Chromosome<C, F>> populationVector = population->getPopulationVector();
 
     _populationSize = 0;
-    _parentSelector.ClearItems();
-    _survivorSelector.ClearItems();
+    _parentSelector->ClearItems();
+    _survivorSelector->ClearItems();
 
     for (int i = 0; i < populationVector.size(); ++i) {
         Chromosome<C, F> chromosome = populationVector[i];
         pair<C, F> item = {chromosome.GetValue(), chromosome.GetFitness()};
 
-        _parentSelector.AddItem(item);
-        _survivorSelector.AddItem(item);
+        _parentSelector->AddItem(item);
+        _survivorSelector->AddItem(item);
         _populationSize++;
     }
 }
 
 template<typename C, typename F>
 Chromosome<C, F> PopulationSelector<C, F>::SelectParent() {
-    pair<C, F> item = _parentSelector.SelectItem();
+    pair<C, F> item = _parentSelector->SelectItem();
 
     Chromosome<C, F> chromosome(item.first, item.second);
 
@@ -35,7 +35,7 @@ vector<Chromosome<C, F>> PopulationSelector<C, F>::SelectSurvivors(Probability p
     vector<Chromosome<C, F>> fittest;
 
     for (int i = 0; i < numberOfFittest; ++i) {
-        pair<C, F> item = _survivorSelector.SelectItem();
+        pair<C, F> item = _survivorSelector->SelectItem();
 
         Chromosome<C, F> chromosome(item.first, item.second);
         fittest.push_back(chromosome);

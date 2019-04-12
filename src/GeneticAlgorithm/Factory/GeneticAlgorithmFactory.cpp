@@ -8,8 +8,8 @@
 #include "../Constructs/PopulationSelector.h"
 #include "../Constructs/PopulationSelector.cpp"
 //
-//#include "../Constructs/PopulationGenerator.h"
-//#include "../Constructs/PopulationGenerator.cpp"
+#include "../Constructs/PopulationGenerator.h"
+#include "../Constructs/PopulationGenerator.cpp"
 
 //template<typename C, typename F>
 //GeneticAlgorithm<C, F> *GeneticAlgorithmFactory<C, F>::GetObject() {
@@ -29,7 +29,7 @@
 //}
 
 template<typename C, typename F>
-void GeneticAlgorithmFactory<C, F>::GetObject() {
+GeneticAlgorithm<C, F> *GeneticAlgorithmFactory<C, F>::GetObject() {
 
     Population<C, F> *population = new Population<C, F>(_fitnessFunction);
 
@@ -38,25 +38,24 @@ void GeneticAlgorithmFactory<C, F>::GetObject() {
     FittestSelector<C, F> a;
     FittestSelector<C, F> b;
 
-//    PopulationSelector<C, F> *populationSelector = new PopulationSelector(a, b);
-//    PopulationGenerator<C, F> *populationGenerator(
-//            _params.percentOfRandomPopulation,
-//            _params.percentOfFittestPopulation,
-//            populationSelector,
-//            _randomiser,
-//            _breeder,
-//            _mutator
-//    );
-//#include "../Constructs/PopulationSelector.cpp"
+    PopulationSelector<string, int> populationSelector(new FittestSelector<string, int>,
+                                                       new FittestSelector<string, int>);
 
-//    GeneticAlgorithm<C, F> *blah(
-//            _params.populationSize,
-//            _params.generations,
-//            population,
-//            populationGenerator
-//    );
+    PopulationGenerator<C, F> *populationGenerator = new PopulationGenerator<C, F>(
+            _params.percentOfRandomPopulation,
+            _params.percentOfFittestPopulation,
+            &populationSelector,
+            _randomiser,
+            _breeder,
+            _mutator
+    );
 
-    cout << "hello" << endl;
+    return new GeneticAlgorithm<C, F>(
+            _params.populationSize,
+            _params.generations,
+            population,
+            populationGenerator
+    );
 }
 
 template<typename C, typename F>

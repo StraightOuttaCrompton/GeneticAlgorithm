@@ -16,7 +16,7 @@ public:
         _populationSize = 0;
     }
 
-    void InitialiseFromPopulation(IPopulation<C, F> &population);
+    void InitialiseFromPopulation(IPopulation<C, F> *population);
 
     Chromosome<C, F> SelectParent();
 

@@ -49,34 +49,21 @@ int main() {
     SCMutator *scMutator = new SCMutator(mutationRate);
 
 
-    PopulationSelector<string, int> *populationSelector = new PopulationSelector(new FittestSelector<string, int>,
-                                                                                 new FittestSelector<string, int>);
+    GeneticAlgorithmFactory<string, int> factory(scBreeder, scFitnessFunction, scMutator, scRandomiser);
 
+    GeneticAlgorithmParams<string, int> params = {
+            1,
+            1,
+            Probability(0.1),
+            Probability(0.2),
+            Probability(0.3),
+            RouletteWheel,
+            Fittest
+    };
 
+    factory.SetParameters(params);
 
-//    GeneticAlgorithmFactory<string, int> factory(scBreeder, scFitnessFunction, scMutator, scRandomiser);
-//
-//    GeneticAlgorithmParams<string, int> params = {
-//            1,
-//            1,
-//            Probability(0.1),
-//            Probability(0.2),
-//            Probability(0.3),
-//            RouletteWheel,
-//            Fittest
-//    };
-//
-//    factory.SetParameters(params);
-//
-//    factory.GetObject();
-
-
-
-
-
-
-
-
+    GeneticAlgorithm<string, int> *geneticAlgorithm = factory.GetObject();
 
 
     cout << "Hello" << endl;

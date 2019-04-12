@@ -39,7 +39,7 @@ public:
 
     void SetParameters(GeneticAlgorithmParams<C, F> params);
 
-    void GetObject();
+    GeneticAlgorithm<C, F> *GetObject();
 
 private:
 
