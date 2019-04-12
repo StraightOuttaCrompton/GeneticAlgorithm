@@ -1,24 +1,26 @@
-#include "Constructs/Population.h"
-#include "Constructs/Population.cpp" // Avoid linking error
-#include "Constructs/PopulationGenerator.h"
-#include "Constructs/PopulationGenerator.cpp" // Avoid linking error
-#include "Constructs/PopulationSelector.h"
-#include "Constructs/PopulationSelector.cpp" // Avoid linking error
+//#include "GeneticAlgorithm/Constructs/Population.h"
+//#include "GeneticAlgorithm/Constructs/Population.cpp" // Avoid linking error
+//#include "GeneticAlgorithm/Constructs/PopulationGenerator.h"
+//#include "GeneticAlgorithm/Constructs/PopulationGenerator.cpp" // Avoid linking error
+//#include "GeneticAlgorithm/Constructs/PopulationSelector.h"
+//#include "GeneticAlgorithm/Constructs/PopulationSelector.cpp" // Avoid linking error
 
-#include "Implementations/SubstitutionCipher/SCBreeder.h"
-#include "Implementations/SubstitutionCipher/SCFitnessFunction.h"
-#include "Implementations/SubstitutionCipher/SCRandomiser.h"
-#include "Implementations/SubstitutionCipher/SCMutator.h"
+#include "GeneticAlgorithm/Implementations/SubstitutionCipher/SCBreeder.h"
+#include "GeneticAlgorithm/Implementations/SubstitutionCipher/SCFitnessFunction.h"
+#include "GeneticAlgorithm/Implementations/SubstitutionCipher/SCRandomiser.h"
+#include "GeneticAlgorithm/Implementations/SubstitutionCipher/SCMutator.h"
 
-#include "GeneticAlgorithm.h"
-#include "GeneticAlgorithm.cpp" // Avoid linking error
+#include "GeneticAlgorithm/GeneticAlgorithm.h"
+#include "GeneticAlgorithm/GeneticAlgorithm.cpp" // Avoid linking error
 
-#include "Models/Probability.h"
+#include "GeneticAlgorithm/Factory/GeneticAlgorithmFactory.h"
+#include "GeneticAlgorithm/Factory/GeneticAlgorithmFactory.cpp"
 
-#include "Selectors/RouletteWheelSelector.h"
-#include "Selectors/RouletteWheelSelector.cpp" // Avoid linking error
-#include "Selectors/FittestSelector.h"
-#include "Selectors/FittestSelector.cpp" // Avoid linking error
+//#include "GeneticAlgorithm/Selectors/RouletteWheelSelector.h"
+//#include "GeneticAlgorithm/Selectors/RouletteWheelSelector.cpp" // Avoid linking error
+//#include "GeneticAlgorithm/Selectors/FittestSelector.h"
+//#include "GeneticAlgorithm/Selectors/FittestSelector.cpp" // Avoid linking error
+
 
 using namespace std;
 
@@ -26,6 +28,8 @@ int main() {
     // Todo:
     // 1. Add unit tests?
     // 2. consider termination condition
+    // 3. Use struct? http://www.cplusplus.com/doc/tutorial/structures/
+    // 4, IPopulation,capitalise public functions
 
     // n. Go through TODOs
 
@@ -38,30 +42,44 @@ int main() {
     Probability mutationRate(0.05);
 
     // Substitution cipher
-    string charPool = "abcdefghijklmnopqrstuvwxyz";
-    SCBreeder scBreeder(charPool);
-    SCFitnessFunction scFitnessFunction(charPool);
-    SCRandomiser scRandomiser(charPool);
-    SCMutator scMutator(mutationRate);
-
-    // Selection
-    RouletteWheelSelector<string, int> parentSelector;
-    FittestSelector<string, int> survivorSelector;
-    PopulationSelector<string, int> populationSelector(parentSelector, survivorSelector);
+    const string charPool = "abcdefghijklmnopqrstuvwxyz";
+    SCBreeder *scBreeder = new SCBreeder(charPool);
+    SCFitnessFunction *scFitnessFunction = new SCFitnessFunction(charPool);
+    SCRandomiser *scRandomiser = new SCRandomiser(charPool);
+    SCMutator *scMutator = new SCMutator(mutationRate);
 
 
-    PopulationGenerator<string, int> populationGenerator(percentOfRandomPopulation, percentOfFittestPopulation,
-                                                         populationSelector, scRandomiser, scBreeder, scMutator);
-
-    Population<string, int> population(scFitnessFunction);
-
-    GeneticAlgorithm<string, int> geneticAlgorithm(populationSize, generations, population, populationGenerator);
-
-    geneticAlgorithm.Start();
+    PopulationSelector<string, int> *populationSelector = new PopulationSelector(new FittestSelector<string, int>,
+                                                                                 new FittestSelector<string, int>);
 
 
-//    Chromosome<string, int> fittest = geneticAlgorithm.GetFittest();
+
+//    GeneticAlgorithmFactory<string, int> factory(scBreeder, scFitnessFunction, scMutator, scRandomiser);
 //
+//    GeneticAlgorithmParams<string, int> params = {
+//            1,
+//            1,
+//            Probability(0.1),
+//            Probability(0.2),
+//            Probability(0.3),
+//            RouletteWheel,
+//            Fittest
+//    };
+//
+//    factory.SetParameters(params);
+//
+//    factory.GetObject();
+
+
+
+
+
+
+
+
+
+
+    cout << "Hello" << endl;
 //    cout << fittest.GetValue() << endl;
 //    cout << fittest.GetFitness() << endl;
 

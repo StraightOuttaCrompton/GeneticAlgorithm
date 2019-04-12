@@ -2,7 +2,7 @@
 #define GENETICALGORITHM_IPOPULATIONSELECTOR_H
 
 #include "IPopulation.h"
-#include "../Models/Probability.h"
+#include "../../Models/Probability.h"
 
 template<typename C, typename F>
 class IPopulationSelector {

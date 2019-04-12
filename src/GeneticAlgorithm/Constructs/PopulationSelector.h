@@ -4,10 +4,13 @@
 #include "../Framework/IPopulationSelector.h"
 #include "../Framework/ISelector.h"
 
+// https://stackoverflow.com/questions/46894136/class-template-argument-deduction-failed-with-derived-class
+// TODO: don't use pair, use chromosome
+
 template<typename C, typename F>
 class PopulationSelector : public IPopulationSelector<C, F> {
 public:
-    PopulationSelector(ISelector<pair<C, F>> &parentSelector, ISelector<pair<C, F>> &survivorSelector)
+    PopulationSelector(ISelector<pair<C, F>> *parentSelector, ISelector<pair<C, F>> *survivorSelector)
             : _parentSelector(
             parentSelector), _survivorSelector(survivorSelector) {
         _populationSize = 0;
@@ -21,8 +24,8 @@ public:
 
 private:
     int _populationSize;
-    ISelector<pair<C, F>> &_parentSelector;
-    ISelector<pair<C, F>> &_survivorSelector;
+    ISelector<pair<C, F>> *_parentSelector;
+    ISelector<pair<C, F>> *_survivorSelector;
 };
 
 #endif //GENETICALGORITHM_POPULATIONSELECTOR_H

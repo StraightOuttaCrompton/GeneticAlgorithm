@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "../../Framework/customisable/IMutator.h"
-#include "../../Models/Probability.h"
+#include "../../../Models/Probability.h"
 #include <string>
 
 class SCMutator : public IMutator<string> {
@@ -12,6 +12,8 @@ public:
     explicit SCMutator(Probability mutationRate) : _mutationRate(mutationRate) {};
 
     string Mutate(string str) override;
+
+    void setMutationRate(Probability mutationRate);
 
 private:
     Probability _mutationRate;

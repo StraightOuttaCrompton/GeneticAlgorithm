@@ -23,3 +23,7 @@ string SCMutator::Mutate(string str) {
 
     return str;
 }
+
+void SCMutator::setMutationRate(Probability mutationRate) {
+    _mutationRate = mutationRate;
+}

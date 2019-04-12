@@ -7,14 +7,14 @@
 #include "../Framework/customisable/IRandomiser.h"
 #include "../Framework/customisable/IBreeder.h"
 #include "../Framework/customisable/IMutator.h"
-#include "../Models/Probability.h"
+#include "../../Models/Probability.h"
 
 template<typename C, typename F>
 class PopulationGenerator : public IPopulationGenerator<C, F> {
 public:
     PopulationGenerator(Probability percentOfRandomPopulation, Probability percentOfFittestPopulation,
-                        IPopulationSelector<C, F> &populationSelector, IRandomiser<C> &randomiser, IBreeder<C> &breeder,
-                        IMutator<C> &mutator)
+                        IPopulationSelector<C, F> *populationSelector, IRandomiser<C> *randomiser, IBreeder<C> *breeder,
+                        IMutator<C> *mutator)
             : _percentOfRandomPopulation(percentOfRandomPopulation),
               _percentOfFittestPopulation(percentOfFittestPopulation), _populationSelector(populationSelector),
               _randomiser(randomiser), _breeder(breeder), _mutator(mutator) {
@@ -30,10 +30,10 @@ public:
 private:
     Probability _percentOfRandomPopulation;
     Probability _percentOfFittestPopulation;
-    IPopulationSelector<C, F> &_populationSelector;
-    IRandomiser<C> &_randomiser;
-    IBreeder<C> &_breeder;
-    IMutator<C> &_mutator;
+    IPopulationSelector<C, F> *_populationSelector;
+    IRandomiser<C> *_randomiser;
+    IBreeder<C> *_breeder;
+    IMutator<C> *_mutator;
 };
 
 #endif //GENETICALGORITHM_POPULATIONGENERATOR_H

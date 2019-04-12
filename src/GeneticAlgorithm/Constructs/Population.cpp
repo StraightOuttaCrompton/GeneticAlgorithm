@@ -25,7 +25,7 @@ void Population<C, F>::add(vector<Chromosome<C, F>> chromosomes) {
 
 template<typename C, typename F>
 void Population<C, F>::add(C chromosomeValue) {
-    auto fitness = _fitnessFunction.Fitness(chromosomeValue);
+    auto fitness = _fitnessFunction->Fitness(chromosomeValue);
 
     Chromosome<C, F> chromosome(chromosomeValue, fitness);
 

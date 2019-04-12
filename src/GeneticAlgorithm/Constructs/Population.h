@@ -11,7 +11,7 @@ using namespace std;
 template<typename C, typename F>
 class Population : public IPopulation<C, F> {
 public:
-    explicit Population(IFitnessFunction<C, F> &fitnessFunction) : _fitnessFunction(fitnessFunction) {}
+    explicit Population(IFitnessFunction<C, F> *fitnessFunction) : _fitnessFunction(fitnessFunction) {}
 
     void add(C chromosomeValue);
 
@@ -34,9 +34,7 @@ public:
     void PrintMeanFitness();
 
 private:
-    void logMeanFitness();
-
-    IFitnessFunction<C, F> &_fitnessFunction;
+    IFitnessFunction<C, F> *_fitnessFunction;
     vector<Chromosome<C, F>> _population;
     Chromosome<C, F> _fittest;
     set<C> _addedValues;
