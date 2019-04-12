@@ -1,47 +1,30 @@
-#include <string>
-#include <iostream>
 #include "GeneticAlgorithmFactory.h"
 
 #include "../Constructs/Population.h"
 #include "../Constructs/Population.cpp"
-
 #include "../Constructs/PopulationSelector.h"
 #include "../Constructs/PopulationSelector.cpp"
-//
 #include "../Constructs/PopulationGenerator.h"
 #include "../Constructs/PopulationGenerator.cpp"
 
-//template<typename C, typename F>
-//GeneticAlgorithm<C, F> *GeneticAlgorithmFactory<C, F>::GetObject() {
-//    return new GeneticAlgorithm(
-//            _params.populationSize,
-//            _params.generations,
-//            new Population(_fitnessFunction),
-//            new PopulationGenerator(
-//                    _params.percentOfRandomPopulation,
-//                    _params.percentOfFittestPopulation,
-//                    new PopulationSelector(_params.parentSelector, _params.survivorSelector),
-//                    _randomiser,
-//                    _breeder,
-//                    _mutator
-//            )
-//    );
-//}
+#include "../Selectors/FittestSelector.h"
+#include "../Selectors/FittestSelector.cpp"
+#include "../Selectors/RouletteWheelSelector.cpp"
+
+#include <string>
 
 template<typename C, typename F>
 GeneticAlgorithm<C, F> *GeneticAlgorithmFactory<C, F>::GetObject() {
+    _mutator->setMutationRate(_params.mutationRate);
 
-    Population<C, F> *population = new Population<C, F>(_fitnessFunction);
+    auto population = new Population<C, F>(_fitnessFunction);
 
-//    auto a = getSelector(Fittest);
-//    auto b = getSelector(RouletteWheel);
-    FittestSelector<C, F> a;
-    FittestSelector<C, F> b;
+    auto parentSelector = getSelector(_params.parentSelectorType);
+    auto survivorSelector = getSelector(_params.survivorSelectorType);
 
-    PopulationSelector<string, int> populationSelector(new FittestSelector<string, int>,
-                                                       new FittestSelector<string, int>);
+    PopulationSelector<string, int> populationSelector(parentSelector, survivorSelector);
 
-    PopulationGenerator<C, F> *populationGenerator = new PopulationGenerator<C, F>(
+    auto populationGenerator = new PopulationGenerator<C, F>(
             _params.percentOfRandomPopulation,
             _params.percentOfFittestPopulation,
             &populationSelector,
@@ -72,4 +55,6 @@ ISelector<pair<C, F>> *GeneticAlgorithmFactory<C, F>::getSelector(Selectors sele
 
     if (selectorName == RouletteWheel)
         return new RouletteWheelSelector<C, F>();
+
+    throw invalid_argument("Selection method not implemented in factory");
 };

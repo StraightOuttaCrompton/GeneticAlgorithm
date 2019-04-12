@@ -1,19 +1,15 @@
 #ifndef GENETICALGORITHM_GENETICALGORITHMFACTORY_H
 #define GENETICALGORITHM_GENETICALGORITHMFACTORY_H
 
-#include "../GeneticAlgorithm.h"
-#include "../Framework/customisable/IBreeder.h"
-#include "IFactory.h"
-#include "../Framework/customisable/IFitnessFunction.h"
-#include "../Framework/customisable/IMutator.h"
-#include "../Framework/customisable/IRandomiser.h"
-#include "../Framework/ISelector.h"
-
-#include "../Selectors/RouletteWheelSelector.h"
-#include "../Selectors/RouletteWheelSelector.cpp"
-#include "../Selectors/FittestSelector.h"
-#include "../Selectors/FittestSelector.cpp"
+#include "../../Models/Probability.h"
 #include "../Selectors/Selectors.h"
+
+#include "../GeneticAlgorithm.h"
+#include "../Framework/ISelector.h"
+#include "../Framework/customisable/IFitnessFunction.h"
+#include "../Framework/customisable/IRandomiser.h"
+#include "../Framework/customisable/IMutator.h"
+#include "../Framework/customisable/IBreeder.h"
 
 template<typename C, typename F>
 struct GeneticAlgorithmParams {
@@ -42,8 +38,6 @@ public:
     GeneticAlgorithm<C, F> *GetObject();
 
 private:
-
-//    GeneticAlgorithm<C, F> *GetObject() override;
     ISelector<pair<C, F>> *getSelector(Selectors selectorName);
 
     GeneticAlgorithmParams<C, F> _params;

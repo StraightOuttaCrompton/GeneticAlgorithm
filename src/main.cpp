@@ -43,20 +43,21 @@ int main() {
 
     // Substitution cipher
     const string charPool = "abcdefghijklmnopqrstuvwxyz";
-    SCBreeder *scBreeder = new SCBreeder(charPool);
-    SCFitnessFunction *scFitnessFunction = new SCFitnessFunction(charPool);
-    SCRandomiser *scRandomiser = new SCRandomiser(charPool);
-    SCMutator *scMutator = new SCMutator(mutationRate);
+    
+    auto scBreeder = new SCBreeder(charPool);
+    auto scFitnessFunction = new SCFitnessFunction(charPool);
+    auto scRandomiser = new SCRandomiser(charPool);
+    auto scMutator = new SCMutator(mutationRate);
 
 
     GeneticAlgorithmFactory<string, int> factory(scBreeder, scFitnessFunction, scMutator, scRandomiser);
 
     GeneticAlgorithmParams<string, int> params = {
+            populationSize,
             1,
-            1,
-            Probability(0.1),
-            Probability(0.2),
-            Probability(0.3),
+            percentOfRandomPopulation,
+            percentOfFittestPopulation,
+            mutationRate,
             RouletteWheel,
             Fittest
     };
@@ -65,6 +66,7 @@ int main() {
 
     GeneticAlgorithm<string, int> *geneticAlgorithm = factory.GetObject();
 
+    geneticAlgorithm->Start();
 
     cout << "Hello" << endl;
 //    cout << fittest.GetValue() << endl;

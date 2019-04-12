@@ -13,7 +13,7 @@ public:
 
     string Mutate(string str) override;
 
-    void setMutationRate(Probability mutationRate);
+    void setMutationRate(Probability mutationRate) override;
 
 private:
     Probability _mutationRate;
